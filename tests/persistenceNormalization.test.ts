@@ -15,7 +15,7 @@ describe("persistence normalization", () => {
       prefixByLocale: { en: "/", invalid: "?", pt: "bad prefix" },
     });
     assert.equal(result.botName, "Custom");
-    assert.equal(result.ownerName, "Hiudy");
+    assert.equal(result.ownerName, "Gumball");
     assert.equal(result.prefix, "!");
     assert.equal(result.language, "en");
     assert.equal(result.autoUpdate, false);
