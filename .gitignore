@@ -45,3 +45,19 @@ reports/mutation/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Chaves SSH e Credenciais
+*.pem
+*.key
+*.pub
+id_rsa*
+id_ed25519*
+id_ecdsa*
+id_dsa*
+*ssh*
+*.ssh
+.ssh/
+secrets/
+credentials/
+*key*
+*.key*
