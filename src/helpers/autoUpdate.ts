@@ -13,8 +13,8 @@ import { createTranslator, getGlobalLocale } from "../i18n/index.js";
 import { log } from "../logger.js";
 import { readJson, writeJson } from "../storage/jsonStore.js";
 
-const REF_URL = "https://api.github.com/repos/hiudyy/misa/git/ref/heads/main";
-const ARCHIVE_URL = (sha: string) => `https://github.com/hiudyy/misa/archive/${sha}.zip`;
+const REF_URL = "https://api.github.com/repos/Gumballxnz/thanay-bot/git/ref/heads/main";
+const ARCHIVE_URL = (sha: string) => `https://github.com/Gumballxnz/thanay-bot/archive/${sha}.zip`;
 const MAX_ARCHIVE_BYTES = 50 * 1024 * 1024;
 const MAX_ENTRY_BYTES = 50 * 1024 * 1024;
 const MAX_EXTRACTED_BYTES = 200 * 1024 * 1024;

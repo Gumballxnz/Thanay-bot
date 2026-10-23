@@ -173,7 +173,7 @@ async function writeExif(webpBuffer: Buffer, metadata: { packname?: string; auth
     await image.load(webpBuffer);
 
     const json = {
-      "sticker-pack-id": "https://github.com/hiudyy",
+      "sticker-pack-id": "https://github.com/Gumballxnz",
       "sticker-pack-name": metadata.packname || "",
       "sticker-pack-publisher": metadata.author || "",
       emojis: ["✨"],
