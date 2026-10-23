@@ -21,7 +21,7 @@ describe("jsonStore", () => {
   let file: string;
 
   beforeEach(async () => {
-    directory = path.join(tmpdir(), `misa-json-${randomUUID()}`);
+    directory = path.join(tmpdir(), `thanay-json-${randomUUID()}`);
     file = path.join(directory, "state.json");
     await fs.mkdir(directory, { recursive: true });
   });

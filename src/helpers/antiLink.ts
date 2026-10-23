@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
 import { getGroup, GroupData } from "../database/groupDB.js";

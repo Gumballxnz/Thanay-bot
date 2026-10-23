@@ -1,7 +1,7 @@
 <!-- locale: tr; docs-version: 1 -->
 # Yasal bildirim
 
-Misa bağımsız bir projedir; WhatsApp veya Meta ile bağlantılı, onaylı ya da sponsorlu değildir. WhatsApp, Meta ve ilgili markalar sahiplerine aittir. Otomasyon platform şartlarına tabi olabilir ve hesap kısıtlaması, askıya alma veya ban ile sonuçlanabilir.
+Thanay bağımsız bir projedir; WhatsApp veya Meta ile bağlantılı, onaylı ya da sponsorlu değildir. WhatsApp, Meta ve ilgili markalar sahiplerine aittir. Otomasyon platform şartlarına tabi olabilir ve hesap kısıtlaması, askıya alma veya ban ile sonuçlanabilir.
 
 Harici providers değişebilir, başarısız olabilir, limit veya kendi şartlarını uygulayabilir. Linkler, downloads, telif hakkı, katılımcı onayı, otomatik mesajlar ve yerel mevzuat kullanıcının sorumluluğundadır. Spam, taciz, gizlilik ihlali veya yetkisiz dağıtım için kullanmayın.
 

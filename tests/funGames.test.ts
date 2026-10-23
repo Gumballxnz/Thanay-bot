@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { describe, it } from "node:test";
 import assert from "node:assert";

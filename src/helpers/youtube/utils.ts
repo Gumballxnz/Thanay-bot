@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 const VIDEO_ID_RE =
   /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;

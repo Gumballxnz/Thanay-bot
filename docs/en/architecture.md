@@ -18,4 +18,4 @@ Commands live in `src/commands`, events in `src/events`, i18n dictionaries in `s
 
 YouTube uses independent providers with retry, cooldown, and fallback. Downloads stream to temporary files. The auto-update resolves an exact `main` commit, validates staging, creates a backup, and rolls back on failure. Aggregated metrics are exposed through `statusbot`.
 
-To extend Misa, implement `Command`, follow an existing `Event`, add matching keys to all 11 i18n files, implement `YouTubeProvider`, and place tests under `tests/`. Run `npm run verify` and focused mutation tests before submitting changes.
+To extend Thanay Bot, implement `Command`, follow an existing `Event`, add matching keys to all 11 i18n files, implement `YouTubeProvider`, and place tests under `tests/`. Run `npm run verify` and focused mutation tests before submitting changes.

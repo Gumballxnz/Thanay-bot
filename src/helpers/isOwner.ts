@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { getBotConfig, type BotConfig } from "../config.js";
 import { lidCache } from "../cache/lidCache.js";

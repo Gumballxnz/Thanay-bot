@@ -1,7 +1,7 @@
 <!-- locale: es; docs-version: 1 -->
 # Aviso legal
 
-Misa es independiente y no está afiliado, aprobado ni patrocinado por WhatsApp o Meta. WhatsApp, Meta y sus marcas pertenecen a sus titulares. La automatización está sujeta a los términos de la plataforma y puede causar limitación, suspensión o bloqueo de la cuenta.
+Thanay es independiente y no está afiliado, aprobado ni patrocinado por WhatsApp o Meta. WhatsApp, Meta y sus marcas pertenecen a sus titulares. La automatización está sujeta a los términos de la plataforma y puede causar limitación, suspensión o bloqueo de la cuenta.
 
 Los providers externos pueden cambiar, fallar, imponer límites o tener términos propios. El usuario es responsable de enlaces, descargas, derechos de autor, consentimiento, mensajes automáticos y legislación local. No utilices el software para spam, acoso, invasión de privacidad o distribución no autorizada.
 

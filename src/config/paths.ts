@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import path from "node:path";
 import { fileURLToPath } from "node:url";

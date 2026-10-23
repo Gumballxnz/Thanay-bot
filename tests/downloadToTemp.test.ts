@@ -16,7 +16,7 @@ describe("downloadToTemp", () => {
   let directory: string;
 
   beforeEach(async () => {
-    directory = path.join(tmpdir(), `misa-media-${randomUUID()}`);
+    directory = path.join(tmpdir(), `thanay-media-${randomUUID()}`);
     await fs.mkdir(directory, { recursive: true });
   });
 

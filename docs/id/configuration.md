@@ -9,4 +9,4 @@ Field dasar: `botName`, `ownerName`, `prefix`, `prefixByLocale`, `ownerNumber`, 
 
 `operations.youtube`: `providerRetries` 2, `retryDelaySeconds` 2, `maxFailures` 3, `cooldownMinutes` 300. `operations.logging.level` menerima `debug`, `info`, `warn`, `error`, `silent`. `operations.updates.maxBackups` default 5.
 
-Gunakan menu lanjutan atau edit JSON saat bot berhenti. Rentang: konkurensi 1-16, antrean 0-1000, timeout 1-3600 detik, FFmpeg 1-4, ukuran 1-2048 MiB, retry 1-10, delay 0-60 detik, gagal 1-20, cooldown 0-1440 menit, backup 1-50. `MISA_COMMIT_SHA` hanya metadata build.
+Gunakan menu lanjutan atau edit JSON saat bot berhenti. Rentang: konkurensi 1-16, antrean 0-1000, timeout 1-3600 detik, FFmpeg 1-4, ukuran 1-2048 MiB, retry 1-10, delay 0-60 detik, gagal 1-20, cooldown 0-1440 menit, backup 1-50. `THANAY_COMMIT_SHA` hanya metadata build.

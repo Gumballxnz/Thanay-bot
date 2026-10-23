@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { GroupMetadata, GroupParticipant, ParticipantAction, WASocket } from "baileys";
 import { toLID } from "../helpers/toLID.js";

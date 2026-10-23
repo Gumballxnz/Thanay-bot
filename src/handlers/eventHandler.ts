@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -30,7 +30,7 @@ export class EventHandler {
 
       const listener = async (data: unknown) => {
         try {
-          await event.execute({ misa, data });
+          await event.execute({ thanay: misa, misa, data });
         } catch (error) {
           log.error("EVENT", globalT("logs.eventError", { name: event.name }), error);
         }

@@ -1,5 +1,5 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 export * from "./youtube/index.js";

@@ -9,4 +9,4 @@ Campos básicos: `botName`, `ownerName`, `prefix`, `prefixByLocale`, `ownerNumbe
 
 `operations.youtube` define `providerRetries` 2, `retryDelaySeconds` 2, `maxFailures` 3 e `cooldownMinutes` 300. `operations.logging.level` aceita `debug`, `info`, `warn`, `error` ou `silent`. `operations.updates.maxBackups` tem default 5.
 
-Use a opção “Configuração avançada” do menu ou edite o JSON parado. Faixas: concorrência 1-16, fila 0-1000, timeout 1-3600 s, FFmpeg 1-4, tamanhos 1-2048 MiB, retries 1-10, delay 0-60 s, falhas 1-20, cooldown 0-1440 min e backups 1-50. `MISA_COMMIT_SHA` serve somente como metadata de build, não substitui operações.
+Use a opção “Configuração avançada” do menu ou edite o JSON parado. Faixas: concorrência 1-16, fila 0-1000, timeout 1-3600 s, FFmpeg 1-4, tamanhos 1-2048 MiB, retries 1-10, delay 0-60 s, falhas 1-20, cooldown 0-1440 min e backups 1-50. `THANAY_COMMIT_SHA` serve somente como metadata de build, não substitui operações.

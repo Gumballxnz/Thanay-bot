@@ -9,4 +9,4 @@ Champs simples : `botName`, `ownerName`, `prefix`, `prefixByLocale`, `ownerNumbe
 
 `operations.youtube` : `providerRetries` 2, `retryDelaySeconds` 2, `maxFailures` 3, `cooldownMinutes` 300. `operations.logging.level` accepte `debug`, `info`, `warn`, `error`, `silent`. `operations.updates.maxBackups` vaut 5.
 
-Utilisez le menu avancé ou éditez le JSON bot arrêté. Plages : concurrence 1-16, file 0-1000, timeout 1-3600 s, FFmpeg 1-4, tailles 1-2048 MiB, retries 1-10, délai 0-60 s, échecs 1-20, cooldown 0-1440 min et backups 1-50. `MISA_COMMIT_SHA` est uniquement une metadata de build.
+Utilisez le menu avancé ou éditez le JSON bot arrêté. Plages : concurrence 1-16, file 0-1000, timeout 1-3600 s, FFmpeg 1-4, tailles 1-2048 MiB, retries 1-10, délai 0-60 s, échecs 1-20, cooldown 0-1440 min et backups 1-50. `THANAY_COMMIT_SHA` est uniquement une metadata de build.

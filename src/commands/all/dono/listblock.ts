@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
 import { cleanupExpiredBlockedUsers } from "../../../helpers/ownerRestrictions.js";

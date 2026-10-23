@@ -69,7 +69,7 @@ function createStoredZip(entries: ZipEntry[]): Buffer {
 }
 
 function runtimeZip(label: string, options: { includeLock?: boolean } = {}): Buffer {
-  const root = "misa-commit";
+  const root = "thanay-commit";
   const entries: ZipEntry[] = [
     { name: `${root}/src/index.ts`, data: `${label}-src` },
     { name: `${root}/scripts/build.mjs`, data: `${label}-script` },
@@ -111,10 +111,10 @@ function updateFetch(sha: string, archive: Buffer, announcedSize?: number): type
 }
 
 describe("safeExtractPath", () => {
-  const destination = path.resolve("/tmp/misa-extract-test");
+  const destination = path.resolve("/tmp/thanay-extract-test");
 
   it("allows nested paths inside destination", () => {
-    const result = safeExtractPath(destination, "misa-main/src/index.ts");
+    const result = safeExtractPath(destination, "thanay-main/src/index.ts");
     assert.ok(result.startsWith(destination));
   });
 
@@ -227,7 +227,7 @@ describe("syncGitCheckout", () => {
 
 describe("runAutoUpdate", () => {
   it("does not stage or restart when main commit is already applied", async () => {
-    const root = path.join(tmpdir(), `misa-update-${randomUUID()}`);
+    const root = path.join(tmpdir(), `thanay-update-${randomUUID()}`);
     const data = path.join(root, "dados");
     const sha = "a".repeat(40);
     await fs.mkdir(data, { recursive: true });
@@ -260,7 +260,7 @@ describe("runAutoUpdate", () => {
   });
 
   it("validates, activates and records an update without real processes", async () => {
-    const root = path.join(tmpdir(), `misa-update-${randomUUID()}`);
+    const root = path.join(tmpdir(), `thanay-update-${randomUUID()}`);
     const data = path.join(root, "dados");
     const sha = "b".repeat(40);
     await writeRuntime(root, "old");
@@ -297,7 +297,7 @@ describe("runAutoUpdate", () => {
   });
 
   it("rolls back the complete runtime when root install fails", async () => {
-    const root = path.join(tmpdir(), `misa-update-${randomUUID()}`);
+    const root = path.join(tmpdir(), `thanay-update-${randomUUID()}`);
     const data = path.join(root, "dados");
     const sha = "c".repeat(40);
     await writeRuntime(root, "old");
@@ -336,7 +336,7 @@ describe("runAutoUpdate", () => {
   });
 
   it("does not touch runtime when staging is incomplete", async () => {
-    const root = path.join(tmpdir(), `misa-update-${randomUUID()}`);
+    const root = path.join(tmpdir(), `thanay-update-${randomUUID()}`);
     const data = path.join(root, "dados");
     await writeRuntime(root, "old");
     let commands = 0;
@@ -358,7 +358,7 @@ describe("runAutoUpdate", () => {
   });
 
   it("rejects oversized archive headers and ZIP entries", async () => {
-    const root = path.join(tmpdir(), `misa-update-${randomUUID()}`);
+    const root = path.join(tmpdir(), `thanay-update-${randomUUID()}`);
     await writeRuntime(root, "old");
     try {
       await runAutoUpdate({

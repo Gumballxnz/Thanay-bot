@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -54,13 +54,13 @@ async function runBotCycle(
   await commandHandler.loadCommands(paths.commands);
   if (signal?.aborted) return false;
 
-  const misa = await createConnection(authMode, phoneNumber);
+  const thanay = await createConnection(authMode, phoneNumber);
   const eventHandler = new EventHandler();
   groupCache.clear();
-  const disposeGroupCache = groupCache.registerEvents(misa);
-  const disposeEvents = await eventHandler.loadEvents(paths.events, misa);
+  const disposeGroupCache = groupCache.registerEvents(thanay);
+  const disposeEvents = await eventHandler.loadEvents(paths.events, thanay);
 
-  const messageControl = setupMessageHandler(misa, commandHandler);
+  const messageControl = setupMessageHandler(thanay, commandHandler);
 
   const globalLocale = await resolveLocale();
   const tGlobal = createTranslator(globalLocale);
@@ -73,7 +73,7 @@ async function runBotCycle(
       if (settled) return;
       settled = true;
       signal?.removeEventListener("abort", onAbort);
-      misa.ev.off("connection.update", onConnectionUpdate);
+      thanay.ev.off("connection.update", onConnectionUpdate);
       mediaQueue.cancelAll();
       messageControl.dispose();
       disposeEvents();
@@ -83,12 +83,12 @@ async function runBotCycle(
       await flushGroupActivity().catch((error) => log.error("BOT", "ACTIVITY_FLUSH_FAILED", error));
       await lidCache.flush().catch((error) => log.error("BOT", "LID_CACHE_FLUSH_FAILED", error));
       await drainJsonWrites().catch((error) => log.error("BOT", "JSON_DRAIN_FAILED", error));
-      if (closeSocket) await misa.end(undefined).catch((error) => log.error("BOT", "SOCKET_CLOSE_FAILED", error));
+      if (closeSocket) await thanay.end(undefined).catch((error) => log.error("BOT", "SOCKET_CLOSE_FAILED", error));
       resolve(shouldReconnect);
     };
 
     const onAbort = () => void settle(false, true);
-    const onConnectionUpdate: Parameters<Parameters<typeof misa.ev.on<"connection.update">>[1]>[0] extends infer T
+    const onConnectionUpdate: Parameters<Parameters<typeof thanay.ev.on<"connection.update">>[1]>[0] extends infer T
       ? (update: T) => Promise<void>
       : never = async (update) => {
       if (update.connection === "open") {
@@ -98,7 +98,7 @@ async function runBotCycle(
           if (latestConfig.ownerNumber && !latestConfig.ownerLID) {
             const tOwner = createTranslator(latestConfig.language || "pt");
             log.info("OWNER", tOwner("logs.ownerLidFetching"));
-            const ownerLID = await toLID(latestConfig.ownerNumber, misa);
+            const ownerLID = await toLID(latestConfig.ownerNumber, thanay);
             if (ownerLID) {
               await updateBotConfig((current) => ({ ...current, ownerLID }));
               log.success("OWNER", tOwner("logs.ownerLidSaved", { lid: ownerLID }));
@@ -117,7 +117,7 @@ async function runBotCycle(
       }
     };
 
-    misa.ev.on("connection.update", onConnectionUpdate);
+    thanay.ev.on("connection.update", onConnectionUpdate);
     signal?.addEventListener("abort", onAbort, { once: true });
     if (signal?.aborted) onAbort();
   });
@@ -185,7 +185,7 @@ if (entryPointUrl) {
   const phone = args.find((a) => /^\d+$/.test(a));
 
   let tGlobal = createTranslator("pt");
-  let botScope = "Misa";
+  let botScope = "Thanay";
 
   getBotConfig().then(async (config) => {
     applyOperationalConfig(config.operations);

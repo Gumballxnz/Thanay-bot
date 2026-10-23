@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { WASocket } from "baileys";
 import { isMessageDebugEnabled, logMessageDebug } from "../helpers/messageDebug.js";

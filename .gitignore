@@ -6,7 +6,6 @@ dist/
 
 # Sessão e dados do bot
 dados/thanay-qr/
-dados/misa-qr/
 dados/*-qr/
 dados/grupos/
 dados/fotos/

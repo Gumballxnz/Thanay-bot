@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { execFileSync } from "node:child_process";
 import { promises as fs } from "node:fs";
@@ -40,7 +40,7 @@ export async function resolveBuildInfo(dependencies: BuildInfoDependencies = {})
     // Sem state aplicado pelo auto-update.
   }
 
-  commit ??= normalizeCommit(env.THANAY_COMMIT_SHA) ?? normalizeCommit(env.MISA_COMMIT_SHA) ?? normalizeCommit(env.GITHUB_SHA);
+  commit ??= normalizeCommit(env.THANAY_COMMIT_SHA) ?? normalizeCommit(env.GITHUB_SHA);
   if (!commit) {
     try {
       const gitCommit = dependencies.gitCommit ?? (() => execFileSync("git", ["rev-parse", "--short=12", "HEAD"], {

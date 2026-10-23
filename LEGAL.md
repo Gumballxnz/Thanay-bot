@@ -1,6 +1,6 @@
 # Legal notices by language
 
-Misa is an independent MIT-licensed project. It is not affiliated with, endorsed by, or sponsored by WhatsApp or Meta. Use is subject to platform terms and local law.
+Thanay is an independent MIT-licensed project. It is not affiliated with, endorsed by, or sponsored by WhatsApp or Meta. Use is subject to platform terms and local law.
 
 - [Português](docs/pt/legal.md)
 - [English](docs/en/legal.md)

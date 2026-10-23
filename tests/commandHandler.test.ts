@@ -7,7 +7,7 @@ import { CommandHandler } from "../src/handlers/commandHandler.js";
 import { clearLocaleCache } from "../src/i18n/index.js";
 
 async function createTempCommandsDir(): Promise<string> {
-  const dir = path.join(tmpdir(), `misa-test-commands-${Date.now()}`);
+  const dir = path.join(tmpdir(), `thanay-test-commands-${Date.now()}`);
   await fs.mkdir(dir, { recursive: true });
   return dir;
 }

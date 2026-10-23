@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { randomUUID } from "node:crypto";
 import { metrics } from "../metrics.js";

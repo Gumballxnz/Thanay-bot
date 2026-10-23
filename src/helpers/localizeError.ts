@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 
 /** Códigos estáveis lançados pelos helpers; traduzidos na borda do comando. */

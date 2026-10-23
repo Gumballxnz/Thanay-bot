@@ -18,4 +18,4 @@ Les commandes sont dans `src/commands`, les événements dans `src/events`, les 
 
 YouTube utilise des providers séparés avec retry, cooldown et fallback. Les téléchargements sont streamés. L’auto-update fixe un commit de `main`, valide un staging, sauvegarde et effectue un rollback. `statusbot` expose les métriques agrégées.
 
-Pour étendre Misa : implémentez `Command`, suivez un `Event`, ajoutez les clés aux 11 fichiers i18n, implémentez `YouTubeProvider`, écrivez les tests dans `tests/` et lancez `npm run verify`.
+Pour étendre Thanay : implémentez `Command`, suivez un `Event`, ajoutez les clés aux 11 fichiers i18n, implémentez `YouTubeProvider`, écrivez les tests dans `tests/` et lancez `npm run verify`.

@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 type FailureEntry = { failure: number };
 type DurationEntry = { count: number; totalMs: number };

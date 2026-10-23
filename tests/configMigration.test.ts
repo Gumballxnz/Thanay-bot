@@ -14,7 +14,7 @@ describe("bot config schema", () => {
   });
 
   it("is idempotent for current schema", () => {
-    const once = migrateBotConfig({ schemaVersion: 2, botName: "Misa", operations: defaultOperationalConfig });
+    const once = migrateBotConfig({ schemaVersion: 2, botName: "Thanay", operations: defaultOperationalConfig });
     assert.deepEqual(migrateBotConfig(once), once);
     assert.equal(CURRENT_CONFIG_SCHEMA_VERSION, 2);
   });

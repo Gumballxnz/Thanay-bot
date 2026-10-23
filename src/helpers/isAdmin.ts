@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { GroupParticipant, WASocket } from "baileys";
 import { groupCache } from "../cache/groupCache.js";

@@ -9,4 +9,4 @@ Temel alanlar: `botName`, `ownerName`, `prefix`, `prefixByLocale`, `ownerNumber`
 
 `operations.youtube`: `providerRetries` 2, `retryDelaySeconds` 2, `maxFailures` 3, `cooldownMinutes` 300. `operations.logging.level` değerleri `debug`, `info`, `warn`, `error`, `silent`; `operations.updates.maxBackups` varsayılan 5.
 
-Gelişmiş menüyü kullanın veya bot kapalıyken JSON düzenleyin. Aralıklar: concurrency 1-16, queue 0-1000, timeout 1-3600 saniye, FFmpeg 1-4, boyut 1-2048 MiB, retries 1-10, delay 0-60, failures 1-20, cooldown 0-1440 dakika, backups 1-50. `MISA_COMMIT_SHA` yalnızca build metadata bilgisidir.
+Gelişmiş menüyü kullanın veya bot kapalıyken JSON düzenleyin. Aralıklar: concurrency 1-16, queue 0-1000, timeout 1-3600 saniye, FFmpeg 1-4, boyut 1-2048 MiB, retries 1-10, delay 0-60, failures 1-20, cooldown 0-1440 dakika, backups 1-50. `THANAY_COMMIT_SHA` yalnızca build metadata bilgisidir.

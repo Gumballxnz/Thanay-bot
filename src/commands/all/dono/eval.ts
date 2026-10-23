@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  *
  * ATENÇÃO: RCE intencional restrito ao dono (`ownerOnly`).
  * O contexto expõe o socket `misa` de propósito para manutenção.
@@ -15,9 +15,11 @@ const MAX_CODE_LENGTH = 2000;
 const EVAL_TIMEOUT_MS = 5000;
 
 /** Globals seguros expostos ao sandbox (sem process/require/global). */
-function createEvalSandbox(misa: unknown, message: unknown, args: string[]) {
+function createEvalSandbox(thanay: unknown, message: unknown, args: string[]) {
   return {
-    misa,
+    thanay,
+    misa: thanay,
+    bot: thanay,
     message,
     args,
     console: {
@@ -57,9 +59,10 @@ const evalCommand: Command = {
   description: "Runs JavaScript code (DANGEROUS - owner only)",
   category: "all",
   ownerOnly: true,
-  async execute({ misa, message, from, args, rawArgs, t }) {
+  async execute({ thanay, misa, message, from, args, rawArgs, t }) {
+    const socket = (thanay ?? misa)!;
     if (args.length === 0) {
-      await misa.sendMessage(
+      await socket.sendMessage(
         from,
         { text: t("commands.eval.noArgs") },
         { quoted: message as WAMessage },
@@ -70,7 +73,7 @@ const evalCommand: Command = {
     const code = rawArgs;
 
     if (code.length > MAX_CODE_LENGTH) {
-      await misa.sendMessage(
+      await socket.sendMessage(
         from,
         { text: t("commands.eval.tooLong", { max: String(MAX_CODE_LENGTH) }) },
         { quoted: message as WAMessage },
@@ -79,7 +82,7 @@ const evalCommand: Command = {
     }
 
     try {
-      const context = vm.createContext(createEvalSandbox(misa, message, args));
+      const context = vm.createContext(createEvalSandbox(socket, message, args));
 
       const wrappedCode = `(async () => { ${code} })()`;
       const result = await vm.runInContext(wrappedCode, context, {
@@ -89,7 +92,7 @@ const evalCommand: Command = {
 
       const output = typeof result === "object" ? JSON.stringify(result, null, 2) : String(result);
 
-      await misa.sendMessage(
+      await socket.sendMessage(
         from,
         {
           text: t("commands.eval.success", { code, output: output.split("\n").map((line) => `│ ${line}`).join("\n") }),
@@ -97,7 +100,7 @@ const evalCommand: Command = {
         { quoted: message as WAMessage },
       );
     } catch (error) {
-      await misa.sendMessage(
+      await socket.sendMessage(
         from,
         {
           text: t("commands.eval.error", { code, error: String(error) }),

@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import type { OperationalConfig } from "./operations.js";
 import { configureMediaQueue } from "../media/mediaQueue.js";

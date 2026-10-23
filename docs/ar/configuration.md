@@ -9,4 +9,4 @@
 
 داخل `operations.youtube`: `providerRetries` 2 و`retryDelaySeconds` 2 و`maxFailures` 3 و`cooldownMinutes` 300. يقبل `operations.logging.level` القيم `debug`, `info`, `warn`, `error`, `silent`. القيمة الافتراضية لـ`operations.updates.maxBackups` هي 5.
 
-استخدم القائمة المتقدمة أو عدّل JSON والبوت متوقف. الحدود: التزامن 1-16، الطابور 0-1000، timeout 1-3600 ثانية، FFmpeg 1-4، الأحجام 1-2048 MiB، retries 1-10، delay 0-60، الفشل 1-20، cooldown 0-1440 دقيقة، backups 1-50. `MISA_COMMIT_SHA` metadata للبناء فقط.
+استخدم القائمة المتقدمة أو عدّل JSON والبوت متوقف. الحدود: التزامن 1-16، الطابور 0-1000، timeout 1-3600 ثانية، FFmpeg 1-4، الأحجام 1-2048 MiB، retries 1-10، delay 0-60، الفشل 1-20، cooldown 0-1440 دقيقة، backups 1-50. `THANAY_COMMIT_SHA` metadata للبناء فقط.

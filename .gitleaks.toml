@@ -1,4 +1,4 @@
-title = "Misa gitleaks configuration"
+title = "Thanay gitleaks configuration"
 
 [extend]
 useDefault = true

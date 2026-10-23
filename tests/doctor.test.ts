@@ -11,7 +11,7 @@ const locales = ["ar", "bn", "de", "en", "es", "fr", "hi", "id", "pt", "tr", "ur
 describe("doctor", () => {
   let root: string;
   beforeEach(async () => {
-    root = path.join(tmpdir(), `misa-doctor-${randomUUID()}`);
+    root = path.join(tmpdir(), `thanay-doctor-${randomUUID()}`);
     await fs.mkdir(path.join(root, "dist", "assets"), { recursive: true });
     await fs.mkdir(path.join(root, "dist", "i18n"), { recursive: true });
     await fs.mkdir(path.join(root, "dados"), { recursive: true });

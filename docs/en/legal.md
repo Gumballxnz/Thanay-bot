@@ -1,7 +1,7 @@
 <!-- locale: en; docs-version: 1 -->
 # Legal notice
 
-Misa is an independent project and is not affiliated with, endorsed by, or sponsored by WhatsApp or Meta. WhatsApp, Meta, and related trademarks belong to their respective owners. Automation may be governed by platform terms and can result in account restrictions, suspension, or bans.
+Thanay is an independent project and is not affiliated with, endorsed by, or sponsored by WhatsApp or Meta. WhatsApp, Meta, and related trademarks belong to their respective owners. Automation may be governed by platform terms and can result in account restrictions, suspension, or bans.
 
 External media providers can change, fail, rate-limit requests, or apply their own terms. Users are responsible for links, downloads, copyright, participant consent, automated messages, and compliance with local law. Do not use the software for spam, harassment, privacy violations, or unauthorized distribution.
 

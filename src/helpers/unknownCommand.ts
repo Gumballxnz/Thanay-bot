@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { proto, WAMessage, WASocket } from "baileys";
 import { getBotConfig } from "../config.js";

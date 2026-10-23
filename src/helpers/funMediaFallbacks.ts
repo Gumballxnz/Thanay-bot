@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  *
  * Fallbacks: traits sem mídia própria reutilizam um arquivo local existente.
  */

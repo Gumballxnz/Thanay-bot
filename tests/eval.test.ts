@@ -36,6 +36,7 @@ async function runEval(args: string[]): Promise<{ messages: ReturnType<typeof cr
   const rawArgs = args.join(" ");
 
   await evalCommand.execute({
+    thanay: misa as unknown as import("baileys").WASocket,
     misa: misa as unknown as import("baileys").WASocket,
     message,
     args,
@@ -71,8 +72,8 @@ describe("eval command sandbox", () => {
     assert.ok(getLastText(messages).includes("4"));
   });
 
-  it("exposes misa in sandbox context", async () => {
-    const { messages } = await runEval(["return", "await", "misa.sendMessage('test', { text: 'ok' })"]);
+  it("exposes thanay and misa in sandbox context", async () => {
+    const { messages } = await runEval(["return", "await", "thanay.sendMessage('test', { text: 'ok' })"]);
     assert.ok(messages.length >= 1);
     assert.ok(getLastText(messages).includes("ok") || messages.some((m) => JSON.stringify(m).includes("ok")));
   });

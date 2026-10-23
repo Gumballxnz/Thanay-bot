@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
 

@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { createHash } from "node:crypto";
 import { execFileSync, spawn, spawnSync } from "node:child_process";
@@ -195,7 +195,7 @@ function normalizeState(value: unknown): UpdateState {
 async function resolveMainSha(fetchImpl: typeof fetch): Promise<string> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "misa-bot-auto-update",
+    "User-Agent": "thanay-bot-auto-update",
   };
   if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   const response = await fetchImpl(REF_URL, { headers, signal: AbortSignal.timeout(30_000) });
@@ -215,7 +215,7 @@ async function resolveMainSha(fetchImpl: typeof fetch): Promise<string> {
 
 async function downloadArchive(fetchImpl: typeof fetch, url: string, destination: string): Promise<string> {
   const response = await fetchImpl(url, {
-    headers: { "User-Agent": "misa-bot-auto-update" },
+    headers: { "User-Agent": "thanay-bot-auto-update" },
     signal: AbortSignal.timeout(120_000),
   });
   if (!response.ok) throw new Error(`UPDATE_DOWNLOAD_HTTP_${response.status}`);

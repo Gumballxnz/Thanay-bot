@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 const colorEnabled = process.stdout.isTTY;
 import type { LogLevel } from "./config/operations.js";

@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { paths } from "./config/paths.js";
 import { DEFAULT_LOCALE, t } from "./i18n/index.js";

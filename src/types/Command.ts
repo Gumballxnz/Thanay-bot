@@ -1,6 +1,6 @@
 /**
  * @author Hiudy · github.com/hiudyy
- * @project Misa Bot
+ * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
 import { GroupCache } from "../cache/groupCache.js";
@@ -16,6 +16,7 @@ export const COMMAND_CATEGORIES = ["all", "geral", "grupo", "brincadeiras"] as c
 export type CommandCategory = typeof COMMAND_CATEGORIES[number];
 
 export interface CommandContext {
+  thanay: WASocket;
   misa: WASocket;
   message: proto.IWebMessageInfo;
   args: string[];

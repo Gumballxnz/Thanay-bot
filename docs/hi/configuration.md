@@ -9,4 +9,4 @@ Basic fields: `botName`, `ownerName`, `prefix`, `prefixByLocale`, `ownerNumber`,
 
 `operations.youtube` में `providerRetries` 2, `retryDelaySeconds` 2, `maxFailures` 3, `cooldownMinutes` 300 हैं। `operations.logging.level` में `debug`, `info`, `warn`, `error`, `silent`; `operations.updates.maxBackups` default 5 है।
 
-Advanced menu या बंद bot का JSON उपयोग करें। सीमाएँ: concurrency 1-16, queue 0-1000, timeout 1-3600 सेकंड, FFmpeg 1-4, size 1-2048 MiB, retries 1-10, delay 0-60, failures 1-20, cooldown 0-1440 मिनट, backups 1-50। `MISA_COMMIT_SHA` केवल build metadata है।
+Advanced menu या बंद bot का JSON उपयोग करें। सीमाएँ: concurrency 1-16, queue 0-1000, timeout 1-3600 सेकंड, FFmpeg 1-4, size 1-2048 MiB, retries 1-10, delay 0-60, failures 1-20, cooldown 0-1440 मिनट, backups 1-50। `THANAY_COMMIT_SHA` केवल build metadata है।

@@ -19,7 +19,7 @@ describe("YouTube download pipeline", () => {
   let directory: string;
 
   beforeEach(async () => {
-    directory = path.join(tmpdir(), `misa-youtube-${randomUUID()}`);
+    directory = path.join(tmpdir(), `thanay-youtube-${randomUUID()}`);
     await fs.mkdir(directory, { recursive: true });
   });
 

@@ -6,7 +6,7 @@ describe("build info", () => {
   it("prefers auto-update state commit", async () => {
     const info = await resolveBuildInfo({
       readFile: async () => JSON.stringify({ commit: "a".repeat(40) }) as never,
-      env: { MISA_COMMIT_SHA: "b".repeat(40) },
+      env: { THANAY_COMMIT_SHA: "b".repeat(40) },
       gitCommit: () => "ccccccc",
     });
     assert.equal(info.version, "1.0.0");
@@ -23,7 +23,7 @@ describe("build info", () => {
   it("returns unknown when no source is valid", async () => {
     const info = await resolveBuildInfo({
       readFile: (async () => "broken") as never,
-      env: { MISA_COMMIT_SHA: "invalid" },
+      env: { THANAY_COMMIT_SHA: "invalid" },
       gitCommit: () => { throw new Error("no git"); },
     });
     assert.equal(info.commit, "unknown");
