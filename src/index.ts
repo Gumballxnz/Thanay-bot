@@ -177,7 +177,12 @@ export async function startBot(authMode: "qr" | "pairing" = "qr", phoneNumber?: 
   }
 }
 
-const entryPointUrl = process.argv[1] ? fileURLToPath(import.meta.url) === path.resolve(process.argv[1]) : false;
+const isDirectCli = process.argv[1] ? fileURLToPath(import.meta.url) === path.resolve(process.argv[1]) : false;
+const isPm2Entry = Boolean(
+  process.env.pm_id !== undefined &&
+  (process.env.pm_exec_path ? path.resolve(process.env.pm_exec_path) === fileURLToPath(import.meta.url) : true)
+);
+const entryPointUrl = isDirectCli || isPm2Entry;
 
 if (entryPointUrl) {
   const args = process.argv.slice(2);
