@@ -33,7 +33,7 @@ export type BotConfig = {
 export const defaultConfig: BotConfig = {
   schemaVersion: CURRENT_CONFIG_SCHEMA_VERSION,
   botName: "Thanay Bot",
-  ownerName: "Hiudy",
+  ownerName: "Gumball",
   prefix: "!",
   prefixByLocale: {},
   ownerNumber: "",

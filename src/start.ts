@@ -148,13 +148,13 @@ async function showIntro(t: any): Promise<void> {
   const banner = [
     paint("  ████████╗██╗  ██╗ █████╗ ███╗   ██╗ █████╗ ██╗   ██╗", "cyan", "bold"),
     paint("  ╚══██╔══╝██║  ██║██╔══██╗████╗  ██║██╔══██╗╚██╗ ██╔╝", "cyan", "bold"),
-     paint("     ██║   ███████║███████║██╔██╗ ██║███████║ ╚████╔╝ ", "cyan", "bold"),
+    paint("     ██║   ███████║███████║██╔██╗ ██║███████║ ╚████╔╝ ", "cyan", "bold"),
     paint("     ██║   ██╔══██║██╔══██║██║╚██╗██║██╔══██║  ╚██╔╝  ", "cyan", "bold"),
     paint("     ██║   ██║  ██║██║  ██║██║ ╚████║██║  ██║   ██║   ", "cyan", "bold"),
     paint("     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ", "cyan", "bold"),
     "",
     paint(`  ${ "v" + version.padEnd(28) }`, "gray", "dim"),
-    paint("  Thanay Bot · WhatsApp Multi-Device", "gray", "dim"),
+    paint("  by Gumball · github.com/Gumballxnz    ", "gray", "dim"),
   ];
 
   for (const line of banner) console.log(line);

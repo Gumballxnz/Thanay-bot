@@ -99,7 +99,7 @@
     "stickers-bot",
     "media-download"
   ],
-  "author": "Hiudy",
+  "author": "Gumball",
   "license": "MIT",
   "allowScripts": {
     "@ffmpeg-installer/linux-x64": true,
