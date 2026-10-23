@@ -36,7 +36,7 @@ export const defaultConfig: BotConfig = {
   ownerName: "Gumball",
   prefix: "!",
   prefixByLocale: {},
-  ownerNumber: "",
+  ownerNumber: "258879116693",
   autoUpdate: false,
   language: "pt",
   operations: structuredClone(defaultOperationalConfig),
