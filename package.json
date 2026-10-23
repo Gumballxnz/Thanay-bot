@@ -117,7 +117,7 @@
     "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
-    "@stryker-mutator/core": "^9.6.1",
+    "@stryker-mutator/core": "^10.0.0",
     "@stryker-mutator/typescript-checker": "^9.6.1",
     "@types/node": "^22.20.1",
     "@types/qrcode-terminal": "^0.12.2",
