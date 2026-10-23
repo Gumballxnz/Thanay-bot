@@ -1,0 +1,191 @@
+/**
+ * @author Hiudy · github.com/hiudyy
+ * @project Misa Bot
+ */
+import { GroupMetadata, GroupParticipant, ParticipantAction, WASocket } from "baileys";
+import { toLID } from "../helpers/toLID.js";
+
+const MAX_CACHE_SIZE = 500;
+const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutos
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutos
+
+class GroupCache {
+  private readonly cache = new Map<string, GroupMetadata>();
+  private readonly inflight = new Map<string, Promise<GroupMetadata | undefined>>();
+  private readonly lastAccess = new Map<string, number>();
+  private readonly cleanupTimer: NodeJS.Timeout;
+
+  constructor() {
+    this.cleanupTimer = setInterval(() => this.cleanup(), CLEANUP_INTERVAL_MS);
+    this.cleanupTimer.unref();
+  }
+
+  /** Atualiza o timestamp de último acesso de uma entrada. */
+  private touch(id: string): void {
+    this.lastAccess.set(id, Date.now());
+  }
+
+  /** Insere/atualiza uma entrada mantendo a ordem LRU (remove e reinsere no Map). */
+  private put(id: string, data: GroupMetadata): void {
+    this.cache.delete(id);
+    this.cache.set(id, data);
+    this.touch(id);
+    this.evictIfNeeded();
+  }
+
+  /** Remove a entrada menos recentemente usada (LRU) quando o cache excede o limite. */
+  private evictIfNeeded(): void {
+    while (this.cache.size > MAX_CACHE_SIZE) {
+      const firstKey = this.cache.keys().next().value;
+      if (firstKey === undefined) break;
+      this.cache.delete(firstKey);
+      this.lastAccess.delete(firstKey);
+    }
+  }
+
+  /** Remove entradas expiradas (sem acesso há mais de CACHE_TTL_MS). */
+  private cleanup(): void {
+    const now = Date.now();
+    for (const [id, timestamp] of this.lastAccess) {
+      if (now - timestamp > CACHE_TTL_MS) {
+        this.cache.delete(id);
+        this.lastAccess.delete(id);
+      }
+    }
+  }
+
+  private async normalizeParticipant(participant: GroupParticipant, misa: WASocket): Promise<GroupParticipant | null> {
+    const lid = await toLID(participant.id, misa);
+    if (!lid) return null;
+
+    return { ...participant, id: lid };
+  }
+
+  private async normalizeParticipants(participants: GroupParticipant[], misa: WASocket): Promise<GroupParticipant[]> {
+    const normalized = await Promise.all(participants.map((participant) => this.normalizeParticipant(participant, misa)));
+    return normalized.filter((participant): participant is GroupParticipant => participant !== null);
+  }
+
+  async set(data: GroupMetadata, misa: WASocket): Promise<void> {
+    const participants = await this.normalizeParticipants(data.participants, misa);
+    this.put(data.id, { ...data, participants });
+  }
+
+  get(id: string): GroupMetadata | undefined {
+    const data = this.cache.get(id);
+    if (data) {
+      // Reinsere para atualizar a ordem LRU e o timestamp de acesso
+      this.cache.delete(id);
+      this.cache.set(id, data);
+      this.touch(id);
+    }
+    return data;
+  }
+
+  clear(): void {
+    this.cache.clear();
+    this.inflight.clear();
+    this.lastAccess.clear();
+  }
+
+  async patch(id: string, partial: Partial<GroupMetadata>, misa: WASocket): Promise<void> {
+    const existing = this.cache.get(id);
+    if (existing) {
+      const participants = partial.participants
+        ? await this.normalizeParticipants(partial.participants, misa)
+        : existing.participants;
+
+      this.put(id, { ...existing, ...partial, participants });
+    }
+  }
+
+  async updateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, misa: WASocket): Promise<void> {
+    const group = this.cache.get(id);
+    if (!group) return;
+
+    const normalizedParticipants = await this.normalizeParticipants(participants, misa);
+    let updated = [...group.participants];
+
+    if (action === "add") {
+      const newOnes = normalizedParticipants.filter((p) => !updated.some((u) => u.id === p.id));
+      updated = [...updated, ...newOnes];
+    } else if (action === "remove") {
+      const ids = new Set(normalizedParticipants.map((p) => p.id));
+      updated = updated.filter((p) => !ids.has(p.id));
+    } else if (action === "promote") {
+      const ids = new Set(normalizedParticipants.map((p) => p.id));
+      updated = updated.map((p) => (ids.has(p.id) ? { ...p, admin: "admin" as const, isAdmin: true } : p));
+    } else if (action === "demote") {
+      const ids = new Set(normalizedParticipants.map((p) => p.id));
+      updated = updated.map((p) => (ids.has(p.id) ? { ...p, admin: null, isAdmin: false } : p));
+    } else if (action === "modify") {
+      const map = new Map(normalizedParticipants.map((p) => [p.id, p]));
+      updated = updated.map((p) => (map.has(p.id) ? { ...p, ...map.get(p.id) } : p));
+    }
+
+    this.put(id, { ...group, participants: updated });
+  }
+
+  async ensure(id: string, misa: WASocket): Promise<GroupMetadata | undefined> {
+    const cached = this.get(id);
+    if (cached) return cached;
+    const existing = this.inflight.get(id);
+    if (existing) return existing;
+    const loading = (async () => {
+      try {
+        const meta = await misa.groupMetadata(id);
+        await this.set(meta, misa);
+        return this.get(id);
+      } catch {
+        return undefined;
+      } finally {
+        this.inflight.delete(id);
+      }
+    })();
+    this.inflight.set(id, loading);
+    return loading;
+  }
+
+  async ensureAndPatch(id: string, partial: Partial<GroupMetadata>, misa: WASocket): Promise<void> {
+    await this.ensure(id, misa);
+    await this.patch(id, partial, misa);
+  }
+
+  async ensureAndUpdateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, misa: WASocket): Promise<void> {
+    await this.ensure(id, misa);
+    await this.updateParticipants(id, participants, action, misa);
+  }
+
+  registerEvents(misa: WASocket): () => void {
+    const onGroupsUpsert = (groups: GroupMetadata[]) => {
+      for (const group of groups) void this.set(group, misa).catch(() => undefined);
+    };
+
+    const onGroupsUpdate: Parameters<Parameters<typeof misa.ev.on<"groups.update">>[1]>[0] extends infer T
+      ? (updates: T) => void
+      : never = (updates) => {
+      for (const update of updates) {
+        if (update.id) void this.ensureAndPatch(update.id, update, misa).catch(() => undefined);
+      }
+    };
+
+    const onParticipantsUpdate: Parameters<Parameters<typeof misa.ev.on<"group-participants.update">>[1]>[0] extends infer T
+      ? (update: T) => void
+      : never = ({ id, participants, action }) => {
+      void this.ensureAndUpdateParticipants(id, participants, action, misa).catch(() => undefined);
+    };
+
+    misa.ev.on("groups.upsert", onGroupsUpsert);
+    misa.ev.on("groups.update", onGroupsUpdate);
+    misa.ev.on("group-participants.update", onParticipantsUpdate);
+
+    return () => {
+      misa.ev.off("groups.upsert", onGroupsUpsert);
+      misa.ev.off("groups.update", onGroupsUpdate);
+      misa.ev.off("group-participants.update", onParticipantsUpdate);
+    };
+  }
+}
+
+export type { GroupCache };
+export const groupCache = new GroupCache();

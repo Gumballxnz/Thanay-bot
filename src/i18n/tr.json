@@ -1,0 +1,879 @@
+{
+  "common": {
+    "yes": "Evet",
+    "no": "Hayır",
+    "enabled": "etkinleştirildi",
+    "disabled": "devre dışı",
+    "error": "Hata",
+    "success": "Başarı",
+    "unknown": "bilinmiyor",
+    "none": "hiçbiri",
+    "file": "dosya",
+    "files": "dosyalar"
+  },
+  "terminal": {
+    "initializing": "  Başlatılıyor...",
+    "goodbye": "Yakında görüşürüz.",
+    "startCancelled": "Başlatma iptal edildi.",
+    "startFailed": "Başlatılamadı.",
+    "boolYes": "evet|evet|evet|evet",
+    "boolNo": "n|hayır|hayır|hayır",
+    "invalidOption": "Geçersiz seçenek. Lütfen tekrar deneyin.",
+    "invalidPhone": "Geçersiz numara.",
+    "sessionDetected": "Mevcut oturum algılandı. Otomatik olarak bağlanılıyor...",
+    "menu": {
+      "title": "{{botName}}",
+      "version": "versiyon",
+      "configure": "Botu yapılandır",
+      "advanced": "Gelişmiş yapılandırma",
+      "start": "Botu başlat",
+      "exit": "Çıkış",
+      "chooseOption": "  › Bir seçenek seçin: "
+    },
+    "config": {
+      "header": "BOT'U YAPILANDIR",
+      "pressEnter": "   Geçerli değeri korumak için Enter tuşuna basın  ",
+      "saved": "AYARLAR KAYDEDİLDİ",
+      "fileUpdated": "   Güncellenen dosya: dados/config.json      ",
+      "botName": "Bot adı",
+      "ownerName": "Sahibinin adı",
+      "prefix": "Bot öneki",
+      "ownerNumber": "Sahip numarası",
+      "autoUpdate": "Otomatik güncelleme",
+      "language": "Bot dili",
+      "languageHint": "({{options}})",
+      "notConfigured": "yapılandırılmamış",
+      "configured": "yapılandırılmış",
+      "boolPrompt": "(e/y/H)",
+      "boolInvalid": "Evet için y/y, hayır için n veya devam etmek için Enter ile yanıt verin."
+    },
+    "advanced": {
+      "header": "GELİŞMİŞ YAPILANDIRMA",
+      "pressEnter": "Mevcut değeri korumak için Enter'a basın.",
+      "messageConcurrent": "Eşzamanlı işlenen mesajlar",
+      "messagePending": "Maksimum bekleyen mesaj",
+      "messageTimeout": "Mesaj kuyruğu zaman aşımı",
+      "maxConcurrent": "Eşzamanlı medya işlemleri",
+      "maxPending": "Maksimum medya kuyruğu",
+      "timeout": "Toplam medya zaman aşımı",
+      "ffmpeg": "Eşzamanlı FFmpeg işlemleri",
+      "size": { "image": "Görsel sınırı", "audio": "Ses sınırı", "video": "Video sınırı", "document": "Belge sınırı", "sticker": "Sticker sınırı" },
+      "providerRetries": "YouTube sağlayıcısı başına deneme",
+      "retryDelay": "Denemeler arası bekleme",
+      "maxFailures": "Cooldown öncesi hata",
+      "cooldown": "Sağlayıcı cooldown süresi",
+      "logLevel": "Log seviyesi",
+      "maxBackups": "Güncelleme backup sayısı",
+      "jobs": "iş", "messages": "mesaj", "seconds": "saniye", "attempts": "deneme", "failures": "hata", "minutes": "dakika", "backups": "backup",
+      "invalidRange": "{{min}} ile {{max}} arasında bir tam sayı girin.",
+      "invalidLogLevel": "Geçersiz seviye. debug, info, warn, error veya silent kullanın.",
+      "summary": "İşlem özeti:",
+      "confirm": "Bu gelişmiş yapılandırma kaydedilsin mi?",
+      "cancelled": "Gelişmiş yapılandırma iptal edildi.",
+      "saved": "Gelişmiş yapılandırma kaydedildi.",
+      "restartRequired": "Yeni ayarları uygulamak için botu yeniden başlatın."
+    },
+    "connection": {
+      "title": "BAĞLANTI YÖNTEMİ",
+      "qr": "QR Code",
+      "pairing": "Eşleştiriliyor Code",
+      "pairingHint": "(telefon numarası)",
+      "back": "Geri",
+      "phonePrompt": "  › DDI'lı numara (ör. 5511999999999): "
+    }
+  },
+  "logs": {
+    "ownerLidFetching": "Sahibinden LID aranıyor...",
+    "ownerLidSaved": "LID kayıtlı sahibinden: {{lid}}",
+    "ownerLidFailed": "Sahibinden LID alınamıyor.",
+    "commandIgnoredNoLid": "LID çözülemediği için yoksayıldı: {{sender}}",
+    "commandError": "{{commandName}} yürütülürken hata oluştu.",
+    "commandInvalid": "Geçersiz olduğu için yoksayıldı: {{file}}",
+    "eventInvalid": "Geçersiz olduğu için yoksayıldı: {{file}}",
+    "eventError": "{{name}} hatası.",
+    "configReadFailed": "{{path}} okunamadı.",
+    "configMigrated": "Yapılandırma {{path}}'ye taşındı.",
+    "botStarted": "{{botName}} başlatıldı ve mesaj almaya hazır.",
+    "updateRestoreFailed": "package.json geri yüklenemedi.",
+    "emptySender": "boş gönderen",
+    "antilinkDeleteFailed": "{{groupId}} grubunda antilink mesajı silinemedi: {{error}}",
+    "antilinkBanFailed": "{{groupId}} grubunda {{sender}} yasaklanamadı: {{error}}",
+    "antistealthDeleteFailed": "{{groupId}} grubunda antistealth mesajı silinemedi: {{error}}",
+    "antistealthRemoveFailed": "{{sender}} {{groupId}} grubundan çıkarılamadı: {{error}}",
+    "activity": {
+      "group": "{{user}} → {{group}}  ·  {{preview}}",
+      "private": "{{user}} → {{privateLabel}}  ·  {{preview}}",
+      "privateLabel": "özel",
+      "sticker": "çıkartma",
+      "media": "medya",
+      "unknownGroup": "grup",
+      "image": "(görsel)",
+      "video": "(video)",
+      "imageOnly": "(görsel)",
+      "videoOnly": "(video)"
+    }
+  },
+  "errors": {
+    "ownerOnly": "❌ Bu komut yalnızca bot sahibi içindir.",
+    "groupOnly": "❌ Bu komut yalnızca gruplar halinde kullanılabilir.",
+    "privateOnly": "❌ Bu komut yalnızca özel olarak kullanılabilir.",
+    "adminOnly": "❌ Bu komut yalnızca grup yöneticileri içindir.",
+    "botAdminRequired": "❌Bu komutu çalıştırabilmem için grup yöneticisi olmam gerekiyor.",
+    "commandBlocked": "❌ Bu komut bot sahibi tarafından engellendi.",
+    "groupCommandsAdminOnly": "❌Bu grupta yalnızca yöneticiler komutları kullanabilir.",
+    "commandExecution": "❌ Komut yürütülürken bir hata oluştu.",
+    "download": {
+      "notFound": "Sonuç bulunamadı.",
+      "noMedia": "Medya bulunamadı.",
+      "invalidUrl": "Geçersiz URL.",
+      "timeout": "İndirme zaman aşımına uğradı.",
+      "failed": "İçerik indirilemedi.",
+      "noData": "Veriler alınamadı.",
+      "pinId": "Pin kimliği çıkarılamadı.",
+      "linkNotFound": "İndirme bağlantısı bulunamadı."
+    },
+    "sticker": {
+      "downloadFailed": "Medya indirilemedi.",
+      "emptyDownload": "Boş indirme.",
+      "invalidInput": "Geçersiz sticker girişi.",
+      "conversionFailed": "Dönüştürme başarısız.",
+      "invalidBuffer": "Geçersiz veya boş buffer."
+    },
+    "media": {
+      "queued": "⏳ Medya işlemi sıraya alındı. Konum: {{position}}.",
+      "queueFull": "❌ Medya sırası dolu. Daha sonra tekrar deneyin.",
+      "timeout": "❌ Medya işlemi zaman aşımına uğradı.",
+      "tooLarge": "Dosya izin verilen boyut sınırını aşıyor.",
+      "aborted": "Medya işlemi iptal edildi.",
+      "failed": "Medya işlemi başarısız oldu. Tekrar deneyin."
+    }
+  },
+  "connection": {
+    "sessionDetected": "Mevcut oturum algılandı. Otomatik olarak bağlanılıyor...",
+    "connecting": "WhatsApp'ye bağlanılıyor...",
+    "connected": "Başarıyla bağlanıldı.",
+    "disconnected": "Bağlantı kapatıldı",
+    "reconnecting": "Yeniden bağlanmaya çalışıyorum...",
+    "sessionCleared": "Yerel oturum kaldırıldı. Yeni bir QR oluşturmak için yeniden başlayın.",
+    "sessionClearFailed": "{{path}} kaldırılamıyor.",
+    "qrReceived": "QR kodu alındı",
+    "qrScan": "Bu oturuma bağlanmak için WhatsApp ile tarayın.",
+    "pairingCode": "Bağlayıcı kod",
+    "pairingNewCode": "Yeni bağlantı kodu",
+    "pairingCodeValue": "Kod: {{code}}",
+    "pairingInstruction": "WhatsApp'de Digite: Bağlı cihazlar > Cihazı bağla > Telefon numarasıyla bağlantı.",
+    "pairingExpired": "Süresi dolmuş bağlantı kodu. Yeni kod isteniyor...",
+    "pairingError": "Eşleştirme kodu istenirken hata oluştu.",
+    "disconnectCode": "Kod: {{code}}",
+    "disconnectReason": "Sebep: {{reason}}",
+    "disconnectDetail": "Ayrıntı: {{detail}}",
+    "disconnectAction": "Eylem: {{action}}",
+    "disconnect": {
+      "loggedOut": {
+        "title": "Oturum bağlantısı kesildi",
+        "description": "WhatsApp bu oturumu sonlandırdı veya bağlı cihazlardan kaldırdı.",
+        "action": "Yerel oturumu temizleyeceğim. Yeni bir QR oluşturmak için yeniden başlayın."
+      },
+      "forbidden": {
+        "title": "Erişim reddedildi",
+        "description": "WhatsApp bu oturumun bağlantısını reddetti.",
+        "action": "Kimlik bilgilerini kontrol edin, birkaç dakika bekleyin ve başarısız olmaya devam ederse yeni bir oturum oluşturun."
+      },
+      "connectionLost": {
+        "title": "Kayıp veya süresi dolmuş bağlantı",
+        "description": "Ağ düştü, tereddüt etti veya girişimin yanıt vermesi çok uzun sürdü.",
+        "action": "Otomatik olarak yeniden bağlanmayı deneyeceğim."
+      },
+      "multideviceMismatch": {
+        "title": "Çoklu cihaz uyumsuzluğu",
+        "description": "Oturum, WhatsApp tarafından beklenen çoklu cihaz protokolüyle eşleşmiyor.",
+        "action": "Baileys'i/bağımlılıkları güncelleyin ve gerekirse yeni bir oturum oluşturun."
+      },
+      "connectionClosed": {
+        "title": "Bağlantı kapatıldı",
+        "description": "Bağlantı WhatsApp veya ağ tarafından kapatıldı.",
+        "action": "Otomatik olarak yeniden bağlanmayı deneyeceğim."
+      },
+      "connectionReplaced": {
+        "title": "Değiştirilen bağlantı",
+        "description": "Aynı oturum kullanılarak bağlanan başka bir örnek.",
+        "action": "Bunu tekrar başlatmadan önce diğer örneği kapatın."
+      },
+      "badSession": {
+        "title": "Geçersiz oturum",
+        "description": "Kimlik doğrulama dosyaları bozuk veya geçersiz görünüyor.",
+        "action": "{{authPath}} dosyasını silin ve yeni bir QR kodunu tarayın."
+      },
+      "unavailableService": {
+        "title": "Hizmet kullanılamıyor",
+        "description": "WhatsApp veya bağlantı yolu geçici olarak kullanılamıyor.",
+        "action": "Otomatik olarak yeniden bağlanmayı deneyeceğim."
+      },
+      "restartRequired": {
+        "title": "Yeniden başlatma gerekli",
+        "description": "Sunucu istemciden yeniden başlatılmasını istedi.",
+        "action": "Bağlantıyı otomatik olarak yeniden başlatacağım."
+      },
+      "default": {
+        "title": "Bağlantı kapatıldı",
+        "description": "Bağlantı, eşlenmeyen bir nedenden dolayı kapatıldı.",
+        "action": "Otomatik olarak yeniden bağlanmayı deneyeceğim."
+      }
+    },
+    "noAutoReconnect": "Bağlantı kapatıldı. Otomatik yeniden bağlanma denenmeyecek.",
+    "reconnectAttempt": "{{delay}}ms içinde yeniden bağlanılıyor... (deneme {{attempt}}/{{max}})",
+    "maxReconnectReached": "Maksimum yeniden bağlanma denemesine ulaşıldı ({{max}})."
+  },
+  "update": {
+    "checking": "Güncellemeler kontrol ediliyor...",
+    "upToDate": "Kurulum zaten güncel.",
+    "downloading": "Güncelleme indiriliyor...",
+    "extracting": "Çıkarılıyor...",
+    "installingDeps": "Bağımlılıklar yükleniyor...",
+    "done": "Güncelleme tamamlandı! Yeniden başlatılıyor...",
+    "failed": "Güncelleme başarısız oldu. Güncel sürümle devam ediyoruz.",
+    "creatingBackup": "Güncellemeden önce tam yedek oluşturuluyor...",
+    "backupCreated": "Yedek şurada oluşturuldu: {{path}}",
+    "restoringBackup": "Tam yedek geri yükleniyor...",
+    "backupRestored": "Yedek geri yüklendi.",
+    "restoreSrcFailed": "src/ yedeği geri yüklenemedi.",
+    "restorePackageFailed": "package.json yedeği geri yüklenemedi.",
+    "restoreFailed": "package.json geri yüklenemedi."
+  },
+  "commands": {
+    "ping": {
+      "latency": "Gecikme",
+      "unavailable": "müsait değil",
+      "uptime": "Çalışma süresi",
+      "memory": "Hafıza",
+      "ownerStatus": "Durum: Sahip",
+      "footer": "{{botName}} tarafından desteklenmektedir."
+    },
+    "dono": {
+      "text": "╭─「 *SAHİP* 」\n│\n│ ad: {{owner}}\n│ numara: {{ownerNumber}}\n│ bot: {{bot}}\n│\n╰─"
+    },
+    "infobot": {
+      "text": "╭─「 *BOT BİLGİSİ* 」\n│\n│ ad: {{bot}}\n│ sahip: {{owner}}\n│ önek: {{prefix}}\n│ dil: {{language}}\n│ çalışma süresi: {{uptime}}\n│ bellek: {{memory}}\n│ node: {{node}}\n│\n╰─"
+    },
+    "sticker": {
+      "usage": "╭─「 *ÇIKARTMA* 」\n│\n│ ✦ Nasıl kullanılır:\n│ bir fotoğrafı şununla gönderin veya yanıtlayın:\n│'ler\n│\n│ bir videoyu aşağıdakilerle gönderin veya yanıtlayın:\n│ sticker\n│\n╰─ Sonuç: kare çıkartma",
+      "creating": "🪄 Çıkartmalar oluşturuluyor...",
+      "videoTooLong": "❌ Video maksimum {{max}} saniye olmalıdır.",
+      "error": "❌ Çıkartma oluşturulurken hata oluştu: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "sticker2": {
+      "usage": "╭─「 *ÇIKARTMA2* 」\n│\n│ ✦ Nasıl kullanılır:\n│ bir fotoğrafı şununla gönderin veya yanıtlayın:\n│ s2\n│\n│ bir videoyu aşağıdakilerle gönderin veya yanıtlayın:\n│ sticker2\n│\n╰─ Sonuç: orijinal formatı korur"
+    },
+    "menu": {
+      "mainTitle": "‧₊˚ ✿ ── {{botName}} ──✿ ˚₊‧",
+      "categories": {
+        "geral": "genel",
+        "fig": "çıkartmalar",
+        "downloads": "indirmeler",
+        "grupo": "grup",
+        "owner": "mal sahibi",
+        "activations": "aktivasyonlar",
+        "welcome": "Hoş geldin",
+        "funMalePercent": "yüzdeler (erkek)",
+        "funFemalePercent": "yüzdeler (kadın)",
+        "funMaleRank": "sıralamalar (erkek)",
+        "funFemaleRank": "sıralamalar (kadın)",
+        "funInteractions": "etkileşimler"
+      },
+      "cmds": {
+        "ping": "ping",
+        "dono": "sahip",
+        "infobot": "botbilgisi",
+        "menu": "menu",
+        "menugeral": "genelmenu",
+        "menufig": "cikartmamenu",
+        "menudl": "indirmemenu",
+        "menugrupo": "grupmenu",
+        "menuadm": "yoneticimenu",
+        "menudono": "sahipmenu",
+        "sticker": "sticker",
+        "sticker2": "sticker2",
+        "shorturl": "kisalturl",
+        "play": "play",
+        "ytmp3": "ytmp3",
+        "playvid": "playvid",
+        "ytmp4": "ytmp4",
+        "tiktok": "tiktok",
+        "instagram": "instagram",
+        "pinterest": "pinterest",
+        "admins": "admins",
+        "rankativo": "aktifsiralama",
+        "rankinativo": "inaktifsiralama",
+        "checkativo": "aktiflikkontrolu",
+        "hidetag": "hidetag",
+        "del": "del",
+        "gp": "grup",
+        "kick": "kick",
+        "promote": "promote",
+        "demote": "demote",
+        "nomegp": "grupadi",
+        "descgp": "grupaciklama",
+        "antilink": "antilink",
+        "antilinkgp": "antilinkgp",
+        "antilinkch": "antilinkch",
+        "antistealth": "antistealth",
+        "bemvindo": "hosgeldin",
+        "legendabv": "hosgeldinyazi",
+        "midiabv": "hosgeldinmediya",
+        "eval": "eval",
+        "cmdnf": "cmdnf",
+        "idioma": "dil",
+        "nomebot": "botadi",
+        "nomedono": "sahipadi",
+        "numerodono": "sahipnumara",
+        "prefixo": "onek",
+        "autoupdate": "autoupdate",
+        "antipv": "antipv",
+        "statusbot": "statusbot",
+        "debug": "debug",
+        "restart": "restart",
+        "join": "join",
+        "leavegp": "leavegp",
+        "idiomagp": "dilgrup",
+        "soadmin": "sadeceadmin",
+        "modobn": "eglencemodu",
+        "setprefixgp": "gruponekayarla",
+        "bangp": "bangp",
+        "unbangp": "unbangp",
+        "listbangp": "listbangp",
+        "blockuser": "blockuser",
+        "unblockuser": "unblockuser",
+        "listblock": "listblock",
+        "blockcmd": "blockcmd",
+        "unblockcmd": "unblockcmd",
+        "listblockcmd": "listblockcmd",
+        "antiloc": "antikum",
+        "antiaudio": "antiaudio",
+        "antifoto": "antigorsel",
+        "antivideo": "antivideo",
+        "antidoc": "antidoc",
+        "antilista": "antiliste",
+        "apk": "apk",
+        "menubrincadeira": "eglencemenu",
+        "percent": "percent",
+        "rank": "rank",
+        "interact": "etkilesim"
+      }
+    },
+    "play": {
+      "usage": "╭─「 *OYNA* 」\n│\n│ ✦ Ara:\n│ play <şarkı adı>\n│ p <şarkı adı>\n│\n╰─ Örnek:\n   play michael jackson billie jean",
+      "searching": "🔍 Müzik aranıyor...",
+      "notFound": "❌ Sonuç bulunamadı.",
+      "channel": "Kanal",
+      "duration": "Süre",
+      "views": "Görünümler",
+      "downloading": "⬇️ Ses indiriliyor...",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata",
+      "author": "Bilinmiyor"
+    },
+    "ytmp3": {
+      "usage": "╭─「 *YTMP3* 」\n│\n│ ✦ İndir:\n│ ytmp3 <YouTube bağlantısı>\n\n╰─ Örnekler:\n   ytmp3 https://youtube.com/watch?v=...\n   ytmp3 https://youtu.be/...\n   ytmp3 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ Geçersiz URL. Bir YouTube bağlantısı kullanın.",
+      "downloading": "⬇️ YouTube'dan ses indiriliyor...",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "playvid": {
+      "usage": "╭─「 *PLAYVID* 」\n│\n│ ✦ Ara:\n│ playvid <video adı>\n│ pv <video adı>\n\n╰─ Örnek:\n   playvid michael jackson gerilim filmi",
+      "searching": "🔍Video aranıyor...",
+      "notFound": "❌ Sonuç bulunamadı.",
+      "channel": "Kanal",
+      "duration": "Süre",
+      "views": "Görünümler",
+      "downloading": "⬇️Video indiriliyor...",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "ytmp4": {
+      "usage": "╭─「 *YTMP4* 」\n│\n│ ✦ İndir:\n│ ytmp4 <YouTube bağlantısı>\n\n╰─ Örnekler:\n   ytmp4 https://youtube.com/watch?v=...\n   ytmp4 https://youtu.be/...\n   ytmp4 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ Geçersiz URL. Bir YouTube bağlantısı kullanın.",
+      "downloading": "⬇️ YouTube'dan video indiriliyor...",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "tiktok": {
+      "usage": "╭─「 *TIKTOK* 」\n│\n│ ✦ İndir:\n│ tiktok <url>\n│\n│ ✦ Ara:\n│ tiktok <term>\n│\n╰─ Örnekler:\n   tiktok https://vm.tiktok.com/...\n   tiktok viral dans",
+      "downloading": "⬇️ TikTok'tan indiriliyor...",
+      "downloadFailed": "❌ Video indirilemedi.",
+      "downloadDone": "✅ İndirme tamamlandı!",
+      "searching": "🔍 TikTok'ta aranıyor...",
+      "notFound": "❌ Sonuç bulunamadı.",
+      "found": "📹 *{{title}}*\n\n⬇️ İndiriliyor...",
+      "searchCaption": "🔍 Ara: {{query}}",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "instagram": {
+      "usage": "╭─「 *INSTAGRAM* 」\n│\n│ ✦ İndir:\n│ instagram <url>\n│\n╰─ Örnek:\n   instagram https://instagram.com/p/...",
+      "invalidUrl": "❌ Geçersiz URL. Bir Instagram URL'si kullanın.",
+      "downloading": "⬇️ Instagram'dan indiriliyor...",
+      "downloadFailed": "❌ İçerik indirilemiyor.",
+      "sending": "📥 {{count}} {{fileWord}} gönderiliyor...",
+      "done": "✅ Instagram indirme işlemi tamamlandı!",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "pinterest": {
+      "usage": "╭─「 *Pinterest* 」\n│\n│ ✦ İndir:\n│ pinterest <url>\n│\n│ ✦ Ara:\n│ pinterest <term>\n│\n╰─ Örnekler:\n   pinterest https://pin.it/...\n   pinterest duvar kağıdı 4k",
+      "downloading": "⬇️ Pinterest'ten indiriliyor...",
+      "downloadFailed": "❌ İçerik indirilemiyor.",
+      "done": "✅ Pinterest indirme işlemi tamamlandı!",
+      "searching": "🔍Pinterest'te aranıyor...",
+      "notFound": "❌ Sonuç bulunamadı.",
+      "found": "📸 {{count}} görsel buldum!\n\n⬇️Gönderiliyor...",
+      "searchCaption": "🔍 Ara: {{query}}",
+      "limited": "ℹ️ {{total}} görseller bulundu, ancak yalnızca {{sent}} gönderdim.",
+      "error": "❌ Hata: {{message}}",
+      "unknown": "Bilinmeyen hata"
+    },
+    "admins": {
+      "groupInfoFailed": "❌ Grup bilgisi alınamıyor.",
+      "noAdmins": "❌ Yönetici bulunamadı.",
+      "defaultMessage": "Adminler çağrıldı!"
+    },
+    "rankativo": {
+      "groupInfoFailed": "❌ Grup bilgisi alınamadı.",
+      "empty": "❌ Bu grupta henüz etkinlik kaydı yok.",
+      "item": "{{pos}}. {{user}} - toplam: {{total}} | mesaj: {{messages}} | komut: {{commands}} | çıkartma: {{stickers}}",
+      "text": "╭─「 *AKTİF SIRALAMA* 」\n{{items}}\n│\n╰─"
+    },
+    "rankinativo": {
+      "groupInfoFailed": "❌ Grup bilgisi alınamadı.",
+      "empty": "❌ Grupta üye bulunamadı.",
+      "item": "{{pos}}. {{user}} - toplam: {{total}} | mesaj: {{messages}} | komut: {{commands}} | çıkartma: {{stickers}}",
+      "text": "╭─「 *AKTİF OLMAYAN SIRALAMA* 」\n{{items}}\n│\n╰─"
+    },
+    "checkativo": {
+      "lidFailed": "❌ Etiketlenen kullanıcının LID bilgisi çözümlenemedi.",
+      "text": "╭─「 *AKTİFLİK KONTROLÜ* 」\n│\n│ kullanıcı: {{user}}\n│ konum: {{position}}\n│ toplam: {{total}}\n│ mesaj: {{messages}}\n│ komut: {{commands}}\n│ çıkartma: {{stickers}}\n│\n╰─"
+    },
+    "hidetag": {
+      "fetchError": "❌ Grup bilgisi alınamıyor.",
+      "noMembers": "❌Grupta üye bulunamadı.",
+      "defaultMessage": "Herkes işaretlendi!",
+      "mediaError": "❌ Herkesi etiketlemek için medya işlenemedi."
+    },
+    "del": {
+      "noQuoted": "❌ Silmek istediğiniz mesajı yanıtlayın.\n\nKullanımı: del (mesajı yanıtla)",
+      "success": "✅ Mesaj başarıyla silindi!",
+      "error": "❌ Mesaj silinirken hata oluştu: {{error}}"
+    },
+    "antilink": {
+      "enabled": "✅ Bu grupta anti-link *etkinleştirildi*!",
+      "disabled": "❌ Bu grupta bağlantı önleme *devre dışı*.",
+      "settingsHint": "⚙️ Ayarlar:\n• antilink {{punishment}} {{delete}}\n• antilink {{punishment}} {{ban}}\n• antilink {{text}} <mesaj>",
+      "punishmentUpdated": "✅ Bağlantı önleme cezası *{{value}}* olarak güncellendi.",
+      "invalidPunishment": "❌ Kullanın: antilink {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Bağlantı önleme metni güncellendi!\n\n{{text}}",
+      "textHeader": "╭─「 *ANTILINK METNI* 」\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Geçerli metin:*\n│ {{current}}\n│\n╰─ Kullanın: antilink {{text}} <mesaj>",
+      "usage": "╭─「 *ANTILINK* 」\n│\n│ antilink\n│ antilink {{punishment}} {{delete}}\n│ antilink {{punishment}} {{ban}}\n│ antilink {{text}} <mesaj>",
+      "params": "@tur → algılanan bağlantı türü"
+    },
+    "antilinkgp": {
+      "enabled": "✅ Bu grupta grup karşıtı bağlantı *etkin*!",
+      "disabled": "❌ Bu grupta grup karşıtı bağlantı *devre dışı*.",
+      "settingsHint": "⚙️ Ayarlar:\n• antilinkgp {{punishment}} {{delete}}\n• antilinkgp {{punishment}} {{ban}}\n• antilinkgp {{text}} <mesaj>",
+      "punishmentUpdated": "✅ Grup karşıtı bağlantı cezası *{{value}}* olarak güncellendi.",
+      "invalidPunishment": "❌ Kullanın: antilinkgp {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Grup karşıtı bağlantı metni güncellendi!\n\n{{text}}",
+      "textHeader": "╭─「 *ANTILINK METNI* 」\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Geçerli metin:*\n│ {{current}}\n│\n╰─ Kullanın: antilinkgp {{text}} <mesaj>",
+      "usage": "╭─「 *ANTILINKGP* 」\n│\n│ antilinkgp\n│ antilinkgp {{punishment}} {{delete}}\n│ antilinkgp {{punishment}} {{ban}}\n│ antilinkgp {{text}} <mesaj>",
+      "params": "@tur → algılanan bağlantı türü"
+    },
+    "antilinkch": {
+      "enabled": "✅ Bu grupta kanal karşıtı bağlantı *etkin*!",
+      "disabled": "❌ Bu grupta kanal karşıtı bağlantı *devre dışı*.",
+      "settingsHint": "⚙️ Ayarlar:\n• antilinkch {{punishment}} {{delete}}\n• antilinkch {{punishment}} {{ban}}\n• antilinkch {{text}} <mesaj>",
+      "punishmentUpdated": "✅ Kanal karşıtı bağlantı cezası *{{value}}* olarak güncellendi.",
+      "invalidPunishment": "❌ Kullanın: antilinkch {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Kanal karşıtı bağlantı metni güncellendi!\n\n{{text}}",
+      "textHeader": "╭─「 *ANTILINK METNI* 」\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Geçerli metin:*\n│ {{current}}\n│\n╰─ Kullanın: antilinkch {{text}} <mesaj>",
+      "usage": "╭─「 *ANTILINKCH* 」\n│\n│ antilinkch\n│ antilinkch {{punishment}} {{delete}}\n│ antilinkch {{punishment}} {{ban}}\n│ antilinkch {{text}} <mesaj>",
+      "params": "@tur → algılanan bağlantı türü"
+    },
+    "antistealth": {
+      "enabled": "✅ Anti-stealth bu grupta *aktif*.",
+      "disabled": "❌ Anti-stealth bu grupta *kapalı*.",
+      "punished": "🚫 @{{user}}, {{seconds}}s içinde {{count}} stealth mesaj gönderdiği için çıkarıldı."
+    },
+    "bemvindo": {
+      "enabled": "✅ Bu gruba hoş geldiniz *etkinleştirildi*!",
+      "disabled": "❌ Bu gruba *engelli* hoş geldiniz."
+    },
+    "gp": {
+      "usage": "╭─「 *GRUP* 」\n│\n│ ✦ gp {{open}} → grubu açar\n│ ✦ gp {{close}} → grubu kapatır\n\n╰─",
+      "closed": "🔒 Grup kapatıldı! Yalnızca yöneticiler mesaj gönderebilir.",
+      "opened": "🔓 Grubu açın! Herkes mesaj gönderebilir."
+    },
+    "kick": {
+      "noMention": "❌ Kullanıcıyı etiketleyin veya mesajına yanıt verin.\n\nKullanım: kick @kullanici",
+      "lidFailed": "❌ Bahsedilen kullanıcı için LID çözümlenemiyor.",
+      "success": "✅ Kullanıcı başarıyla kaldırıldı!",
+      "error": "❌ Kullanıcı kaldırılırken hata oluştu: {{error}}"
+    },
+    "promote": {
+      "noMention": "❌ Kullanıcıyı etiketleyin veya mesajına yanıt verin.\n\nKullanım: promote @kullanici",
+      "lidFailed": "❌ Bahsedilen kullanıcı için LID çözümlenemiyor.",
+      "success": "✅ Kullanıcı yöneticiliğe yükseltildi!",
+      "error": "❌ Kullanıcı tanıtılırken hata oluştu: {{error}}"
+    },
+    "demote": {
+      "noMention": "❌ Yöneticiyi etiketleyin veya mesajına yanıt verin.\n\nKullanım: demote @kullanici",
+      "lidFailed": "❌ Bahsedilen kullanıcı için LID çözümlenemiyor.",
+      "success": "✅ Yönetici normal üyeliğe indirildi!",
+      "error": "❌ Yöneticinin rütbesi düşürülürken hata oluştu: {{error}}"
+    },
+    "nomegp": {
+      "noArgs": "❌ Yeni adı girin.\n\nKullanım: groupname <isim>",
+      "success": "✅ Grup adı *{{name}}* olarak değiştirildi!"
+    },
+    "descgp": {
+      "noArgs": "❌ Yeni açıklamayı girin.\n\nKullanım: descgp <açıklama>",
+      "success": "✅ Grup açıklaması güncellendi!"
+    },
+    "legendabv": {
+      "params": "@kullanici → kullanıcıyı etiketler\n│ @isim → kullanıcının adı\n│ @grup → grubun adı\n│ @toplam → toplam üye sayısı\n│ @aciklama → grup açıklaması",
+      "header": "╭─「 *HOŞ GELDİN MESAJI* 」\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Geçerli mesaj:*\n│ {{current}}\n│\n╰─ Kullanım: legendabv <mesaj>",
+      "updated": "✅ Hoş geldiniz başlığı güncellendi!\n\n{{text}}"
+    },
+    "midiabv": {
+      "removed": "✅ Hoş geldiniz medyası kaldırıldı.",
+      "noMedia": "╭─「 *HOŞ GELDİN MEDYASI* 」\n│\n│ ✦ Durum: {{status}}\n\n│ Bir görsel veya video gönderin ya da ona yanıt verin.\n│ Videolar: en fazla 15 saniye (gif olarak gönderilir).\n│ Kaldırmak için: midiabv {{off}}\n\n╰─",
+      "statusVideo": "Video 🎥 ✅",
+      "statusImage": "Resim 🖼️ ✅",
+      "statusNone": "Medya yok",
+      "videoTooLong": "❌ Videoda {{seconds}}s var. İzin verilen maksimum: {{max}}s.",
+      "successVideo": "✅ Hoş geldiniz videosu kuruldu!",
+      "successImage": "✅ Hoş geldiniz fotoğraf kurulumu!"
+    },
+    "cmdnf": {
+      "params": "@kullanici → kullanıcıyı etiketler\n│ @isim → kullanıcının adı\n│ @komut → yazılan komut\n│ @benzer → en benzer komut\n│ @benzerlik → benzerlik yüzdesi\n│ @onek → geçerli önek\n│ @bot → bot adı",
+      "header": "╭─「 *CMDNF* 」\n│\n│ *Geçerli mod:* {{mode}}\n│ *Geçerli metin:* {{text}}\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Kullanım:*\n│ cmdnf {{modeWord}} {{textWord}}\n│ cmdnf {{modeWord}} {{mentionWord}}\n│ cmdnf {{textWord}} <mesaj>\n\n╰─",
+      "invalidMode": "❌ Kullanın: cmdnf {{mode}} {{text}} | {{mention}}",
+      "modeUpdated": "✅ Komut bulunamadı modu *{{mode}}* olarak güncellendi.",
+      "textHeader": "╭─「 *CMDNF {{textWord}}* 」\n│\n│ *Kullanılabilir yer tutucular:*\n│ {{params}}\n│\n│ *Geçerli metin:*\n│ {{current}}\n\n╰─ cmdnf {{textWord}} <mesaj>",
+      "textUpdated": "✅ Komut metni güncellenmiş olarak bulunamadı!\n\n{{text}}",
+      "usage": "╭─「 *CMDNF* 」\n│\n│ cmdnf {{mode}} {{text}}\n│ cmdnf {{mode}} {{mention}}\n│ cmdnf {{text}} <mesaj>"
+    },
+    "eval": {
+      "noArgs": "❌ Kullanım: eval <kod>",
+      "success": "╭─「 *SONUCU DEĞERLENDİRİN* 」\n│\n│ ✦ Kod: {{code}}\n│\n├─「 *ÇIKTI* 」\n│\n{{output}}\n│\n╰─ Başarıyla yürütüldü.",
+      "error": "╭─「 *DEĞERLENDİRME HATASI* 」\n│\n│ ✦ Kod: {{code}}\n│\n├─「 *HATA* 」\n│\n│ {{error}}\n│\n╰─ Yürütme hatası.",
+      "tooLong": "❌ Kod, {{max}} karakter sınırını aşıyor."
+    },
+    "idioma": {
+      "current": "🌐 Geçerli küresel dil: *{{language}}*\n\nKullanım: language <{{options}}>",
+      "updated": "✅ Küresel dil *{{language}}* olarak güncellendi.",
+      "invalid": "❌ Geçersiz dil. Kullanım: {{optionsList}}",
+      "i18nAliases": {
+        "pt": [
+          "idioma",
+          "setidioma"
+        ],
+        "es": [
+          "idioma",
+          "lenguaje",
+          "setlenguaje"
+        ],
+        "en": [
+          "language",
+          "setlanguage",
+          "lang",
+          "setlang"
+        ],
+        "id": [
+          "bahasa",
+          "setbahasa",
+          "lang",
+          "setlang"
+        ],
+        "fr": [
+          "langue",
+          "setlangue"
+        ],
+        "hi": [
+          "bhasha",
+          "setbhasha"
+        ],
+        "ur": [
+          "zaban",
+          "setzaban"
+        ]
+      }
+    },
+    "nomebot": {
+      "current": "🤖 Geçerli bot adı: *{{value}}*\n\nKullanım: botname <yeni ad>",
+      "invalid": "❌ Bot için geçerli bir ad girin.",
+      "updated": "✅ Bot adı *{{value}}* olarak güncellendi."
+    },
+    "nomedono": {
+      "current": "👑 Geçerli sahip adı: *{{value}}*\n\nKullanım: ownername <yeni ad>",
+      "invalid": "❌ Sahip için geçerli bir ad girin.",
+      "updated": "✅ Sahip adı *{{value}}* olarak güncellendi."
+    },
+    "numerodono": {
+      "current": "📱 Şu anki sahip numarası: *{{value}}*\n\nKullanım: numerodono <5511999999999>",
+      "invalid": "❌ DDI ile geçerli bir numara girin.",
+      "updated": "✅ Sahip numarası *{{value}}* olarak güncellendi.\nLID kaydedildi: {{lid}}",
+      "updatedNoLid": "✅ Sahip numarası *{{value}}* olarak güncellendi.\n⚠️ Yeni LID'i şimdi çözemedim; önceki LID güncellenene kadar tutuldu."
+    },
+    "prefixo": {
+      "current": "⌨️ Eski önek: *{{value}}*\n\nDile göre önek haritası:\n{{mapSection}}\n\nKullanım:\n• prefixo <yeni> — eski öneki değiştir\n• prefixo set <locale> <önek>\n• prefixo del <locale>\n• prefixo clear\n\nDiller: {{options}}",
+      "invalid": "❌ Boşluksuz ve en fazla 5 karakterlik bir önek kullanın.",
+      "updated": "✅ Eski önek *{{value}}* olarak güncellendi.",
+      "mapEmpty": "_(devre dışı — giriş yok)_",
+      "mapItem": "• {{locale}} (`{{code}}`): *{{prefix}}*",
+      "setUsage": "❌ Kullanım: prefixo set <locale> <önek>\nDiller: {{options}}",
+      "setOk": "✅ Harita güncellendi: {{locale}} (`{{code}}`) → *{{prefix}}*.",
+      "delUsage": "❌ Kullanım: prefixo del <locale>\nDiller: {{options}}",
+      "delOk": "✅ Haritadan kaldırıldı: {{locale}} (`{{code}}`).",
+      "delMissing": "❌ {{locale}} (`{{code}}`) haritada yok.",
+      "clearOk": "✅ Dil önek haritası temizlendi. Yalnızca eski önek etkin.",
+      "duplicate": "❌ *{{prefix}}* öneki zaten {{locale}} (`{{code}}`) tarafından kullanılıyor.",
+      "invalidLocale": "❌ Geçersiz dil. Kullanın: {{options}}"
+    },
+    "autoupdate": {
+      "current": "♻️ Geçerli otomatik güncelleme: *{{value}}*\n\nKullanım: autoupdate <{{on}}|{{off}}>",
+      "invalid": "❌ Kullanın: autoupdate {{on}} | {{off}}",
+      "updated": "✅ Otomatik güncelleme *{{value}}* olarak güncellendi."
+    },
+    "antipv": {
+      "enabled": "✅ Anti-PV etkinleştirildi. Bot, sahibi olmayanlar için özel mesajları yok sayacaktır.",
+      "disabled": "✅ Anti-PV devre dışı bırakıldı. Bot yine özel olarak yanıt verdi."
+    },
+    "statusbot": {
+      "text": "╭─「 *BOT DURUMU* 」\n│\n│ bot: {{bot}}\n│ sahip: {{owner}}\n│ numara: {{ownerNumber}}\n│ jid: {{user}}\n│ genel önek: {{prefix}}\n│ dil: {{language}}\n│ otomatik güncelleme: {{autoUpdate}}\n│ anti-pv: {{antiPrivate}}\n│ kayıtlı gruplar: {{groups}}\n│ bangp grupları: {{bannedGroups}}\n│ engellenen kullanıcılar: {{blockedUsers}}\n│ engellenen komutlar: {{blockedCommands}}\n│ çalışma süresi: {{uptime}}\n│\n╰─"
+    },
+    "statusVersion": { "text": "╭─「 *SÜRÜM* 」\n│ uygulama: {{version}}\n│ commit: {{commit}}\n│ şema: {{schema}}\n╰─" },
+    "statusMetrics": {
+      "text": "╭─「 *METRİKLER* 」\n│ mesajlar: {{messages}} · hatalar: {{messageErrors}}\n│ işlem aktif/bekleyen: {{messageActive}}/{{messagePending}}\n│ atılan/zaman aşımı: {{messageDropped}}/{{messageTimeouts}}\n│ komutlar: {{commands}} · hatalar: {{commandErrors}} · reddedilen: {{denied}}\n│ medya ok/hata: {{mediaSuccess}}/{{mediaErrors}} · bayt: {{mediaBytes}}\n│ kuyruk aktif/bekleyen: {{active}}/{{pending}} · ffmpeg: {{ffmpeg}}\n│ önbellek isabeti: {{cacheRate}} · yeniden bağlantı: {{reconnects}}\n│ ortalama komut/medya: {{avgCommand}} / {{avgMedia}}\n│ rss/heap/cpu: {{rss}} / {{heap}} / {{cpu}}\n│ komut hataları: {{commandFailures}}\n│ sağlayıcı hataları: {{providerFailures}}\n╰─"
+    },
+    "debug": {
+      "enabled": "✅ Mesaj debug aktif. Tüm mesaj olayları terminale yazdırılacak.",
+      "disabled": "✅ Mesaj debug kapalı."
+    },
+    "restart": {
+      "restarting": "♻️ Bot yeniden başlatılıyor..."
+    },
+    "join": {
+      "invalid": "❌ Geçerli bir WhatsApp davet bağlantısı gönderin.\n\nKullanım: join https://chat.whatsapp.com/...",
+      "success": "✅ Davet kabul edildi. Gruba katılmak...",
+      "error": "❌ Gruba katılırken hata oluştu: {{error}}"
+    },
+    "leavegp": {
+      "confirm": "👋 Bu gruptan ayrılıyorum..."
+    },
+    "idiomagp": {
+      "current": "🌐 Grup dili: *{{language}}*\n(Küresel: {{global}})\n\nKullanım: languagegroup <{{options}}|{{reset}}>",
+      "updated": "✅ Grup dili *{{language}}* olarak güncellendi.",
+      "reset": "✅ Grup dili global olarak sıfırlandı (*{{language}}*).",
+      "invalid": "❌ Geçersiz dil. Kullanın: {{optionsList}} (veya küresel dil için \"{{reset}}\")",
+      "i18nAliases": {
+        "pt": [
+          "idiomagp",
+          "idiomagrupo"
+        ],
+        "es": [
+          "idiomgp",
+          "lenguajegrupo"
+        ],
+        "en": [
+          "langgroup",
+          "languagegroup",
+          "setlanggroup"
+        ],
+        "id": [
+          "bahasagrup",
+          "setbahasagrup",
+          "langgroup"
+        ],
+        "fr": [
+          "languegroupe",
+          "setlanguegroupe"
+        ],
+        "hi": [
+          "bhashagroup",
+          "setbhashagroup"
+        ],
+        "ur": [
+          "zabangroup",
+          "setzabangroup"
+        ]
+      }
+    },
+    "soadmin": {
+      "enabled": "✅ Artık bu gruptaki komutları yalnızca yöneticiler kullanabilir.",
+      "disabled": "✅ Bu grupta normal üyeler bir kez daha komutları kullanabilirler."
+    },
+    "modobn": {
+      "enabled": "✅ Bu grupta oynatma modu etkinleştirildi!",
+      "disabled": "❌ Bu grupta şaka modu devre dışı bırakıldı."
+    },
+    "setprefixgp": {
+      "current": "⌨️ Geçerli önek: *{{value}}*\nEvrensel önek: *{{global}}*\n\nKullanım: setprefixgp <yeni önek>\nSıfırlamak için: setprefixgp {{reset}}",
+      "invalid": "❌ Boşluk içermeyen ve en fazla 5 karakterden oluşan bir önek kullanın.",
+      "updated": "✅ Bu grubun öneki *{{value}}* olarak güncellendi.",
+      "reset": "✅ Bu grubun öneki global (*{{value}}*) olarak sıfırlandı."
+    },
+    "bangp": {
+      "alreadyActive": "❌ Bu grup zaten bangp konumunda.",
+      "enabled": "✅ Bu grupta Bangp etkinleştirildi.\nSebep: {{reason}}"
+    },
+    "unbangp": {
+      "notActive": "❌ Bu grup bangp'da değil.",
+      "disabled": "✅Bangp kaldırıldı. Bot bu grupta tekrar normal şekilde çalışmaya başladı."
+    },
+    "listbangp": {
+      "empty": "❌ bangp'da hiçbir grup yok.",
+      "header": "╭─「 *LISTBANGP* 」\n│\n│ toplam: {{total}}\n│\n{{items}}\n│\n╰─",
+      "reasonLabel": "neden",
+      "sinceLabel": "başlangıç"
+    },
+    "blockuser": {
+      "noMention": "❌ Kullanıcıyı etiketleyin veya mesajına yanıt verin.\n\nKullanım: kullanıcıyı engelle @kullanıcı [30 dk|12 saat|7 gün] [sebep]",
+      "lidFailed": "❌ Bahsedilen kullanıcı için LID çözümlenemiyor.",
+      "ownerBypass": "❌ Sahip engellenemez.",
+      "alreadyBlocked": "❌ Bu kullanıcı zaten engellendi.",
+      "permanent": "kalıcı",
+      "success": "✅ {{user}} kullanıcısı engellendi.\nSona erme tarihi: {{expires}}\nSebep: {{reason}}"
+    },
+    "unblockuser": {
+      "noMention": "❌ Kullanıcıyı etiketleyin veya mesajına yanıt verin.\n\nKullanım: kullanıcı @kullanıcının engellemesini kaldır",
+      "lidFailed": "❌ Bahsedilen kullanıcı için LID çözümlenemiyor.",
+      "notBlocked": "❌ Bu kullanıcı engellenmedi.",
+      "success": "✅ {{user}} kullanıcısının kilidi açıldı."
+    },
+    "listblock": {
+      "empty": "❌Hiçbir kullanıcı engellenmez.",
+      "header": "╭─「 *LISTBLOCK* 」\n│\n│ toplam: {{total}}\n│\n{{items}}\n│\n╰─",
+      "expiresLabel": "sona erme",
+      "reasonLabel": "neden"
+    },
+    "blockcmd": {
+      "noArgs": "❌ Kullanım: Blockcmd <komut>",
+      "notFound": "❌ '{{command}}' komutu mevcut değil.",
+      "alreadyBlocked": "❌ '{{command}}' komutu zaten engellendi.",
+      "success": "✅ '{{command}}' komutu engellendi."
+    },
+    "unblockcmd": {
+      "noArgs": "❌ Kullanım: unblockcmd <komut>",
+      "notFound": "❌ '{{command}}' komutu mevcut değil.",
+      "notBlocked": "❌ '{{command}}' komutu engellenmez.",
+      "success": "✅ '{{command}}' komutunun kilidi açıldı."
+    },
+    "listblockcmd": {
+      "empty": "❌ Hiçbir komut engellenmez.",
+      "header": "╭─「 *LISTBLOCKCMD* 」\n│\n│ toplam: {{total}}\n│\n{{items}}\n│\n╰─"
+    },
+    "antimidia": {
+      "blocked": "🚫 {{user}}, *{{type}}* gibi mesajlara bu grupta izin verilmiyor.",
+      "types": {
+        "loc": "konum",
+        "audio": "ses",
+        "foto": "fotoğraf",
+        "video": "video",
+        "doc": "belge",
+        "lista": "liste"
+      }
+    },
+    "antiloc": {
+      "enabled": "✅ Bu grupta konum önleme etkin!",
+      "disabled": "❌ Bu grupta konum önleme devre dışı bırakıldı."
+    },
+    "antiaudio": {
+      "enabled": "✅ Bu grupta ses önleme etkinleştirildi!",
+      "disabled": "❌ Bu grupta ses önleme devre dışı bırakıldı."
+    },
+    "antifoto": {
+      "enabled": "✅ Bu grupta anti-fotoğraf etkinleştirildi!",
+      "disabled": "❌ Bu grupta fotoğraf önleme devre dışı bırakıldı."
+    },
+    "antivideo": {
+      "enabled": "✅ Bu grupta anti-video etkinleştirildi!",
+      "disabled": "❌ Bu grupta video önleme devre dışı bırakıldı."
+    },
+    "antidoc": {
+      "enabled": "✅ Bu grupta belge önleme etkinleştirildi!",
+      "disabled": "❌ Bu grupta belge önleme devre dışı bırakıldı."
+    },
+    "antilista": {
+      "enabled": "✅ Bu grupta anti-liste aktif!",
+      "disabled": "❌ Bu grupta liste engelleme devre dışı bırakıldı."
+    },
+    "apk": {
+      "usage": "╭─「 *APK MOD* 」\n│\n│ ✦ Kullanım:\n│   {{prefix}}apk <uygulama adı>\n│\n╰─ Örnek:\n   {{prefix}}apk minecraft",
+      "searching": "🔍 Modyolo'da aranıyor...",
+      "noResults": "❌ *{{query}}* için sonuç bulunamadı",
+      "error": "❌ İstek işlenirken hata oluştu",
+      "select": "📱 *SONUÇLAR - {{query}}*",
+      "selectApp": "Uygulama numarasını yazın:",
+      "selectVersion": "Sürüm numarasını yazın:",
+      "versionsTitle": "📦 *SÜRÜMLER - {{name}}*",
+      "invalidOption": "❌ Geçersiz seçenek! Listeden bir numara yazın.",
+      "invalidRange": "❌ Geçersiz seçenek! 1 ile {{max}} arasında bir numara yazın",
+      "fetchError": "❌ Uygulama bilgileri alınamadı",
+      "downloadError": "❌ İndirme bağlantısı alınamadı",
+      "downloadReady": "✅ *{{name}}*\n\n🔗 {{url}}",
+      "downloadReadyVersion": "✅ *{{name}} {{version}}*\n\n📦 {{size}}\n\n🔗 {{url}}",
+      "labelVersion": "Sürüm",
+      "labelMod": "Mod",
+      "labelSize": "Boyut",
+      "labelPublisher": "Geliştirici",
+      "labelGenre": "Tür"
+    },
+    "fun": {
+      "menuHint": "│  ⚠️ Eğlence modunun açık olması gerekir (modobn)",
+      "modobnRequired": "❌ Bu grupta eğlence modu açık değil.\nAçmak için: modobn",
+      "percentResult": "📊 {{user}} *{{level}}%* {{trait}}! 🔥",
+      "rankHeader": "📊 *{{trait}} sıralaması*:",
+      "rankItem": "🏅 *#{{pos}}* - {{user}}",
+      "rankNotEnough": "❌ Sıralama için yeterli üye yok (en az {{min}}).",
+      "interactionUsage": "❌ Birini etiketleyin veya bir mesaja yanıt verin.\nÖrnek: {{command}} @kullanici",
+      "interactionSelf": "❌ Bunu kendinize kullanamazsınız!",
+      "interactionGeneric": "{{from}}, {{to}} üzerinde *{{action}}* kullandı!",
+      "interactions": {
+        "chute": "{{from}}, {{to}} kişisine tekme attı! 🦵",
+        "tapa": "{{from}}, {{to}} kişisine tokat attı! 👋",
+        "soco": "{{from}}, {{to}} kişisine yumruk attı! 👊",
+        "beijo": "{{from}}, {{to}} kişisini öptü! 😘",
+        "abraco": "{{from}}, {{to}} kişisini kucakladı! 🤗",
+        "mata": "{{from}}, {{to}} kişisini öldürdü! 💀",
+        "sexo": "{{from}}, {{to}} ile seks yaptı! 🔥",
+        "goza": "{{from}}, {{to}} üzerine boşaldı! 💦",
+        "mamar": "{{from}}, {{to}} kişisini emdi! 👅",
+        "cafune": "{{from}}, {{to}} kişisinin başını okşadı! ✨",
+        "morder": "{{from}}, {{to}} kişisini ısırdı! 🦷",
+        "lamber": "{{from}}, {{to}} kişisini yaladı! 👅",
+        "explodir": "{{from}}, {{to}} kişisini patlattı! 💥",
+        "tomate": "{{from}}, {{to}} kişisine domates fırlattı! 🍅"
+      }
+    }
+  },
+  "group": {
+    "welcome": {
+      "defaultLegend": "Hoş geldin, @kullanici! 👋\n*@grup* grubunun @toplam numaralı üyesisin."
+    },
+    "antilink": {
+      "defaultText": "🚫 @kullanici, bu grupta bağlantılara izin verilmiyor.",
+      "defaultGroupText": "🚫 @kullanici, bu grupta grup bağlantılarına izin verilmiyor.",
+      "defaultChannelText": "🚫 @kullanici, bu grupta kanal bağlantılarına izin verilmiyor.",
+      "typeLink": "bağlantı",
+      "typeGroupLink": "grup bağlantısı",
+      "typeChannelLink": "kanal bağlantısı"
+    }
+  },
+  "owner": {
+    "cmdnf": {
+      "defaultText": "❌ @kullanici, @komut komutu mevcut değil.\n\nBelki şunu demek istedin: @benzer (@benzerlik)\nKomutları görmek için @onekmenu kullanın."
+    },
+    "text": "╭─「 *SAHİP* 」\n│\n│ ad: {{owner}}\n│ numara: {{ownerNumber}}\n│ bot: {{bot}}\n│\n╰─",
+    "info": "╭─「 *BOT BİLGİSİ* 」\n│\n│ ad: {{bot}}\n│ sahip: {{owner}}\n│ önek: {{prefix}}\n│ dil: {{language}}\n│ çalışma süresi: {{uptime}}\n│ bellek: {{memory}}\n│ node: {{node}}\n│\n╰─"
+  }
+}

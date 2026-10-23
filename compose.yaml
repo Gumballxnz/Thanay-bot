@@ -1,0 +1,15 @@
+services:
+  thanay:
+    build:
+      context: .
+    image: thanay-bot:1.0.0
+    init: true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - ./dados:/app/dados
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'

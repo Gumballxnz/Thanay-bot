@@ -1,0 +1,43 @@
+/**
+ * @author Hiudy · github.com/hiudyy
+ * @project Misa Bot
+ */
+import { WAMessage } from "baileys";
+import { getOwnerConfig, updateOwnerConfig } from "../../../ownerConfig.js";
+import { Command } from "../../../types/Command.js";
+
+const blockcmdCommand: Command = {
+  name: "blockcmd",
+  aliases: ["bloquearcmd", "blockcommand"],
+  description: "Blocks a command globally for non-owners",
+  category: "geral",
+  ownerOnly: true,
+  async execute({ misa, message, from, args, commandDirectory, t }) {
+    const input = args[0]?.toLowerCase();
+    if (!input) {
+      await misa.sendMessage(from, { text: t("commands.blockcmd.noArgs") }, { quoted: message as WAMessage });
+      return;
+    }
+
+    const command = commandDirectory.get(input);
+    if (!command) {
+      await misa.sendMessage(from, { text: t("commands.blockcmd.notFound", { command: input }) }, { quoted: message as WAMessage });
+      return;
+    }
+
+    const config = await getOwnerConfig();
+    if (config.blockedCommands.includes(command.name)) {
+      await misa.sendMessage(from, { text: t("commands.blockcmd.alreadyBlocked", { command: command.name }) }, { quoted: message as WAMessage });
+      return;
+    }
+
+    await updateOwnerConfig((current) => ({
+      ...current,
+      blockedCommands: [...new Set([...current.blockedCommands, command.name])].sort(),
+    }));
+
+    await misa.sendMessage(from, { text: t("commands.blockcmd.success", { command: command.name }) }, { quoted: message as WAMessage });
+  },
+};
+
+export default blockcmdCommand;

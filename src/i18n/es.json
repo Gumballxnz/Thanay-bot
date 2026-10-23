@@ -1,0 +1,879 @@
+{
+  "common": {
+    "yes": "Sí",
+    "no": "No",
+    "enabled": "activado",
+    "disabled": "desactivado",
+    "error": "Error",
+    "success": "Éxito",
+    "unknown": "desconocido",
+    "none": "ninguno",
+    "file": "archivo",
+    "files": "archivos"
+  },
+  "terminal": {
+    "initializing": "  Inicializando...",
+    "goodbye": "Hasta luego.",
+    "startCancelled": "Inicio cancelado.",
+    "startFailed": "Error al iniciar.",
+    "boolYes": "s|si|sí|y|yes",
+    "boolNo": "n|no",
+    "invalidOption": "Opción inválida. Inténtalo de nuevo.",
+    "invalidPhone": "Número inválido.",
+    "sessionDetected": "Sesión existente detectada. Conectando automáticamente...",
+    "menu": {
+      "title": "{{botName}}",
+      "version": "versión",
+      "configure": "Configurar bot",
+      "advanced": "Configuración avanzada",
+      "start": "Iniciar bot",
+      "exit": "Salir",
+      "chooseOption": "  › Elige una opción: "
+    },
+    "config": {
+      "header": "CONFIGURAR BOT",
+      "pressEnter": "   Presiona Enter para mantener el valor actual  ",
+      "saved": "CONFIGURACIÓN GUARDADA",
+      "fileUpdated": "   Archivo actualizado: dados/config.json         ",
+      "botName": "Nombre del bot",
+      "ownerName": "Nombre del dueño",
+      "prefix": "Prefijo del bot",
+      "ownerNumber": "Número del dueño",
+      "autoUpdate": "Actualización automática",
+      "language": "Idioma del bot",
+      "languageHint": "({{options}})",
+      "notConfigured": "no configurado",
+      "configured": "configurada",
+      "boolPrompt": "(s/y/N)",
+      "boolInvalid": "Responde con s/y para sí, n para no, o Enter para mantener."
+    },
+    "advanced": {
+      "header": "CONFIGURACIÓN AVANZADA",
+      "pressEnter": "Presiona Enter para mantener cada valor actual.",
+      "messageConcurrent": "Mensajes procesados simultáneamente",
+      "messagePending": "Máximo de mensajes en espera",
+      "messageTimeout": "Tiempo límite de la cola de mensajes",
+      "maxConcurrent": "Operaciones de medios simultáneas",
+      "maxPending": "Tamaño máximo de la cola de medios",
+      "timeout": "Tiempo límite total de medios",
+      "ffmpeg": "Procesos FFmpeg simultáneos",
+      "size": { "image": "Límite de imagen", "audio": "Límite de audio", "video": "Límite de vídeo", "document": "Límite de documento", "sticker": "Límite de sticker" },
+      "providerRetries": "Intentos por proveedor de YouTube",
+      "retryDelay": "Intervalo entre intentos",
+      "maxFailures": "Fallos antes del cooldown",
+      "cooldown": "Cooldown del proveedor",
+      "logLevel": "Nivel de log",
+      "maxBackups": "Cantidad de backups de actualización",
+      "jobs": "tareas", "messages": "mensajes", "seconds": "segundos", "attempts": "intentos", "failures": "fallos", "minutes": "minutos", "backups": "backups",
+      "invalidRange": "Introduce un entero entre {{min}} y {{max}}.",
+      "invalidLogLevel": "Nivel inválido. Usa debug, info, warn, error o silent.",
+      "summary": "Resumen de operaciones:",
+      "confirm": "¿Guardar esta configuración avanzada?",
+      "cancelled": "Configuración avanzada cancelada.",
+      "saved": "Configuración avanzada guardada.",
+      "restartRequired": "Reinicia el bot para aplicar las nuevas operaciones."
+    },
+    "connection": {
+      "title": "MÉTODO DE CONEXIÓN",
+      "qr": "QR Code",
+      "pairing": "Código de emparejamiento",
+      "pairingHint": "(número de teléfono)",
+      "back": "Volver",
+      "phonePrompt": "  › Número con DDI (ej: 5511999999999): "
+    }
+  },
+  "logs": {
+    "ownerLidFetching": "Buscando LID del dueño...",
+    "ownerLidSaved": "LID del dueño guardado: {{lid}}",
+    "ownerLidFailed": "No fue posible obtener el LID del dueño.",
+    "commandIgnoredNoLid": "Ignorado porque no fue posible resolver LID: {{sender}}",
+    "commandError": "Error al ejecutar {{commandName}}.",
+    "commandInvalid": "Ignorado porque es invalido: {{file}}",
+    "eventInvalid": "Ignorado porque es invalido: {{file}}",
+    "eventError": "Error en {{name}}.",
+    "configReadFailed": "No fue posible leer {{path}}.",
+    "configMigrated": "Configuracion migrada a {{path}}.",
+    "botStarted": "{{botName}} iniciada y lista para recibir mensajes.",
+    "updateRestoreFailed": "No se pudo restaurar package.json.",
+    "emptySender": "remitente vacío",
+    "antilinkDeleteFailed": "Error al borrar mensaje antilink en el grupo {{groupId}}: {{error}}",
+    "antilinkBanFailed": "Error al banear a {{sender}} en el grupo {{groupId}}: {{error}}",
+    "antistealthDeleteFailed": "Error al borrar mensaje antistealth en el grupo {{groupId}}: {{error}}",
+    "antistealthRemoveFailed": "Error al expulsar a {{sender}} del grupo {{groupId}}: {{error}}",
+    "activity": {
+      "group": "{{user}} → {{group}}  ·  {{preview}}",
+      "private": "{{user}} → {{privateLabel}}  ·  {{preview}}",
+      "privateLabel": "privado",
+      "sticker": "pegatina",
+      "media": "medios",
+      "unknownGroup": "grupo",
+      "image": "(imagen)",
+      "video": "(vídeo)",
+      "imageOnly": "(imagen)",
+      "videoOnly": "(vídeo)"
+    }
+  },
+  "errors": {
+    "ownerOnly": "❌ Este comando es solo para el dueño del bot.",
+    "groupOnly": "❌ Este comando solo puede usarse en grupos.",
+    "privateOnly": "❌ Este comando solo puede usarse en privado.",
+    "adminOnly": "❌ Este comando es solo para administradores del grupo.",
+    "botAdminRequired": "❌ Necesito ser administrador del grupo para ejecutar este comando.",
+    "commandBlocked": "❌ Este comando fue bloqueado por el dueño del bot.",
+    "groupCommandsAdminOnly": "❌ En este grupo, solo los admins pueden usar comandos.",
+    "commandExecution": "❌ Ocurrió un error al ejecutar el comando.",
+    "download": {
+      "notFound": "No se encontraron resultados.",
+      "noMedia": "No se encontró ningún medio.",
+      "invalidUrl": "URL inválida.",
+      "timeout": "Se agotó el tiempo de descarga.",
+      "failed": "Error al descargar el contenido.",
+      "noData": "No se pudieron obtener los datos.",
+      "pinId": "No se pudo extraer el ID del pin.",
+      "linkNotFound": "No se encontró el enlace de descarga."
+    },
+    "sticker": {
+      "downloadFailed": "Error al descargar el medio.",
+      "emptyDownload": "Descarga vacía.",
+      "invalidInput": "Entrada de sticker inválida.",
+      "conversionFailed": "La conversión falló.",
+      "invalidBuffer": "Buffer inválido o vacío."
+    },
+    "media": {
+      "queued": "⏳ Operación de medios en cola. Posición: {{position}}.",
+      "queueFull": "❌ La cola de medios está llena. Inténtalo más tarde.",
+      "timeout": "❌ La operación de medios superó el tiempo límite.",
+      "tooLarge": "El archivo supera el límite de tamaño permitido.",
+      "aborted": "La operación de medios fue cancelada.",
+      "failed": "La operación de medios falló. Inténtalo de nuevo."
+    }
+  },
+  "connection": {
+    "sessionDetected": "Sesión existente detectada. Conectando automáticamente...",
+    "connecting": "Conectando a WhatsApp...",
+    "connected": "Conectado con éxito.",
+    "disconnected": "Conexión cerrada",
+    "reconnecting": "Intentando reconectar...",
+    "sessionCleared": "Sesión local eliminada. Inicia de nuevo para generar un nuevo QR.",
+    "sessionClearFailed": "No fue posible eliminar {{path}}.",
+    "qrReceived": "QR code recibido",
+    "qrScan": "Escanea con WhatsApp para conectar esta sesión.",
+    "pairingCode": "Código de vinculación",
+    "pairingNewCode": "Nuevo código de vinculación",
+    "pairingCodeValue": "Código: {{code}}",
+    "pairingInstruction": "Ingresa en WhatsApp: Dispositivos conectados > Vincular dispositivo > Vincular con número de teléfono.",
+    "pairingExpired": "Código de vinculación expirado. Solicitando nuevo código...",
+    "pairingError": "Error al solicitar código de vinculación.",
+    "disconnectCode": "Código: {{code}}",
+    "disconnectReason": "Motivo: {{reason}}",
+    "disconnectDetail": "Detalle: {{detail}}",
+    "disconnectAction": "Acción: {{action}}",
+    "disconnect": {
+      "loggedOut": {
+        "title": "Sesión desconectada",
+        "description": "WhatsApp cerró esta sesión o fue eliminada de los dispositivos conectados.",
+        "action": "Voy a limpiar la sesión local. Inicia de nuevo para generar un nuevo QR."
+      },
+      "forbidden": {
+        "title": "Acceso denegado",
+        "description": "WhatsApp rechazó la conexión de esta sesión.",
+        "action": "Verifica las credenciales, espera unos minutos y genera una nueva sesión si sigue fallando."
+      },
+      "connectionLost": {
+        "title": "Conexión perdida o expirada",
+        "description": "La red cayó, osciló o el intento tardó demasiado en responder.",
+        "action": "Voy a intentar reconectar automáticamente."
+      },
+      "multideviceMismatch": {
+        "title": "Incompatibilidad multi-device",
+        "description": "La sesión no coincide con el protocolo multi-device esperado por WhatsApp.",
+        "action": "Actualiza Baileys/dependencias y genera una nueva sesión si es necesario."
+      },
+      "connectionClosed": {
+        "title": "Conexión cerrada",
+        "description": "La conexión fue cerrada por WhatsApp o la red.",
+        "action": "Voy a intentar reconectar automáticamente."
+      },
+      "connectionReplaced": {
+        "title": "Conexión reemplazada",
+        "description": "Otra instancia se conectó usando la misma sesión.",
+        "action": "Cierra la otra instancia antes de iniciar esta nuevamente."
+      },
+      "badSession": {
+        "title": "Sesión inválida",
+        "description": "Los archivos de autenticación parecen corruptos o inválidos.",
+        "action": "Elimina {{authPath}} y escanea un nuevo QR code."
+      },
+      "unavailableService": {
+        "title": "Servicio no disponible",
+        "description": "WhatsApp o la ruta de conexión está temporalmente no disponible.",
+        "action": "Voy a intentar reconectar automáticamente."
+      },
+      "restartRequired": {
+        "title": "Reinicio necesario",
+        "description": "El servidor solicitó que el cliente se reiniciara.",
+        "action": "Voy a reiniciar la conexión automáticamente."
+      },
+      "default": {
+        "title": "Conexión cerrada",
+        "description": "La conexión fue cerrada por un motivo no mapeado.",
+        "action": "Voy a intentar reconectar automáticamente."
+      }
+    },
+    "noAutoReconnect": "Conexión cerrada. No se intentará la reconexión automática.",
+    "reconnectAttempt": "Reconectando en {{delay}}ms... (intento {{attempt}}/{{max}})",
+    "maxReconnectReached": "Se alcanzó el número máximo de intentos de reconexión ({{max}})."
+  },
+  "update": {
+    "checking": "Verificando actualizaciones...",
+    "upToDate": "La instalacion ya esta actualizada.",
+    "downloading": "Descargando actualización...",
+    "extracting": "Extrayendo...",
+    "installingDeps": "Instalando dependencias...",
+    "done": "¡Actualización completada! Reiniciando...",
+    "failed": "Error en la actualización. Continuando con la versión actual.",
+    "creatingBackup": "Creando copia de seguridad completa antes de actualizar...",
+    "backupCreated": "Copia de seguridad creada en: {{path}}",
+    "restoringBackup": "Restaurando copia de seguridad completa...",
+    "backupRestored": "Copia de seguridad restaurada.",
+    "restoreSrcFailed": "Error al restaurar la copia de seguridad de src/.",
+    "restorePackageFailed": "Error al restaurar la copia de seguridad de package.json.",
+    "restoreFailed": "Error al restaurar package.json."
+  },
+  "commands": {
+    "ping": {
+      "latency": "Latencia",
+      "unavailable": "no disponible",
+      "uptime": "Activa hace",
+      "memory": "Memoria",
+      "ownerStatus": "Estado: Dueño",
+      "footer": "Desarrollado por {{botName}}."
+    },
+    "dono": {
+      "text": "╭─「 *PROPIETARIO* 」\n│\n│ nombre: {{owner}}\n│ número: {{ownerNumber}}\n│ bot: {{bot}}\n│\n╰─"
+    },
+    "infobot": {
+      "text": "╭─「 *INFO DEL BOT* 」\n│\n│ nombre: {{bot}}\n│ propietario: {{owner}}\n│ prefijo: {{prefix}}\n│ idioma: {{language}}\n│ tiempo activo: {{uptime}}\n│ memoria: {{memory}}\n│ node: {{node}}\n│\n╰─"
+    },
+    "sticker": {
+      "usage": "╭─「 *STICKER* 」\n│\n│ ✦ Cómo usar:\n│   envía o responde una foto con:\n│   s\n│\n│   envía o responde un video con:\n│   sticker\n│\n╰─ Resultado: sticker cuadrado",
+      "creating": "🪄 Creando sticker...",
+      "videoTooLong": "❌ El video debe tener como máximo {{max}} segundos.",
+      "error": "❌ Error al crear sticker: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "sticker2": {
+      "usage": "╭─「 *STICKER2* 」\n│\n│ ✦ Cómo usar:\n│   envía o responde una foto con:\n│   s2\n│\n│   envía o responde un video con:\n│   sticker2\n│\n╰─ Resultado: mantiene el formato original"
+    },
+    "menu": {
+      "mainTitle": "‧₊˚ ✿ ── {{botName}} ──✿ ˚₊‧",
+      "categories": {
+        "geral": "general",
+        "fig": "figuritas",
+        "downloads": "descargas",
+        "grupo": "grupo",
+        "owner": "dueño",
+        "activations": "activaciones",
+        "welcome": "bienvenida",
+        "funMalePercent": "porcentajes (masculino)",
+        "funFemalePercent": "porcentajes (femenino)",
+        "funMaleRank": "ranks (masculino)",
+        "funFemaleRank": "ranks (femenino)",
+        "funInteractions": "interacciones"
+      },
+      "cmds": {
+        "ping": "ping",
+        "dono": "dueño",
+        "infobot": "infobot",
+        "menu": "menu",
+        "menugeral": "menugeneral",
+        "menufig": "menusticker",
+        "menudl": "menudescargas",
+        "menugrupo": "menugrupo",
+        "menuadm": "menuadmin",
+        "menudono": "menudueño",
+        "sticker": "sticker",
+        "sticker2": "sticker2",
+        "shorturl": "acortarurl",
+        "play": "play",
+        "ytmp3": "ytmp3",
+        "playvid": "playvid",
+        "ytmp4": "ytmp4",
+        "tiktok": "tiktok",
+        "instagram": "instagram",
+        "pinterest": "pinterest",
+        "admins": "administradores",
+        "rankativo": "rankactivo",
+        "rankinativo": "rankinactivo",
+        "checkativo": "checkactivo",
+        "hidetag": "hidetag",
+        "del": "del",
+        "gp": "grupo",
+        "kick": "expulsar",
+        "promote": "promover",
+        "demote": "degradar",
+        "nomegp": "nombregrupo",
+        "descgp": "descgrupo",
+        "antilink": "antilink",
+        "antilinkgp": "antilinkgp",
+        "antilinkch": "antilinkch",
+        "antistealth": "antistealth",
+        "bemvindo": "bienvenida",
+        "legendabv": "textobv",
+        "midiabv": "mediabv",
+        "eval": "eval",
+        "cmdnf": "cmdnf",
+        "idioma": "lenguaje",
+        "nomebot": "nombrebot",
+        "nomedono": "nombredueño",
+        "numerodono": "numerodueño",
+        "prefixo": "prefijo",
+        "autoupdate": "autoupdate",
+        "antipv": "antipv",
+        "statusbot": "statusbot",
+        "debug": "debug",
+        "restart": "restart",
+        "join": "join",
+        "leavegp": "leavegp",
+        "idiomagp": "lenguajegrupo",
+        "soadmin": "soloadmin",
+        "modobn": "modobn",
+        "setprefixgp": "setprefixgp",
+        "bangp": "bangp",
+        "unbangp": "unbangp",
+        "listbangp": "listbangp",
+        "blockuser": "blockuser",
+        "unblockuser": "unblockuser",
+        "listblock": "listblock",
+        "blockcmd": "blockcmd",
+        "unblockcmd": "unblockcmd",
+        "listblockcmd": "listblockcmd",
+        "antiloc": "antiloc",
+        "antiaudio": "antiaudio",
+        "antifoto": "antifoto",
+        "antivideo": "antivideo",
+        "antidoc": "antidoc",
+        "antilista": "antilista",
+        "apk": "apk",
+        "menubrincadeira": "menudiversion",
+        "percent": "percent",
+        "rank": "rank",
+        "interact": "interactuar"
+      }
+    },
+    "play": {
+      "usage": "╭─「 *PLAY* 」\n│\n│ ✦ Busqueda:\n│   play <nombre de la canción>\n│   p <nombre de la canción>\n│\n╰─ Ejemplo:\n   play michael jackson billie jean",
+      "searching": "🔍 Buscando canción...",
+      "notFound": "❌ No se encontraron resultados.",
+      "channel": "Canal",
+      "duration": "Duración",
+      "views": "Vistas",
+      "downloading": "⬇️ Descargando audio...",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido",
+      "author": "Desconocido"
+    },
+    "ytmp3": {
+      "usage": "╭─「 *YTMP3* 」\n│\n│ ✦ Descarga:\n│   ytmp3 <enlace de YouTube>\n\n╰─ Ejemplos:\n   ytmp3 https://youtube.com/watch?v=...\n   ytmp3 https://youtu.be/...\n   ytmp3 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ URL inválida. Usa un enlace de YouTube.",
+      "downloading": "⬇️ Descargando audio de YouTube...",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "playvid": {
+      "usage": "╭─「 *PLAYVID* 」\n│\n│ ✦ Busqueda:\n│   playvid <nombre del video>\n│   pv <nombre del video>\n\n╰─ Ejemplo:\n   playvid michael jackson thriller",
+      "searching": "🔍 Buscando video...",
+      "notFound": "❌ No se encontraron resultados.",
+      "channel": "Canal",
+      "duration": "Duración",
+      "views": "Vistas",
+      "downloading": "⬇️ Descargando video...",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "ytmp4": {
+      "usage": "╭─「 *YTMP4* 」\n│\n│ ✦ Descarga:\n│   ytmp4 <enlace de YouTube>\n\n╰─ Ejemplos:\n   ytmp4 https://youtube.com/watch?v=...\n   ytmp4 https://youtu.be/...\n   ytmp4 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ URL inválida. Usa un enlace de YouTube.",
+      "downloading": "⬇️ Descargando video de YouTube...",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "tiktok": {
+      "usage": "╭─「 *TIKTOK* 」\n│\n│ ✦ Descarga:\n│   tiktok <url>\n│\n│ ✦ Busqueda:\n│   tiktok <termino>\n│\n╰─ Ejemplos:\n   tiktok https://vm.tiktok.com/...\n   tiktok baile viral",
+      "downloading": "⬇️ Descargando de TikTok...",
+      "downloadFailed": "❌ No fue posible descargar el video.",
+      "downloadDone": "✅ Descarga completada!",
+      "searching": "🔍 Buscando en TikTok...",
+      "notFound": "❌ No se encontraron resultados.",
+      "found": "📹 *{{title}}*\n\n⬇️ Descargando...",
+      "searchCaption": "🔍 Busqueda: {{query}}",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "instagram": {
+      "usage": "╭─「 *INSTAGRAM* 」\n│\n│ ✦ Descarga:\n│   instagram <url>\n│\n╰─ Ejemplo:\n   instagram https://instagram.com/p/...",
+      "invalidUrl": "❌ URL inválida. Usa una URL de Instagram.",
+      "downloading": "⬇️ Descargando de Instagram...",
+      "downloadFailed": "❌ No fue posible descargar el contenido.",
+      "sending": "📥 Enviando {{count}} {{fileWord}}...",
+      "done": "✅ Descarga de Instagram completada!",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "pinterest": {
+      "usage": "╭─「 *PINTEREST* 」\n│\n│ ✦ Descarga:\n│   pinterest <url>\n│\n│ ✦ Busqueda:\n│   pinterest <termino>\n│\n╰─ Ejemplos:\n   pinterest https://pin.it/...\n   pinterest wallpaper 4k",
+      "downloading": "⬇️ Descargando de Pinterest...",
+      "downloadFailed": "❌ No fue posible descargar el contenido.",
+      "done": "✅ Descarga de Pinterest completada!",
+      "searching": "🔍 Buscando en Pinterest...",
+      "notFound": "❌ No se encontraron resultados.",
+      "found": "📸 Encontré {{count}} imagenes!\n\n⬇️ Enviando...",
+      "searchCaption": "🔍 Busqueda: {{query}}",
+      "limited": "ℹ️ Se encontraron {{total}} imagenes, pero solo envié {{sent}}.",
+      "error": "❌ Error: {{message}}",
+      "unknown": "Error desconocido"
+    },
+    "admins": {
+      "groupInfoFailed": "❌ No fue posible obtener información del grupo.",
+      "noAdmins": "❌ No se encontraron admins.",
+      "defaultMessage": "los admins fueron llamados!"
+    },
+    "rankativo": {
+      "groupInfoFailed": "❌ No fue posible obtener información del grupo.",
+      "empty": "❌ Aún no hay actividad registrada en este grupo.",
+      "item": "{{pos}}. {{user}} - total: {{total}} | msg: {{messages}} | cmd: {{commands}} | stk: {{stickers}}",
+      "text": "╭─「 *RANGO ACTIVO* 」\n{{items}}\n│\n╰─"
+    },
+    "rankinativo": {
+      "groupInfoFailed": "❌ No fue posible obtener información del grupo.",
+      "empty": "❌ No se encontraron miembros en el grupo.",
+      "item": "{{pos}}. {{user}} - total: {{total}} | msg: {{messages}} | cmd: {{commands}} | stk: {{stickers}}",
+      "text": "╭─「 *RANGO INACTIVO* 」\n{{items}}\n│\n╰─"
+    },
+    "checkativo": {
+      "lidFailed": "❌ No fue posible resolver el usuario mencionado.",
+      "text": "╭─「 *CHECK ACTIVO* 」\n│\n│ usuario: {{user}}\n│ posición: {{position}}\n│ total: {{total}}\n│ mensajes: {{messages}}\n│ comandos: {{commands}}\n│ stickers: {{stickers}}\n│\n╰─"
+    },
+    "hidetag": {
+      "fetchError": "❌ No fue posible obtener información del grupo.",
+      "noMembers": "❌ No se encontraron miembros en el grupo.",
+      "defaultMessage": "¡Todos fueron mencionados!",
+      "mediaError": "❌ No se pudo procesar el medio para mencionar a todos."
+    },
+    "del": {
+      "noQuoted": "❌ Responde al mensaje que deseas eliminar.\n\nUso: del (responde a un mensaje)",
+      "success": "✅ ¡Mensaje eliminado con éxito!",
+      "error": "❌ Error al eliminar mensaje: {{error}}"
+    },
+    "antilink": {
+      "enabled": "✅ Anti-link *activado* en este grupo!",
+      "disabled": "❌ Anti-link *desactivado* en este grupo.",
+      "settingsHint": "⚙️ Ajustes:\n• antilink {{punishment}} {{delete}}\n• antilink {{punishment}} {{ban}}\n• antilink {{text}} <mensaje>",
+      "punishmentUpdated": "✅ Castigo del anti-link actualizado a *{{value}}*.",
+      "invalidPunishment": "❌ Usa: antilink {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Texto del anti-link actualizado!\n\n{{text}}",
+      "textHeader": "╭─「 *TEXTO ANTILINK* 」\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Texto actual:*\n│ {{current}}\n│\n╰─ Uso: antilink {{text}} <mensaje>",
+      "usage": "╭─「 *ANTILINK* 」\n│\n│ antilink\n│ antilink {{punishment}} {{delete}}\n│ antilink {{punishment}} {{ban}}\n│ antilink {{text}} <mensaje>",
+      "params": "@tipo → tipo de enlace detectado"
+    },
+    "antilinkgp": {
+      "enabled": "✅ Anti-link de grupo *activado* en este grupo!",
+      "disabled": "❌ Anti-link de grupo *desactivado* en este grupo.",
+      "settingsHint": "⚙️ Ajustes:\n• antilinkgp {{punishment}} {{delete}}\n• antilinkgp {{punishment}} {{ban}}\n• antilinkgp {{text}} <mensaje>",
+      "punishmentUpdated": "✅ Castigo del anti-link de grupo actualizado a *{{value}}*.",
+      "invalidPunishment": "❌ Usa: antilinkgp {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Texto del anti-link de grupo actualizado!\n\n{{text}}",
+      "textHeader": "╭─「 *TEXTO ANTILINK* 」\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Texto actual:*\n│ {{current}}\n│\n╰─ Uso: antilinkgp {{text}} <mensaje>",
+      "usage": "╭─「 *ANTILINKGP* 」\n│\n│ antilinkgp\n│ antilinkgp {{punishment}} {{delete}}\n│ antilinkgp {{punishment}} {{ban}}\n│ antilinkgp {{text}} <mensaje>",
+      "params": "@tipo → tipo de enlace detectado"
+    },
+    "antilinkch": {
+      "enabled": "✅ Anti-link de canal *activado* en este grupo!",
+      "disabled": "❌ Anti-link de canal *desactivado* en este grupo.",
+      "settingsHint": "⚙️ Ajustes:\n• antilinkch {{punishment}} {{delete}}\n• antilinkch {{punishment}} {{ban}}\n• antilinkch {{text}} <mensaje>",
+      "punishmentUpdated": "✅ Castigo del anti-link de canal actualizado a *{{value}}*.",
+      "invalidPunishment": "❌ Usa: antilinkch {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Texto del anti-link de canal actualizado!\n\n{{text}}",
+      "textHeader": "╭─「 *TEXTO ANTILINK* 」\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Texto actual:*\n│ {{current}}\n│\n╰─ Uso: antilinkch {{text}} <mensaje>",
+      "usage": "╭─「 *ANTILINKCH* 」\n│\n│ antilinkch\n│ antilinkch {{punishment}} {{delete}}\n│ antilinkch {{punishment}} {{ban}}\n│ antilinkch {{text}} <mensaje>",
+      "params": "@tipo → tipo de enlace detectado"
+    },
+    "antistealth": {
+      "enabled": "✅ Anti-stealth *activado* en este grupo.",
+      "disabled": "❌ Anti-stealth *desactivado* en este grupo.",
+      "punished": "🚫 @{{user}} fue eliminado por enviar {{count}} mensajes stealth en {{seconds}}s."
+    },
+    "bemvindo": {
+      "enabled": "✅ Bienvenida *activada* en este grupo!",
+      "disabled": "❌ Bienvenida *desactivada* en este grupo."
+    },
+    "gp": {
+      "usage": "╭─「 *GRUPO* 」\n│\n│ ✦ gp {{open}} → abre el grupo\n│ ✦ gp {{close}} → cierra el grupo\n\n╰─",
+      "closed": "🔒 Grupo cerrado! Solo los admins pueden enviar mensajes.",
+      "opened": "🔓 Grupo abierto! Todos pueden enviar mensajes."
+    },
+    "kick": {
+      "noMention": "❌ Menciona al usuario o responde a su mensaje.\n\nUso: kick @usuario",
+      "lidFailed": "❌ No fue posible resolver el LID del usuario mencionado.",
+      "success": "✅ Usuario removido con éxito!",
+      "error": "❌ Error al remover usuario: {{error}}"
+    },
+    "promote": {
+      "noMention": "❌ Menciona al usuario o responde a su mensaje.\n\nUso: promote @usuario",
+      "lidFailed": "❌ No fue posible resolver el LID del usuario mencionado.",
+      "success": "✅ Usuario promovido a administrador!",
+      "error": "❌ Error al promover usuario: {{error}}"
+    },
+    "demote": {
+      "noMention": "❌ Menciona al administrador o responde a su mensaje.\n\nUso: demote @usuario",
+      "lidFailed": "❌ No fue posible resolver el LID del usuario mencionado.",
+      "success": "✅ Administrador degradado a miembro común!",
+      "error": "❌ Error al degradar administrador: {{error}}"
+    },
+    "nomegp": {
+      "noArgs": "❌ Indica el nuevo nombre.\n\nUso: nomegp <nombre>",
+      "success": "✅ Nombre del grupo cambiado a *{{name}}*!"
+    },
+    "descgp": {
+      "noArgs": "❌ Indica la nueva descripción.\n\nUso: descgp <descripción>",
+      "success": "✅ Descripción del grupo actualizada!"
+    },
+    "legendabv": {
+      "params": "@usuario → menciona al usuario\n│ @nombre → nombre del usuario\n│ @grupo → nombre del grupo\n│ @total → total de miembros\n│ @desc → descripción del grupo",
+      "header": "╭─「 *LEGENDA BV* 」\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Leyenda actual:*\n│ {{current}}\n│\n╰─ Usa: legendabv <texto>",
+      "updated": "✅ Leyenda de bienvenida actualizada!\n\n{{text}}"
+    },
+    "midiabv": {
+      "removed": "✅ Multimedia de bienvenida eliminada.",
+      "noMedia": "╭─「 *MEDIA DE BIENVENIDA* 」\n│\n│ ✦ Estado: {{status}}\n\n│ Envía una imagen o un vídeo, o responde a uno.\n│ Vídeos: hasta 15 segundos (se envían como GIF).\n│ Para quitar: midiabv {{off}}\n\n╰─",
+      "statusVideo": "Vídeo 🎥 ✅",
+      "statusImage": "Imagen 🖼️ ✅",
+      "statusNone": "Sin multimedia ❌",
+      "videoTooLong": "❌ El video tiene {{seconds}}s. Máximo permitido: {{max}}s.",
+      "successVideo": "✅ Video de bienvenida configurado!",
+      "successImage": "✅ Foto de bienvenida configurada!"
+    },
+    "cmdnf": {
+      "params": "@usuario → menciona al usuario\n│ @nombre → nombre del usuario\n│ @comando → comando escrito\n│ @parecido → comando más parecido\n│ @similitud → porcentaje de similitud\n│ @prefijo → prefijo actual\n│ @bot → nombre del bot",
+      "header": "╭─「 *CMDNF* 」\n│\n│ *Modo actual:* {{mode}}\n│ *Texto actual:* {{text}}\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Uso:*\n│ cmdnf {{modeWord}} {{textWord}}\n│ cmdnf {{modeWord}} {{mentionWord}}\n│ cmdnf {{textWord}} <mensaje>\n\n╰─",
+      "invalidMode": "❌ cmdnf {{mode}} {{text}} | {{mention}}",
+      "modeUpdated": "✅ Modo de comando no encontrado actualizado a *{{mode}}*.",
+      "textHeader": "╭─「 *CMDNF {{textWord}}* 」\n│\n│ *Parámetros disponibles:*\n│ {{params}}\n│\n│ *Texto actual:*\n│ {{current}}\n\n╰─ cmdnf {{textWord}} <mensaje>",
+      "textUpdated": "✅ Texto de comando no encontrado actualizado!\n\n{{text}}",
+      "usage": "╭─「 *CMDNF* 」\n│\n│ cmdnf {{mode}} {{text}}\n│ cmdnf {{mode}} {{mention}}\n│ cmdnf {{text}} <mensaje>"
+    },
+    "eval": {
+      "noArgs": "❌ Uso: eval <código>",
+      "success": "╭─「 *EVAL RESULT* 」\n│\n│ ✦ Código: {{code}}\n│\n├─「 *OUTPUT* 」\n│\n{{output}}\n│\n╰─ Ejecutado con éxito.",
+      "error": "╭─「 *EVAL ERROR* 」\n│\n│ ✦ Código: {{code}}\n│\n├─「 *ERROR* 」\n│\n│ {{error}}\n│\n╰─ Error en la ejecución.",
+      "tooLong": "❌ El código excede el límite de {{max}} caracteres."
+    },
+    "idioma": {
+      "current": "🌐 Idioma global actual: *{{language}}*\n\nUso: language <{{options}}>",
+      "updated": "✅ Idioma global actualizado a *{{language}}*.",
+      "invalid": "❌ Idioma inválido. Usa: {{optionsList}}",
+      "i18nAliases": {
+        "pt": [
+          "idioma",
+          "setidioma"
+        ],
+        "es": [
+          "idioma",
+          "lenguaje",
+          "setlenguaje"
+        ],
+        "en": [
+          "language",
+          "setlanguage",
+          "lang",
+          "setlang"
+        ],
+        "id": [
+          "bahasa",
+          "setbahasa",
+          "lang",
+          "setlang"
+        ],
+        "fr": [
+          "langue",
+          "setlangue"
+        ],
+        "hi": [
+          "bhasha",
+          "setbhasha"
+        ],
+        "ur": [
+          "zaban",
+          "setzaban"
+        ]
+      }
+    },
+    "nomebot": {
+      "current": "🤖 Nombre actual del bot: *{{value}}*\n\nUso: nomebot <nuevo nombre>",
+      "invalid": "❌ Informa un nombre válido para el bot.",
+      "updated": "✅ Nombre del bot actualizado a *{{value}}*."
+    },
+    "nomedono": {
+      "current": "👑 Nombre actual del dueño: *{{value}}*\n\nUso: nomedono <nuevo nombre>",
+      "invalid": "❌ Informa un nombre válido para el dueño.",
+      "updated": "✅ Nombre del dueño actualizado a *{{value}}*."
+    },
+    "numerodono": {
+      "current": "📱 Número actual del dueño: *{{value}}*\n\nUso: numerodono <5511999999999>",
+      "invalid": "❌ Informa un número válido con prefijo internacional.",
+      "updated": "✅ Número del dueño actualizado a *{{value}}*.\nLID guardado: {{lid}}",
+      "updatedNoLid": "✅ Número del dueño actualizado a *{{value}}*.\n⚠️ No pude resolver el nuevo LID ahora; se mantuvo el LID anterior hasta poder actualizarlo."
+    },
+    "prefixo": {
+      "current": "⌨️ Prefijo legado: *{{value}}*\n\nMapa por idioma:\n{{mapSection}}\n\nUso:\n• prefixo <nuevo> — cambia el legado\n• prefixo set <locale> <prefijo>\n• prefixo del <locale>\n• prefixo clear\n\nIdiomas: {{options}}",
+      "invalid": "❌ Usa un prefijo sin espacios y de hasta 5 caracteres.",
+      "updated": "✅ Prefijo legado actualizado a *{{value}}*.",
+      "mapEmpty": "_(desactivado — sin entradas)_",
+      "mapItem": "• {{locale}} (`{{code}}`): *{{prefix}}*",
+      "setUsage": "❌ Uso: prefixo set <locale> <prefijo>\nIdiomas: {{options}}",
+      "setOk": "✅ Mapa actualizado: {{locale}} (`{{code}}`) → *{{prefix}}*.",
+      "delUsage": "❌ Uso: prefixo del <locale>\nIdiomas: {{options}}",
+      "delOk": "✅ Eliminado del mapa: {{locale}} (`{{code}}`).",
+      "delMissing": "❌ {{locale}} (`{{code}}`) no está en el mapa.",
+      "clearOk": "✅ Mapa por idioma vaciado. Solo el prefijo legado está activo.",
+      "duplicate": "❌ El prefijo *{{prefix}}* ya lo usa {{locale}} (`{{code}}`).",
+      "invalidLocale": "❌ Idioma inválido. Usa: {{options}}"
+    },
+    "autoupdate": {
+      "current": "♻️ Actualización automática actual: *{{value}}*\n\nUso: autoupdate <{{on}}|{{off}}>",
+      "invalid": "❌ Usa: autoupdate {{on}} | {{off}}",
+      "updated": "✅ Auto update actualizado a *{{value}}*."
+    },
+    "antipv": {
+      "enabled": "✅ Anti-privado activado. El bot ignorará mensajes privados de no dueños.",
+      "disabled": "✅ Anti-privado desactivado. El bot volverá a responder en privado."
+    },
+    "statusbot": {
+      "text": "╭─「 *STATUS BOT* 」\n│\n│ bot: {{bot}}\n│ dueño: {{owner}}\n│ número: {{ownerNumber}}\n│ jid: {{user}}\n│ prefijo global: {{prefix}}\n│ idioma: {{language}}\n│ auto update: {{autoUpdate}}\n│ anti-privado: {{antiPrivate}}\n│ grupos guardados: {{groups}}\n│ grupos bangp: {{bannedGroups}}\n│ usuarios bloqueados: {{blockedUsers}}\n│ comandos bloqueados: {{blockedCommands}}\n│ uptime: {{uptime}}\n│\n╰─"
+    },
+    "statusVersion": { "text": "╭─「 *VERSIÓN* 」\n│ aplicación: {{version}}\n│ commit: {{commit}}\n│ schema: {{schema}}\n╰─" },
+    "statusMetrics": {
+      "text": "╭─「 *MÉTRICAS* 」\n│ mensajes: {{messages}} · errores: {{messageErrors}}\n│ proceso activo/pendiente: {{messageActive}}/{{messagePending}}\n│ descartados/timeout: {{messageDropped}}/{{messageTimeouts}}\n│ comandos: {{commands}} · errores: {{commandErrors}} · denegados: {{denied}}\n│ medios ok/error: {{mediaSuccess}}/{{mediaErrors}} · bytes: {{mediaBytes}}\n│ cola activa/pendiente: {{active}}/{{pending}} · ffmpeg: {{ffmpeg}}\n│ aciertos de caché: {{cacheRate}} · reconexiones: {{reconnects}}\n│ media comando/medio: {{avgCommand}} / {{avgMedia}}\n│ rss/heap/cpu: {{rss}} / {{heap}} / {{cpu}}\n│ fallos de comandos: {{commandFailures}}\n│ fallos de proveedores: {{providerFailures}}\n╰─"
+    },
+    "debug": {
+      "enabled": "✅ Debug de mensajes activado. Todos los eventos de mensaje se registrarán en la terminal.",
+      "disabled": "✅ Debug de mensajes desactivado."
+    },
+    "restart": {
+      "restarting": "♻️ Reiniciando el bot..."
+    },
+    "join": {
+      "invalid": "❌ Envía un enlace válido de invitación de WhatsApp.\n\nUso: join https://chat.whatsapp.com/...",
+      "success": "✅ Invitación aceptada. Entrando al grupo...",
+      "error": "❌ Error al entrar al grupo: {{error}}"
+    },
+    "leavegp": {
+      "confirm": "👋 Saliendo de este grupo..."
+    },
+    "idiomagp": {
+      "current": "🌐 Idioma del grupo: *{{language}}*\n(Global: {{global}})\n\nUso: languagegroup <{{options}}|{{reset}}>",
+      "updated": "✅ Idioma del grupo actualizado a *{{language}}*.",
+      "reset": "✅ Idioma del grupo restablecido al global (*{{language}}*).",
+      "invalid": "❌ Idioma no válido. Use: {{optionsList}} (o \"{{reset}}\" para el idioma global)",
+      "i18nAliases": {
+        "pt": [
+          "idiomagp",
+          "idiomagrupo"
+        ],
+        "es": [
+          "idiomgp",
+          "lenguajegrupo"
+        ],
+        "en": [
+          "langgroup",
+          "languagegroup",
+          "setlanggroup"
+        ],
+        "id": [
+          "bahasagrup",
+          "setbahasagrup",
+          "langgroup"
+        ],
+        "fr": [
+          "languegroupe",
+          "setlanguegroupe"
+        ],
+        "hi": [
+          "bhashagroup",
+          "setbhashagroup"
+        ],
+        "ur": [
+          "zabangroup",
+          "setzabangroup"
+        ]
+      }
+    },
+    "soadmin": {
+      "enabled": "✅ Ahora solo los admins pueden usar comandos en este grupo.",
+      "disabled": "✅ Los miembros normales pueden volver a usar comandos en este grupo."
+    },
+    "modobn": {
+      "enabled": "✅ Modo diversión activado en este grupo!",
+      "disabled": "❌ Modo diversión desactivado en este grupo."
+    },
+    "setprefixgp": {
+      "current": "⌨️ Prefijo actual: *{{value}}*\nPrefijo global: *{{global}}*\n\nUso: setgroupprefix <nuevo prefijo>\nPara resetear: setgroupprefix {{reset}}",
+      "invalid": "❌ Usa un prefijo sin espacios y de hasta 5 caracteres.",
+      "updated": "✅ El prefijo de este grupo fue actualizado a *{{value}}*.",
+      "reset": "✅ El prefijo de este grupo fue restablecido al global (*{{value}}*)."
+    },
+    "bangp": {
+      "alreadyActive": "❌ Este grupo ya está en bangp.",
+      "enabled": "✅ Bangp activado en este grupo.\nMotivo: {{reason}}"
+    },
+    "unbangp": {
+      "notActive": "❌ Este grupo no está en bangp.",
+      "disabled": "✅ Bangp eliminado. El bot volvió a funcionar normalmente en este grupo."
+    },
+    "listbangp": {
+      "empty": "❌ Ningún grupo está en bangp.",
+      "header": "╭─「 *LISTBANGP* 」\n│\n│ total: {{total}}\n│\n{{items}}\n│\n╰─",
+      "reasonLabel": "motivo",
+      "sinceLabel": "desde"
+    },
+    "blockuser": {
+      "noMention": "❌ Menciona al usuario o responde a su mensaje.\n\nUso: blockuser @usuario [30m|12h|7d] [motivo]",
+      "lidFailed": "❌ No se pudo resolver el LID del usuario mencionado.",
+      "ownerBypass": "❌ El dueño no puede ser bloqueado.",
+      "alreadyBlocked": "❌ Este usuario ya está bloqueado.",
+      "permanent": "permanente",
+      "success": "✅ Usuario {{user}} bloqueado.\nExpira: {{expires}}\nMotivo: {{reason}}"
+    },
+    "unblockuser": {
+      "noMention": "❌ Menciona al usuario o responde a su mensaje.\n\nUso: unblockuser @usuario",
+      "lidFailed": "❌ No se pudo resolver el LID del usuario mencionado.",
+      "notBlocked": "❌ Este usuario no está bloqueado.",
+      "success": "✅ Usuario {{user}} desbloqueado."
+    },
+    "listblock": {
+      "empty": "❌ Ningún usuario está bloqueado.",
+      "header": "╭─「 *LISTBLOCK* 」\n│\n│ total: {{total}}\n│\n{{items}}\n│\n╰─",
+      "expiresLabel": "expira",
+      "reasonLabel": "motivo"
+    },
+    "blockcmd": {
+      "noArgs": "❌ Uso: blockcmd <comando>",
+      "notFound": "❌ El comando '{{command}}' no existe.",
+      "alreadyBlocked": "❌ El comando '{{command}}' ya está bloqueado.",
+      "success": "✅ El comando '{{command}}' fue bloqueado."
+    },
+    "unblockcmd": {
+      "noArgs": "❌ Uso: unblockcmd <comando>",
+      "notFound": "❌ El comando '{{command}}' no existe.",
+      "notBlocked": "❌ El comando '{{command}}' no está bloqueado.",
+      "success": "✅ El comando '{{command}}' fue desbloqueado."
+    },
+    "listblockcmd": {
+      "empty": "❌ Ningún comando está bloqueado.",
+      "header": "╭─「 *LISTBLOCKCMD* 」\n│\n│ total: {{total}}\n│\n{{items}}\n│\n╰─"
+    },
+    "antimidia": {
+      "blocked": "🚫 {{user}}, los mensajes del tipo *{{type}}* no están permitidos en este grupo.",
+      "types": {
+        "loc": "ubicación",
+        "audio": "audio",
+        "foto": "foto",
+        "video": "video",
+        "doc": "documento",
+        "lista": "lista"
+      }
+    },
+    "antiloc": {
+      "enabled": "✅ Anti-ubicación activado en este grupo!",
+      "disabled": "❌ Anti-ubicación desactivado en este grupo."
+    },
+    "antiaudio": {
+      "enabled": "✅ Anti-audio activado en este grupo!",
+      "disabled": "❌ Anti-audio desactivado en este grupo."
+    },
+    "antifoto": {
+      "enabled": "✅ Anti-foto activado en este grupo!",
+      "disabled": "❌ Anti-foto desactivado en este grupo."
+    },
+    "antivideo": {
+      "enabled": "✅ Anti-video activado en este grupo!",
+      "disabled": "❌ Anti-video desactivado en este grupo."
+    },
+    "antidoc": {
+      "enabled": "✅ Anti-documento activado en este grupo!",
+      "disabled": "❌ Anti-documento desactivado en este grupo."
+    },
+    "antilista": {
+      "enabled": "✅ Anti-lista activado en este grupo!",
+      "disabled": "❌ Anti-lista desactivado en este grupo."
+    },
+    "apk": {
+      "usage": "╭─「 *APK MOD* 」\n│\n│ ✦ Cómo usar:\n│   {{prefix}}apk <nombre de la app>\n│\n╰─ Ejemplo:\n   {{prefix}}apk minecraft",
+      "searching": "🔍 Buscando en Modyolo...",
+      "noResults": "❌ No se encontraron resultados para *{{query}}*",
+      "error": "❌ Error al procesar tu solicitud",
+      "select": "🔢 Responde con el número de la opción.",
+      "selectApp": "Escribe el número de la app:",
+      "selectVersion": "Escribe el número de la versión:",
+      "versionsTitle": "📦 *VERSIONES - {{name}}*",
+      "invalidOption": "❌ ¡Opción inválida! Escribe un número de la lista.",
+      "invalidRange": "❌ ¡Opción inválida! Escribe un número del 1 al {{max}}",
+      "fetchError": "❌ Error al obtener información de la app",
+      "downloadError": "❌ Error al obtener el enlace de descarga",
+      "downloadReady": "✅ *{{name}}*\n\n🔗 {{url}}",
+      "downloadReadyVersion": "✅ *{{name}} {{version}}*\n\n📦 {{size}}\n\n🔗 {{url}}",
+      "labelVersion": "Versión",
+      "labelMod": "Mod",
+      "labelSize": "Tamaño",
+      "labelPublisher": "Desarrollador",
+      "labelGenre": "Género"
+    },
+    "fun": {
+      "menuHint": "│  ⚠️ Requiere modo diversión activo (modobn)",
+      "modobnRequired": "❌ El modo diversión no está activo en este grupo.\nActívalo con: modobn",
+      "percentResult": "📊 {{user}} tiene *{{level}}%* de {{trait}}! 🔥",
+      "rankHeader": "📊 *Ranking de {{trait}}*:",
+      "rankItem": "🏅 *#{{pos}}* - {{user}}",
+      "rankNotEnough": "❌ Miembros insuficientes para formar un ranking (mínimo {{min}}).",
+      "interactionUsage": "❌ Menciona a alguien o responde un mensaje.\nEjemplo: {{command}} @usuario",
+      "interactionSelf": "❌ ¡No puedes usarlo contigo mismo!",
+      "interactionGeneric": "{{from}} usó *{{action}}* en {{to}}!",
+      "interactions": {
+        "chute": "{{from}} le dio una patada a {{to}}! 🦵",
+        "tapa": "{{from}} le dio una cachetada a {{to}}! 👋",
+        "soco": "{{from}} le dio un puñetazo a {{to}}! 👊",
+        "beijo": "{{from}} besó a {{to}}! 😘",
+        "abraco": "{{from}} abrazó a {{to}}! 🤗",
+        "mata": "{{from}} mató a {{to}}! 💀",
+        "sexo": "{{from}} tuvo sexo con {{to}}! 🔥",
+        "goza": "{{from}} se corrió en {{to}}! 💦",
+        "mamar": "{{from}} chupó a {{to}}! 👅",
+        "cafune": "{{from}} le hizo caricias a {{to}}! ✨",
+        "morder": "{{from}} mordió a {{to}}! 🦷",
+        "lamber": "{{from}} lamió a {{to}}! 👅",
+        "explodir": "{{from}} explotó a {{to}}! 💥",
+        "tomate": "{{from}} le lanzó un tomate a {{to}}! 🍅"
+      }
+    }
+  },
+  "group": {
+    "welcome": {
+      "defaultLegend": "¡Bienvenido(a), @usuario! 👋\nEres el miembro número @total del grupo *@grupo*."
+    },
+    "antilink": {
+      "defaultText": "🚫 @usuario, los enlaces no están permitidos en este grupo.",
+      "defaultGroupText": "🚫 @usuario, los enlaces de grupo no están permitidos en este grupo.",
+      "defaultChannelText": "🚫 @usuario, los enlaces de canal no están permitidos en este grupo.",
+      "typeLink": "enlace",
+      "typeGroupLink": "enlace de grupo",
+      "typeChannelLink": "enlace de canal"
+    }
+  },
+  "owner": {
+    "cmdnf": {
+      "defaultText": "❌ @usuario, el comando @comando no existe.\n\nTal vez quisiste decir: @parecido (@similitud)\nUsa @prefijomenu para ver los comandos."
+    },
+    "text": "╭─「 *PROPIETARIO* 」\n│\n│ nombre: {{owner}}\n│ número: {{ownerNumber}}\n│ bot: {{bot}}\n│\n╰─",
+    "info": "╭─「 *INFO DEL BOT* 」\n│\n│ nombre: {{bot}}\n│ propietario: {{owner}}\n│ prefijo: {{prefix}}\n│ idioma: {{language}}\n│ tiempo activo: {{uptime}}\n│ memoria: {{memory}}\n│ node: {{node}}\n│\n╰─"
+  }
+}

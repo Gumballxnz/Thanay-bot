@@ -1,0 +1,875 @@
+{
+  "common": {
+    "yes": "ہاں",
+    "no": "نہیں",
+    "enabled": "فعال",
+    "disabled": "غیرفعال",
+    "error": "خرابی",
+    "success": "کامیابی",
+    "unknown": "نامعلوم",
+    "none": "کوئی نہیں",
+    "file": "فائل",
+    "files": "فائلیں"
+  },
+  "terminal": {
+    "initializing": "  شروع کیا جا رہا ہے...",
+    "goodbye": "پھر ملیں گے۔",
+    "startCancelled": "شروع کرنا منسوخ کر دیا گیا۔",
+    "startFailed": "شروع کرنے میں ناکامی۔",
+    "boolYes": "ہ|ہاں|y|yes",
+    "boolNo": "ن|نہیں|no",
+    "invalidOption": "غلط آپشن۔ دوبارہ کوشش کریں۔",
+    "invalidPhone": "غلط نمبر۔",
+    "sessionDetected": "موجودہ سیشن مل گیا۔ خودکار طور پر کنیکٹ کیا جا رہا ہے...",
+    "menu": {
+      "title": "{{botName}}",
+      "version": "ورژن",
+      "configure": "بوٹ سیٹ کریں",
+      "advanced": "اعلیٰ ترتیب",
+      "start": "بوٹ شروع کریں",
+      "exit": "باہر جائیں",
+      "chooseOption": "  › ایک آپشن منتخب کریں: "
+    },
+    "config": {
+      "header": "بوٹ ترتیب دیں",
+      "pressEnter": "   موجودہ قدر برقرار رکھنے کے لیے Enter دبائیں    ",
+      "saved": "ترتیب محفوظ ہو گئی",
+      "fileUpdated": "   فائل اپڈیٹ ہو گئی: dados/config.json       ",
+      "botName": "بوٹ کا نام",
+      "ownerName": "مالک کا نام",
+      "prefix": "بوٹ پریفکس",
+      "ownerNumber": "مالک کا نمبر",
+      "autoUpdate": "خودکار اپڈیٹ",
+      "language": "بوٹ کی زبان",
+      "languageHint": "({{options}})",
+      "notConfigured": "ترتیب نہیں دی گئی",
+      "configured": "ترتیب دی گئی",
+      "boolPrompt": "(ہ/y/N)",
+      "boolInvalid": "ہاں کے لیے ہ/y، نہیں کے لیے ن، یا موجودہ قدر رکھنے کے لیے Enter دبائیں۔"
+    },
+    "advanced": {
+      "header": "اعلیٰ ترتیب",
+      "pressEnter": "موجودہ قدر رکھنے کے لیے Enter دبائیں۔",
+      "messageConcurrent": "بیک وقت پراسیس ہونے والے پیغامات",
+      "messagePending": "زیادہ سے زیادہ منتظر پیغامات",
+      "messageTimeout": "پیغام قطار کی وقت حد",
+      "maxConcurrent": "بیک وقت میڈیا کارروائیاں", "maxPending": "میڈیا قطار کی زیادہ سے زیادہ حد", "timeout": "میڈیا کی کل وقت حد", "ffmpeg": "بیک وقت FFmpeg عمل",
+      "size": { "image": "تصویر کی حد", "audio": "آڈیو کی حد", "video": "ویڈیو کی حد", "document": "دستاویز کی حد", "sticker": "اسٹیکر کی حد" },
+      "providerRetries": "فی YouTube پرووائیڈر کوششیں", "retryDelay": "کوششوں کے درمیان وقفہ", "maxFailures": "کول ڈاؤن سے پہلے ناکامیاں", "cooldown": "پرووائیڈر کول ڈاؤن", "logLevel": "لاگ سطح", "maxBackups": "اپ ڈیٹ بیک اپ کی تعداد",
+      "jobs": "کام", "messages": "پیغامات", "seconds": "سیکنڈ", "attempts": "کوششیں", "failures": "ناکامیاں", "minutes": "منٹ", "backups": "بیک اپ",
+      "invalidRange": "{{min}} اور {{max}} کے درمیان عدد درج کریں۔", "invalidLogLevel": "غلط سطح۔ debug، info، warn، error یا silent استعمال کریں۔",
+      "summary": "عملی خلاصہ:", "confirm": "یہ اعلیٰ ترتیب محفوظ کریں؟", "cancelled": "اعلیٰ ترتیب منسوخ ہو گئی۔", "saved": "اعلیٰ ترتیب محفوظ ہو گئی۔", "restartRequired": "نئی ترتیبات لاگو کرنے کے لیے بوٹ دوبارہ شروع کریں۔"
+    },
+    "connection": {
+      "title": "کنیکشن کا طریقہ",
+      "qr": "QR Code",
+      "pairing": "پیئرنگ کوڈ",
+      "pairingHint": "(فون نمبر)",
+      "back": "واپس",
+      "phonePrompt": "  › ملک کے کوڈ کے ساتھ نمبر (مثال: 5511999999999): "
+    }
+  },
+  "logs": {
+    "ownerLidFetching": "مالک کا LID حاصل کیا جا رہا ہے...",
+    "ownerLidSaved": "مالک کا LID محفوظ ہو گیا: {{lid}}",
+    "ownerLidFailed": "مالک کا LID حاصل نہ ہو سکا۔",
+    "commandIgnoredNoLid": "نظر انداز کیا گیا کیونکہ LID حل نہ ہو سکا: {{sender}}",
+    "commandError": "{{commandName}} چلاتے وقت خرابی ہوئی۔",
+    "commandInvalid": "نظر انداز کیا گیا کیونکہ یہ غلط ہے: {{file}}",
+    "eventInvalid": "نظر انداز کیا گیا کیونکہ یہ غلط ہے: {{file}}",
+    "eventError": "{{name}} میں خرابی۔",
+    "configReadFailed": "{{path}} پڑھا نہیں جا سکا۔",
+    "configMigrated": "ترتیب {{path}} میں منتقل کر دی گئی۔",
+    "botStarted": "{{botName}} شروع ہو چکا ہے اور پیغامات وصول کرنے کے لیے تیار ہے۔",
+    "updateRestoreFailed": "package.json بحال نہیں کیا جا سکا۔",
+    "emptySender": "خالی بھیجنے والا",
+    "antilinkDeleteFailed": "گروپ {{groupId}} میں antilink پیغام حذف کرنے میں ناکام: {{error}}",
+    "antilinkBanFailed": "گروپ {{groupId}} میں {{sender}} کو بین کرنے میں ناکام: {{error}}",
+    "antistealthDeleteFailed": "گروپ {{groupId}} میں antistealth پیغام حذف کرنے میں ناکام: {{error}}",
+    "antistealthRemoveFailed": "گروپ {{groupId}} سے {{sender}} کو ہٹانے میں ناکام: {{error}}",
+    "activity": {
+      "group": "{{user}} → {{group}}  ·  {{preview}}",
+      "private": "{{user}} → {{privateLabel}}  ·  {{preview}}",
+      "privateLabel": "نجی",
+      "sticker": "اسٹیکر",
+      "media": "میڈیا",
+      "unknownGroup": "گروپ",
+      "image": "(تصویر)",
+      "video": "(ویڈیو)",
+      "imageOnly": "(تصویر)",
+      "videoOnly": "(ویڈیو)"
+    }
+  },
+  "errors": {
+    "ownerOnly": "❌ یہ کمانڈ صرف بوٹ کے مالک کے لیے ہے۔",
+    "groupOnly": "❌ یہ کمانڈ صرف گروپس میں استعمال کی جا سکتی ہے۔",
+    "privateOnly": "❌ یہ کمانڈ صرف پرائیویٹ چیٹ میں استعمال کی جا سکتی ہے۔",
+    "adminOnly": "❌ یہ کمانڈ صرف گروپ ایڈمنز کے لیے ہے۔",
+    "botAdminRequired": "❌ اس کمانڈ کو چلانے کے لیے میرا گروپ ایڈمن ہونا ضروری ہے۔",
+    "commandBlocked": "❌ یہ کمانڈ بوٹ کے مالک نے بلاک کر دی ہے۔",
+    "groupCommandsAdminOnly": "❌ اس گروپ میں صرف ایڈمنز کمانڈز استعمال کر سکتے ہیں۔",
+    "commandExecution": "❌ کمانڈ چلاتے وقت ایک خرابی ہوئی۔",
+    "download": {
+      "notFound": "کوئی نتیجہ نہیں ملا۔",
+      "noMedia": "کوئی میڈیا نہیں ملا۔",
+      "invalidUrl": "غلط URL۔",
+      "timeout": "ڈاؤن لوڈ کا وقت ختم ہو گیا۔",
+      "failed": "مواد ڈاؤن لوڈ کرنے میں ناکام۔",
+      "noData": "ڈیٹا حاصل نہیں کیا جا سکا۔",
+      "pinId": "pin ID نکال نہیں سکے۔",
+      "linkNotFound": "ڈاؤن لوڈ لنک نہیں ملا۔"
+    },
+    "sticker": {
+      "downloadFailed": "میڈیا ڈاؤن لوڈ کرنے میں ناکام۔",
+      "emptyDownload": "خالی ڈاؤن لوڈ۔",
+      "invalidInput": "غلط اسٹیکر ان پٹ۔",
+      "conversionFailed": "تبدیلی ناکام۔",
+      "invalidBuffer": "غلط یا خالی بفر۔"
+    },
+    "media": {
+      "queued": "⏳ میڈیا کارروائی قطار میں شامل ہو گئی۔ مقام: {{position}}۔",
+      "queueFull": "❌ میڈیا قطار بھری ہوئی ہے۔ بعد میں کوشش کریں۔",
+      "timeout": "❌ میڈیا کارروائی کا وقت ختم ہو گیا۔",
+      "tooLarge": "فائل اجازت شدہ سائز سے بڑی ہے۔",
+      "aborted": "میڈیا کارروائی منسوخ کر دی گئی۔",
+      "failed": "میڈیا کارروائی ناکام ہوئی۔ دوبارہ کوشش کریں۔"
+    }
+  },
+  "connection": {
+    "sessionDetected": "موجودہ سیشن مل گیا۔ خودکار طور پر کنیکٹ کیا جا رہا ہے...",
+    "connecting": "WhatsApp سے کنیکٹ ہو رہا ہے...",
+    "connected": "کامیابی سے کنیکٹ ہو گیا۔",
+    "disconnected": "کنیکشن بند ہو گیا",
+    "reconnecting": "دوبارہ کنیکٹ کرنے کی کوشش کی جا رہی ہے...",
+    "sessionCleared": "لوکل سیشن حذف کر دیا گیا۔ نیا QR بنانے کے لیے دوبارہ شروع کریں۔",
+    "sessionClearFailed": "{{path}} حذف نہ ہو سکا۔",
+    "qrReceived": "QR کوڈ موصول ہوا",
+    "qrScan": "اس سیشن کو کنیکٹ کرنے کے لیے WhatsApp سے اسکین کریں۔",
+    "pairingCode": "پیئرنگ کوڈ",
+    "pairingNewCode": "نیا پیئرنگ کوڈ",
+    "pairingCodeValue": "کوڈ: {{code}}",
+    "pairingInstruction": "WhatsApp میں جائیں: Linked devices > Link a device > Link with phone number.",
+    "pairingExpired": "پیئرنگ کوڈ کی میعاد ختم ہو گئی۔ نیا کوڈ مانگا جا رہا ہے...",
+    "pairingError": "پیئرنگ کوڈ مانگتے وقت خرابی ہوئی۔",
+    "disconnectCode": "کوڈ: {{code}}",
+    "disconnectReason": "وجہ: {{reason}}",
+    "disconnectDetail": "تفصیل: {{detail}}",
+    "disconnectAction": "کارروائی: {{action}}",
+    "disconnect": {
+      "loggedOut": {
+        "title": "سیشن منقطع ہو گیا",
+        "description": "WhatsApp نے اس سیشن کو ختم کر دیا یا اسے منسلک ڈیوائسز سے ہٹا دیا گیا۔",
+        "action": "میں لوکل سیشن صاف کر دوں گا۔ نیا QR بنانے کے لیے دوبارہ شروع کریں۔"
+      },
+      "forbidden": {
+        "title": "رسائی مسترد",
+        "description": "WhatsApp نے اس سیشن کے کنیکشن کو مسترد کر دیا۔",
+        "action": "اپنی اسناد چیک کریں، چند منٹ انتظار کریں، اور اگر مسئلہ برقرار رہے تو نیا سیشن بنائیں۔"
+      },
+      "connectionLost": {
+        "title": "کنیکشن ختم ہو گیا یا اس کی میعاد ختم ہو گئی",
+        "description": "نیٹ ورک گر گیا، غیر مستحکم رہا، یا جواب آنے میں بہت وقت لگا۔",
+        "action": "میں خودکار طور پر دوبارہ کنیکٹ کرنے کی کوشش کروں گا۔"
+      },
+      "multideviceMismatch": {
+        "title": "ملٹی ڈیوائس عدم مطابقت",
+        "description": "یہ سیشن WhatsApp کے متوقع ملٹی ڈیوائس پروٹوکول سے میل نہیں کھاتا۔",
+        "action": "Baileys اور انحصارات اپڈیٹ کریں اور ضرورت ہو تو نیا سیشن بنائیں۔"
+      },
+      "connectionClosed": {
+        "title": "کنیکشن بند ہو گیا",
+        "description": "کنیکشن WhatsApp یا نیٹ ورک کی طرف سے بند کیا گیا۔",
+        "action": "میں خودکار طور پر دوبارہ کنیکٹ کرنے کی کوشش کروں گا۔"
+      },
+      "connectionReplaced": {
+        "title": "کنیکشن تبدیل کر دیا گیا",
+        "description": "کسی اور انسٹینس نے اسی سیشن کے ساتھ کنیکٹ کیا ہے۔",
+        "action": "اس انسٹینس کو دوبارہ شروع کرنے سے پہلے دوسرے انسٹینس کو بند کریں۔"
+      },
+      "badSession": {
+        "title": "غلط سیشن",
+        "description": "تصدیقی فائلیں خراب یا غلط معلوم ہوتی ہیں۔",
+        "action": "{{authPath}} حذف کریں اور نیا QR کوڈ اسکین کریں۔"
+      },
+      "unavailableService": {
+        "title": "سروس دستیاب نہیں",
+        "description": "WhatsApp یا کنیکشن روٹ وقتی طور پر دستیاب نہیں۔",
+        "action": "میں خودکار طور پر دوبارہ کنیکٹ کرنے کی کوشش کروں گا۔"
+      },
+      "restartRequired": {
+        "title": "ری اسٹارٹ ضروری ہے",
+        "description": "سرور نے client کو دوبارہ شروع کرنے کے لیے کہا ہے۔",
+        "action": "میں کنیکشن کو خودکار طور پر دوبارہ شروع کروں گا۔"
+      },
+      "default": {
+        "title": "کنیکشن ختم",
+        "description": "کنیکشن کسی نامعلوم وجہ سے بند ہو گیا۔",
+        "action": "میں خودکار طور پر دوبارہ کنیکٹ کرنے کی کوشش کروں گا۔"
+      }
+    },
+    "noAutoReconnect": "کنکشن بند۔ خودکار دوبارہ کنکشن کی کوشش نہیں کی جائے گی۔",
+    "reconnectAttempt": "{{delay}}ms میں دوبارہ منسلک ہو رہا ہے... (کوشش {{attempt}}/{{max}})",
+    "maxReconnectReached": "دوبارہ کنکشن کی زیادہ سے زیادہ کوششیں مکمل ({{max}})۔"
+  },
+  "update": {
+    "checking": "اپڈیٹس چیک کی جا رہی ہیں...",
+    "upToDate": "انسٹالیشن پہلے ہی تازہ ترین ہے۔",
+    "downloading": "اپڈیٹ ڈاؤن لوڈ کی جا رہی ہے...",
+    "extracting": "نکالا جا رہا ہے...",
+    "installingDeps": "انحصارات انسٹال کی جا رہی ہیں...",
+    "done": "اپڈیٹ مکمل ہو گئی! دوبارہ شروع کیا جا رہا ہے...",
+    "failed": "اپڈیٹ ناکام ہو گئی۔ موجودہ ورژن کے ساتھ جاری رکھا جائے گا۔",
+    "creatingBackup": "اپ ڈیٹ سے پہلے مکمل بیک اپ بنایا جا رہا ہے...",
+    "backupCreated": "بیک اپ یہاں بنایا گیا: {{path}}",
+    "restoringBackup": "مکمل بیک اپ بحال کیا جا رہا ہے...",
+    "backupRestored": "بیک اپ بحال ہو گیا۔",
+    "restoreSrcFailed": "src/ بیک اپ بحال کرنے میں ناکام۔",
+    "restorePackageFailed": "package.json بیک اپ بحال کرنے میں ناکام۔",
+    "restoreFailed": "package.json بحال کرنے میں ناکام۔"
+  },
+  "commands": {
+    "ping": {
+      "latency": "لیٹنسی",
+      "unavailable": "دستیاب نہیں",
+      "uptime": "فعال ہے",
+      "memory": "میموری",
+      "ownerStatus": "حیثیت: مالک",
+      "footer": "{{botName}} کے ذریعے چلایا جا رہا ہے۔"
+    },
+    "dono": {
+      "text": "╭─「 *مالک* 」\n│\n│ نام: {{owner}}\n│ نمبر: {{ownerNumber}}\n│ بوٹ: {{bot}}\n│\n╰─"
+    },
+    "infobot": {
+      "text": "╭─「 *بوٹ معلومات* 」\n│\n│ نام: {{bot}}\n│ مالک: {{owner}}\n│ پریفکس: {{prefix}}\n│ زبان: {{language}}\n│ چلنے کا وقت: {{uptime}}\n│ میموری: {{memory}}\n│ node: {{node}}\n│\n╰─"
+    },
+    "sticker": {
+      "usage": "╭─「 *STICKER* 」\n│\n│ ✦ استعمال:\n│   تصویر بھیجیں یا اس کا جواب دیں:\n│   s\n│\n│   ویڈیو بھیجیں یا اس کا جواب دیں:\n│   sticker\n│\n╰─ نتیجہ: مربع اسٹیکر",
+      "creating": "🪄 اسٹیکر بنایا جا رہا ہے...",
+      "videoTooLong": "❌ ویڈیو زیادہ سے زیادہ {{max}} سیکنڈ کی ہو سکتی ہے۔",
+      "error": "❌ اسٹیکر بناتے وقت خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "sticker2": {
+      "usage": "╭─「 *STICKER2* 」\n│\n│ ✦ استعمال:\n│   تصویر بھیجیں یا اس کا جواب دیں:\n│   s2\n│\n│   ویڈیو بھیجیں یا اس کا جواب دیں:\n│   sticker2\n│\n╰─ نتیجہ: اصل فارمیٹ برقرار رہتا ہے"
+    },
+    "menu": {
+      "mainTitle": "‧₊˚ ✿ ── {{botName}} ──✿ ˚₊‧",
+      "categories": {
+        "geral": "عمومی",
+        "fig": "اسٹیکرز",
+        "downloads": "ڈاؤن لوڈز",
+        "grupo": "گروپ",
+        "owner": "مالک",
+        "activations": "فعالیتیں",
+        "welcome": "خوش آمدید",
+        "funMalePercent": "فیصد (مرد)",
+        "funFemalePercent": "فیصد (عورت)",
+        "funMaleRank": "رینک (مرد)",
+        "funFemaleRank": "رینک (عورت)",
+        "funInteractions": "تعاملات"
+      },
+      "cmds": {
+        "ping": "ping",
+        "dono": "malik",
+        "infobot": "botmaloomat",
+        "menu": "menu",
+        "menugeral": "generalmenu",
+        "menufig": "stickermenu",
+        "menudl": "dlmenu",
+        "menugrupo": "groupmenu",
+        "menuadm": "adminmenu",
+        "menudono": "ownermenu",
+        "sticker": "sticker",
+        "sticker2": "sticker2",
+        "shorturl": "shorturl",
+        "play": "play",
+        "ytmp3": "ytmp3",
+        "playvid": "playvid",
+        "ytmp4": "ytmp4",
+        "tiktok": "tiktok",
+        "instagram": "instagram",
+        "pinterest": "pinterest",
+        "admins": "admins",
+        "rankativo": "activerank",
+        "rankinativo": "inactiverank",
+        "checkativo": "activecheck",
+        "hidetag": "hidetag",
+        "del": "del",
+        "gp": "group",
+        "kick": "kick",
+        "promote": "promote",
+        "demote": "demote",
+        "nomegp": "groupname",
+        "descgp": "groupdesc",
+        "antilink": "antilink",
+        "antilinkgp": "antilinkgp",
+        "antilinkch": "antilinkch",
+        "antistealth": "antistealth",
+        "bemvindo": "welcome",
+        "legendabv": "welcometext",
+        "midiabv": "welcomemedia",
+        "eval": "eval",
+        "cmdnf": "cmdnf",
+        "idioma": "language",
+        "nomebot": "botname",
+        "nomedono": "ownername",
+        "numerodono": "ownernumber",
+        "prefixo": "prefix",
+        "autoupdate": "autoupdate",
+        "antipv": "antipv",
+        "statusbot": "statusbot",
+        "debug": "debug",
+        "restart": "restart",
+        "join": "join",
+        "leavegp": "leavegp",
+        "idiomagp": "languagegroup",
+        "soadmin": "adminonlygroup",
+        "modobn": "funmode",
+        "setprefixgp": "setgroupprefix",
+        "bangp": "bangp",
+        "unbangp": "unbangp",
+        "listbangp": "listbangp",
+        "blockuser": "blockuser",
+        "unblockuser": "unblockuser",
+        "listblock": "listblock",
+        "blockcmd": "blockcmd",
+        "unblockcmd": "unblockcmd",
+        "listblockcmd": "listblockcmd",
+        "antiloc": "antilocation",
+        "antiaudio": "antiaudio",
+        "antifoto": "antiimage",
+        "antivideo": "antivideo",
+        "antidoc": "antidoc",
+        "antilista": "antilist",
+        "apk": "apk",
+        "menubrincadeira": "funmenu",
+        "percent": "percent",
+        "rank": "rank",
+        "interact": "interact"
+      }
+    },
+    "play": {
+      "usage": "╭─「 *PLAY* 」\n│\n│ ✦ تلاش:\n│   play <گانے کا نام>\n│   p <گانے کا نام>\n│\n╰─ مثال:\n   play michael jackson billie jean",
+      "searching": "🔍 موسیقی تلاش کی جا رہی ہے...",
+      "notFound": "❌ کوئی نتیجہ نہیں ملا۔",
+      "channel": "چینل",
+      "duration": "مدت",
+      "views": "ویوز",
+      "downloading": "⬇️ آڈیو ڈاؤن لوڈ کی جا رہی ہے...",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی",
+      "author": "نامعلوم"
+    },
+    "ytmp3": {
+      "usage": "╭─「 *YTMP3* 」\n│\n│ ✦ ڈاؤن لوڈ:\n│   ytmp3 <YouTube لنک>\n\n╰─ مثالیں:\n   ytmp3 https://youtube.com/watch?v=...\n   ytmp3 https://youtu.be/...\n   ytmp3 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ غلط URL۔ براہ کرم YouTube لنک استعمال کریں۔",
+      "downloading": "⬇️ YouTube آڈیو ڈاؤن لوڈ کی جا رہی ہے...",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "playvid": {
+      "usage": "╭─「 *PLAYVID* 」\n│\n│ ✦ تلاش:\n│   playvid <ویڈیو کا نام>\n│   pv <ویڈیو کا نام>\n│\n╰─ مثال:\n   playvid michael jackson thriller",
+      "searching": "🔍 ویڈیو تلاش کی جا رہی ہے...",
+      "notFound": "❌ کوئی نتیجہ نہیں ملا۔",
+      "channel": "چینل",
+      "duration": "مدت",
+      "views": "ویوز",
+      "downloading": "⬇️ ویڈیو ڈاؤن لوڈ کی جا رہی ہے...",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "ytmp4": {
+      "usage": "╭─「 *YTMP4* 」\n│\n│ ✦ ڈاؤن لوڈ:\n│   ytmp4 <YouTube لنک>\n\n╰─ مثالیں:\n   ytmp4 https://youtube.com/watch?v=...\n   ytmp4 https://youtu.be/...\n   ytmp4 https://youtube.com/shorts/...",
+      "invalidUrl": "❌ غلط URL۔ براہ کرم YouTube لنک استعمال کریں۔",
+      "downloading": "⬇️ YouTube ویڈیو ڈاؤن لوڈ کی جا رہی ہے...",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "tiktok": {
+      "usage": "╭─「 *TIKTOK* 」\n│\n│ ✦ ڈاؤن لوڈ:\n│   tiktok <url>\n│\n│ ✦ تلاش:\n│   tiktok <لفظ>\n│\n╰─ مثالیں:\n   tiktok https://vm.tiktok.com/...\n   tiktok viral dance",
+      "downloading": "⬇️ TikTok سے ڈاؤن لوڈ کیا جا رہا ہے...",
+      "downloadFailed": "❌ ویڈیو ڈاؤن لوڈ نہ ہو سکی۔",
+      "downloadDone": "✅ ڈاؤن لوڈ مکمل ہو گئی!",
+      "searching": "🔍 TikTok پر تلاش کی جا رہی ہے...",
+      "notFound": "❌ کوئی نتیجہ نہیں ملا۔",
+      "found": "📹 *{{title}}*\n\n⬇️ ڈاؤن لوڈ کی جا رہی ہے...",
+      "searchCaption": "🔍 تلاش: {{query}}",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "instagram": {
+      "usage": "╭─「 *INSTAGRAM* 」\n│\n│ ✦ ڈاؤن لوڈ:\n│   instagram <url>\n│\n╰─ مثال:\n   instagram https://instagram.com/p/...",
+      "invalidUrl": "❌ غلط URL۔ براہ کرم Instagram URL استعمال کریں۔",
+      "downloading": "⬇️ Instagram سے ڈاؤن لوڈ کیا جا رہا ہے...",
+      "downloadFailed": "❌ مواد ڈاؤن لوڈ نہ ہو سکا۔",
+      "sending": "📥 {{count}} {{fileWord}} بھیجی جا رہی ہیں...",
+      "done": "✅ Instagram ڈاؤن لوڈ مکمل ہو گئی!",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "pinterest": {
+      "usage": "╭─「 *PINTEREST* 」\n│\n│ ✦ ڈاؤن لوڈ:\n│   pinterest <url>\n│\n│ ✦ تلاش:\n│   pinterest <لفظ>\n│\n╰─ مثالیں:\n   pinterest https://pin.it/...\n   pinterest wallpaper 4k",
+      "downloading": "⬇️ Pinterest سے ڈاؤن لوڈ کیا جا رہا ہے...",
+      "downloadFailed": "❌ مواد ڈاؤن لوڈ نہ ہو سکا۔",
+      "done": "✅ Pinterest ڈاؤن لوڈ مکمل ہو گئی!",
+      "searching": "🔍 Pinterest پر تلاش کی جا رہی ہے...",
+      "notFound": "❌ کوئی نتیجہ نہیں ملا۔",
+      "found": "📸 مجھے {{count}} تصاویر ملیں!\n\n⬇️ بھیجی جا رہی ہیں...",
+      "searchCaption": "🔍 تلاش: {{query}}",
+      "limited": "ℹ️ {{total}} تصاویر ملیں، لیکن میں نے صرف {{sent}} بھیجیں۔",
+      "error": "❌ خرابی: {{message}}",
+      "unknown": "نامعلوم خرابی"
+    },
+    "admins": {
+      "groupInfoFailed": "❌ گروپ کی معلومات حاصل نہ ہو سکیں۔",
+      "noAdmins": "❌ کوئی ایڈمن نہیں ملا۔",
+      "defaultMessage": "admins کو بلایا گیا!"
+    },
+    "rankativo": {
+      "groupInfoFailed": "❌ گروپ کی معلومات حاصل نہ ہو سکیں۔",
+      "empty": "❌ اس گروپ میں ابھی تک کوئی سرگرمی درج نہیں ہوئی۔",
+      "item": "{{pos}}. {{user}} - کل: {{total}} | پیغامات: {{messages}} | کمانڈز: {{commands}} | اسٹیکرز: {{stickers}}",
+      "text": "╭─「 *فعال رینک* 」\n{{items}}\n│\n╰─"
+    },
+    "rankinativo": {
+      "groupInfoFailed": "❌ گروپ کی معلومات حاصل نہ ہو سکیں۔",
+      "empty": "❌ گروپ میں کوئی رکن نہیں ملا۔",
+      "item": "{{pos}}. {{user}} - کل: {{total}} | پیغامات: {{messages}} | کمانڈز: {{commands}} | اسٹیکرز: {{stickers}}",
+      "text": "╭─「 *غیر فعال رینک* 」\n{{items}}\n│\n╰─"
+    },
+    "checkativo": {
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "text": "╭─「 *فعال چیک* 」\n│\n│ صارف: {{user}}\n│ پوزیشن: {{position}}\n│ کل: {{total}}\n│ پیغامات: {{messages}}\n│ کمانڈز: {{commands}}\n│ اسٹیکرز: {{stickers}}\n│\n╰─"
+    },
+    "hidetag": {
+      "fetchError": "❌ گروپ کی معلومات حاصل نہ ہو سکیں۔",
+      "noMembers": "❌ گروپ میں کوئی رکن نہیں ملا۔",
+      "defaultMessage": "سب کو مینشن کیا گیا!",
+      "mediaError": "❌ سب کو ٹیگ کرنے کے لیے میڈیا پروسیس نہیں ہو سکا۔"
+    },
+    "del": {
+      "noQuoted": "❌ جس پیغام کو حذف کرنا ہے اس کا جواب دیں.\n\nاستعمال: del (کسی پیغام کا جواب دیں)",
+      "success": "✅ پیغام کامیابی سے حذف ہو گیا!",
+      "error": "❌ پیغام حذف کرتے وقت خرابی: {{error}}"
+    },
+    "antilink": {
+      "enabled": "✅ اس گروپ میں Anti-link *فعال* ہے!",
+      "disabled": "❌ اس گروپ میں Anti-link *غیرفعال* ہے۔",
+      "settingsHint": "⚙️ سیٹنگز:\n• antilink {{punishment}} {{delete}}\n• antilink {{punishment}} {{ban}}\n• antilink {{text}} <پیغام>",
+      "punishmentUpdated": "✅ Anti-link کی سزا *{{value}}* پر اپڈیٹ کر دی گئی۔",
+      "invalidPunishment": "❌ استعمال کریں: antilink {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ Anti-link متن اپڈیٹ کر دیا گیا!\n\n{{text}}",
+      "textHeader": "╭─「 *اینٹی لنک پیغام* 」\n│\n│ *دستیاب placeholders:*\n│ {{params}}\n│\n│ *موجودہ متن:*\n│ {{current}}\n│\n╰─ استعمال: antilink {{text}} <پیغام>",
+      "usage": "╭─「 *ANTILINK* 」\n│\n│ antilink\n│ antilink {{punishment}} {{delete}}\n│ antilink {{punishment}} {{ban}}\n│ antilink {{text}} <پیغام>",
+      "params": "@قسم → پتہ لگائے گئے link کی قسم"
+    },
+    "antilinkgp": {
+      "enabled": "✅ اس گروپ میں گروپ anti-link *فعال* ہے!",
+      "disabled": "❌ اس گروپ میں گروپ anti-link *غیرفعال* ہے۔",
+      "settingsHint": "⚙️ سیٹنگز:\n• antilinkgp {{punishment}} {{delete}}\n• antilinkgp {{punishment}} {{ban}}\n• antilinkgp {{text}} <پیغام>",
+      "punishmentUpdated": "✅ گروپ anti-link کی سزا *{{value}}* پر اپڈیٹ کر دی گئی۔",
+      "invalidPunishment": "❌ استعمال کریں: antilinkgp {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ گروپ anti-link متن اپڈیٹ کر دیا گیا!\n\n{{text}}",
+      "textHeader": "╭─「 *گروپ اینٹی لنک پیغام* 」\n│\n│ *دستیاب placeholders:*\n│ {{params}}\n│\n│ *موجودہ متن:*\n│ {{current}}\n│\n╰─ استعمال: antilinkgp {{text}} <پیغام>",
+      "usage": "╭─「 *ANTILINKGP* 」\n│\n│ antilinkgp\n│ antilinkgp {{punishment}} {{delete}}\n│ antilinkgp {{punishment}} {{ban}}\n│ antilinkgp {{text}} <پیغام>",
+      "params": "@قسم → پتہ لگائے گئے link کی قسم"
+    },
+    "antilinkch": {
+      "enabled": "✅ اس گروپ میں چینل anti-link *فعال* ہے!",
+      "disabled": "❌ اس گروپ میں چینل anti-link *غیرفعال* ہے۔",
+      "settingsHint": "⚙️ سیٹنگز:\n• antilinkch {{punishment}} {{delete}}\n• antilinkch {{punishment}} {{ban}}\n• antilinkch {{text}} <پیغام>",
+      "punishmentUpdated": "✅ چینل anti-link کی سزا *{{value}}* پر اپڈیٹ کر دی گئی۔",
+      "invalidPunishment": "❌ استعمال کریں: antilinkch {{punishment}} {{delete}} | {{ban}}",
+      "textUpdated": "✅ چینل anti-link متن اپڈیٹ کر دیا گیا!\n\n{{text}}",
+      "textHeader": "╭─「 *چینل اینٹی لنک پیغام* 」\n│\n│ *دستیاب placeholders:*\n│ {{params}}\n│\n│ *موجودہ متن:*\n│ {{current}}\n│\n╰─ استعمال: antilinkch {{text}} <پیغام>",
+      "usage": "╭─「 *ANTILINKCH* 」\n│\n│ antilinkch\n│ antilinkch {{punishment}} {{delete}}\n│ antilinkch {{punishment}} {{ban}}\n│ antilinkch {{text}} <پیغام>",
+      "params": "@قسم → پتہ لگائے گئے link کی قسم"
+    },
+    "antistealth": {
+      "enabled": "✅ اس گروپ میں anti-stealth *فعال* ہے۔",
+      "disabled": "❌ اس گروپ میں anti-stealth *غیر فعال* ہے۔",
+      "punished": "🚫 @{{user}} کو {{seconds}}s میں {{count}} stealth messages بھیجنے پر نکال دیا گیا۔"
+    },
+    "bemvindo": {
+      "enabled": "✅ اس گروپ میں خوش آمدید پیغام *فعال* ہے!",
+      "disabled": "❌ اس گروپ میں خوش آمدید پیغام *غیرفعال* ہے۔"
+    },
+    "gp": {
+      "usage": "╭─「 *GROUP* 」\n│\n│ ✦ gp {{open}} → گروپ کھولیں\n│ ✦ gp {{close}} → گروپ بند کریں\n\n╰─",
+      "closed": "🔒 گروپ بند ہے! صرف ایڈمنز پیغامات بھیج سکتے ہیں۔",
+      "opened": "🔓 گروپ کھلا ہے! سب لوگ پیغامات بھیج سکتے ہیں۔"
+    },
+    "kick": {
+      "noMention": "❌ صارف کو ٹیگ کریں یا اس کے پیغام کا جواب دیں.\n\nاستعمال: kick @صارف",
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "success": "✅ صارف کامیابی سے ہٹا دیا گیا!",
+      "error": "❌ صارف کو ہٹاتے وقت خرابی: {{error}}"
+    },
+    "promote": {
+      "noMention": "❌ صارف کو ٹیگ کریں یا اس کے پیغام کا جواب دیں.\n\nاستعمال: promote @صارف",
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "success": "✅ صارف کو ایڈمن بنا دیا گیا!",
+      "error": "❌ صارف کو ایڈمن بناتے وقت خرابی: {{error}}"
+    },
+    "demote": {
+      "noMention": "❌ ایڈمن کو ٹیگ کریں یا اس کے پیغام کا جواب دیں.\n\nاستعمال: demote @صارف",
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "success": "✅ ایڈمن کو عام رکن بنا دیا گیا!",
+      "error": "❌ ایڈمن کو عہدے سے ہٹاتے وقت خرابی: {{error}}"
+    },
+    "nomegp": {
+      "noArgs": "❌ نیا نام درج کریں.\n\nاستعمال: groupname <نام>",
+      "success": "✅ گروپ کا نام *{{name}}* کر دیا گیا!"
+    },
+    "descgp": {
+      "noArgs": "❌ نئی تفصیل درج کریں.\n\nاستعمال: groupdesc <تفصیل>",
+      "success": "✅ گروپ کی تفصیل اپڈیٹ کر دی گئی!"
+    },
+    "legendabv": {
+      "params": "@صارف → صارف کو مینشن کرتا ہے\n│ @نام → صارف کا نام\n│ @گروپ → گروپ کا نام\n│ @کل → اراکین کی کل تعداد\n│ @تفصیل → گروپ کی تفصیل",
+      "header": "╭─「 *خوش آمدید پیغام* 」\n│\n│ *دستیاب پیرامیٹرز:*\n│ {{params}}\n│\n│ *موجودہ پیغام:*\n│ {{current}}\n│\n╰─ استعمال: legendabv <پیغام>",
+      "updated": "✅ خوش آمدید پیغام اپڈیٹ کر دیا گیا!\n\n{{text}}"
+    },
+    "midiabv": {
+      "removed": "✅ خوش آمدید میڈیا حذف کر دی گئی۔",
+      "noMedia": "╭─「 *خوش آمدید میڈیا* 」\n│\n│ ✦ حیثیت: {{status}}\n\n│ کوئی تصویر یا ویڈیو بھیجیں، یا اس کا جواب دیں۔\n│ ویڈیوز: زیادہ سے زیادہ 15 سیکنڈ (gif کے طور پر بھیجی جائیں گی)۔\n│ ہٹانے کے لیے: midiabv {{off}}\n\n╰─",
+      "statusVideo": "ویڈیو 🎥 ✅",
+      "statusImage": "تصویر 🖼️ ✅",
+      "statusNone": "کوئی میڈیا نہیں ❌",
+      "videoTooLong": "❌ ویڈیو {{seconds}}s کی ہے۔ زیادہ سے زیادہ اجازت: {{max}}s۔",
+      "successVideo": "✅ خوش آمدید ویڈیو سیٹ کر دی گئی!",
+      "successImage": "✅ خوش آمدید تصویر سیٹ کر دی گئی!"
+    },
+    "cmdnf": {
+      "params": "@صارف → صارف کو مینشن کرتا ہے\n│ @نام → صارف کا نام\n│ @کمانڈ → لکھا گیا کمانڈ\n│ @مشابہ → سب سے ملتا جلتا کمانڈ\n│ @مماثلت → مماثلت کا فیصد\n│ @پریفکس → موجودہ پریفکس\n│ @بوٹ → بوٹ کا نام",
+      "header": "╭─「 *CMDNF* 」\n│\n│ *موجودہ موڈ:* {{mode}}\n│ *موجودہ متن:* {{text}}\n│\n│ *دستیاب پلیس ہولڈرز:*\n│ {{params}}\n│\n│ *استعمال:*\n│ cmdnf {{modeWord}} {{textWord}}\n│ cmdnf {{modeWord}} {{mentionWord}}\n│ cmdnf {{textWord}} <پیغام>\n\n╰─",
+      "invalidMode": "❌ استعمال کریں: cmdnf {{mode}} {{text}} | {{mention}}",
+      "modeUpdated": "✅ کمانڈ نہ ملنے والا mode *{{mode}}* پر اپڈیٹ کر دیا گیا۔",
+      "textHeader": "╭─「 *CMDNF {{textWord}}* 」\n│\n│ *دستیاب پلیس ہولڈرز:*\n│ {{params}}\n│\n│ *موجودہ متن:*\n│ {{current}}\n\n╰─ cmdnf {{textWord}} <پیغام>",
+      "textUpdated": "✅ کمانڈ نہ ملنے والا متن اپڈیٹ کر دیا گیا!\n\n{{text}}",
+      "usage": "╭─「 *CMDNF* 」\n│\n│ cmdnf {{mode}} {{text}}\n│ cmdnf {{mode}} {{mention}}\n│ cmdnf {{text}} <پیغام>"
+    },
+    "eval": {
+      "noArgs": "❌ استعمال: eval <code>",
+      "success": "╭─「 *EVAL RESULT* 」\n│\n│ ✦ Code: {{code}}\n│\n├─「 *OUTPUT* 」\n│\n{{output}}\n│\n╰─ کامیابی سے چلایا گیا۔",
+      "error": "╭─「 *EVAL ERROR* 」\n│\n│ ✦ Code: {{code}}\n│\n├─「 *ERROR* 」\n│\n│ {{error}}\n│\n╰─ چلانے میں خرابی۔",
+      "tooLong": "❌ کوڈ {{max}} حروف کی حد سے تجاوز کر گیا ہے۔"
+    },
+    "idioma": {
+      "current": "🌐 موجودہ عالمی زبان: *{{language}}*\n\nاستعمال: zaban <{{options}}>",
+      "updated": "✅ عالمی زبان کو *{{language}}* پر اپڈیٹ کر دیا گیا۔",
+      "invalid": "❌ غلط زبان۔ استعمال کریں: {{optionsList}}",
+      "i18nAliases": {
+        "pt": [
+          "idioma",
+          "setidioma"
+        ],
+        "es": [
+          "idioma",
+          "lenguaje",
+          "setlenguaje"
+        ],
+        "en": [
+          "language",
+          "setlanguage",
+          "lang",
+          "setlang"
+        ],
+        "id": [
+          "bahasa",
+          "setbahasa",
+          "lang",
+          "setlang"
+        ],
+        "fr": [
+          "langue",
+          "setlangue",
+          "lang",
+          "setlang"
+        ],
+        "hi": [
+          "bhasha",
+          "setbhasha",
+          "lang",
+          "setlang"
+        ],
+        "ur": [
+          "zaban",
+          "setzaban",
+          "lang",
+          "setlang"
+        ]
+      }
+    },
+    "nomebot": {
+      "current": "🤖 موجودہ بوٹ نام: *{{value}}*\n\nاستعمال: botname <نیا نام>",
+      "invalid": "❌ بوٹ کے لیے درست نام درج کریں۔",
+      "updated": "✅ بوٹ کا نام *{{value}}* پر اپڈیٹ کر دیا گیا۔"
+    },
+    "nomedono": {
+      "current": "👑 موجودہ مالک کا نام: *{{value}}*\n\nاستعمال: ownername <نیا نام>",
+      "invalid": "❌ مالک کے لیے درست نام درج کریں۔",
+      "updated": "✅ مالک کا نام *{{value}}* پر اپڈیٹ کر دیا گیا۔"
+    },
+    "numerodono": {
+      "current": "📱 موجودہ مالک کا نمبر: *{{value}}*\n\nاستعمال: ownernumber <5511999999999>",
+      "invalid": "❌ ملک کے کوڈ کے ساتھ درست نمبر درج کریں۔",
+      "updated": "✅ مالک کا نمبر *{{value}}* پر اپڈیٹ کر دیا گیا۔\nLID محفوظ ہو گیا: {{lid}}",
+      "updatedNoLid": "✅ مالک کا نمبر *{{value}}* پر اپڈیٹ کر دیا گیا۔\n⚠️ فی الحال نیا LID حل نہ ہو سکا؛ پرانا LID تب تک برقرار رکھا گیا ہے جب تک اپڈیٹ ممکن نہ ہو۔"
+    },
+    "prefixo": {
+      "current": "⌨️ پرانا پریفکس: *{{value}}*\n\nزبان کے مطابق پریفکس نقشہ:\n{{mapSection}}\n\nاستعمال:\n• prefixo <نیا> — پرانا بدلیں\n• prefixo set <locale> <prefix>\n• prefixo del <locale>\n• prefixo clear\n\nزبانیں: {{options}}",
+      "invalid": "❌ بغیر اسپیس اور زیادہ سے زیادہ 5 حروف کا پریفکس استعمال کریں۔",
+      "updated": "✅ پرانا پریفکس *{{value}}* پر اپڈیٹ ہو گیا۔",
+      "mapEmpty": "_(غیر فعال — کوئی اندراج نہیں)_",
+      "mapItem": "• {{locale}} (`{{code}}`): *{{prefix}}*",
+      "setUsage": "❌ استعمال: prefixo set <locale> <prefix>\nزبانیں: {{options}}",
+      "setOk": "✅ نقشہ اپڈیٹ: {{locale}} (`{{code}}`) → *{{prefix}}*.",
+      "delUsage": "❌ استعمال: prefixo del <locale>\nزبانیں: {{options}}",
+      "delOk": "✅ نقشے سے ہٹایا: {{locale}} (`{{code}}`).",
+      "delMissing": "❌ {{locale}} (`{{code}}`) نقشے میں نہیں۔",
+      "clearOk": "✅ زبان پریفکس نقشہ صاف۔ صرف پرانا پریفکس فعال ہے۔",
+      "duplicate": "❌ پریفکس *{{prefix}}* پہلے سے {{locale}} (`{{code}}`) استعمال کر رہا ہے۔",
+      "invalidLocale": "❌ غلط زبان۔ استعمال کریں: {{options}}"
+    },
+    "autoupdate": {
+      "current": "♻️ موجودہ خودکار اپ ڈیٹ: *{{value}}*\n\nاستعمال: autoupdate <{{on}}|{{off}}>",
+      "invalid": "❌ استعمال کریں: autoupdate {{on}} | {{off}}",
+      "updated": "✅ خودکار اپ ڈیٹ کو *{{value}}* پر اپڈیٹ کر دیا گیا۔"
+    },
+    "antipv": {
+      "enabled": "✅ اینٹی پرائیویٹ فعال کر دیا گیا۔ بوٹ غیر مالکوں کے نجی پیغامات نظر انداز کرے گا۔",
+      "disabled": "✅ اینٹی پرائیویٹ غیرفعال کر دیا گیا۔ بوٹ دوبارہ نجی چیٹ میں جواب دے گا۔"
+    },
+    "statusbot": {
+      "text": "╭─「 *بوٹ کی حالت* 」\n│\n│ بوٹ: {{bot}}\n│ مالک: {{owner}}\n│ نمبر: {{ownerNumber}}\n│ jid: {{user}}\n│ عالمی پریفکس: {{prefix}}\n│ زبان: {{language}}\n│ خودکار اپ ڈیٹ: {{autoUpdate}}\n│ اینٹی پرائیویٹ: {{antiPrivate}}\n│ محفوظ گروپس: {{groups}}\n│ bangp گروپس: {{bannedGroups}}\n│ بلاک کیے گئے صارفین: {{blockedUsers}}\n│ بلاک کیے گئے کمانڈز: {{blockedCommands}}\n│ چلنے کا وقت: {{uptime}}\n│\n╰─"
+    },
+    "statusVersion": { "text": "╭─「 *ورژن* 」\n│ ایپ: {{version}}\n│ commit: {{commit}}\n│ schema: {{schema}}\n╰─" },
+    "statusMetrics": {
+      "text": "╭─「 *میٹرکس* 」\n│ پیغامات: {{messages}} · غلطیاں: {{messageErrors}}\n│ پراسیس فعال/منتظر: {{messageActive}}/{{messagePending}}\n│ خارج/ٹائم آؤٹ: {{messageDropped}}/{{messageTimeouts}}\n│ کمانڈز: {{commands}} · غلطیاں: {{commandErrors}} · مسترد: {{denied}}\n│ میڈیا کامیاب/غلطی: {{mediaSuccess}}/{{mediaErrors}} · بائٹس: {{mediaBytes}}\n│ قطار فعال/منتظر: {{active}}/{{pending}} · ffmpeg: {{ffmpeg}}\n│ کیش ہٹ: {{cacheRate}} · دوبارہ رابطے: {{reconnects}}\n│ اوسط کمانڈ/میڈیا: {{avgCommand}} / {{avgMedia}}\n│ rss/heap/cpu: {{rss}} / {{heap}} / {{cpu}}\n│ کمانڈ ناکامیاں: {{commandFailures}}\n│ پرووائیڈر ناکامیاں: {{providerFailures}}\n╰─"
+    },
+    "debug": {
+      "enabled": "✅ میسج debug فعال ہے۔ تمام message events ٹرمینل میں log ہوں گے۔",
+      "disabled": "✅ میسج debug غیر فعال ہے۔"
+    },
+    "restart": {
+      "restarting": "♻️ بوٹ دوبارہ شروع کیا جا رہا ہے..."
+    },
+    "join": {
+      "invalid": "❌ درست WhatsApp invite link بھیجیں.\n\nاستعمال: join https://chat.whatsapp.com/...",
+      "success": "✅ دعوت قبول کر لی گئی۔ گروپ میں داخل ہوا جا رہا ہے...",
+      "error": "❌ گروپ میں داخل ہوتے وقت خرابی: {{error}}"
+    },
+    "leavegp": {
+      "confirm": "👋 اس گروپ سے نکل رہا ہوں..."
+    },
+    "idiomagp": {
+      "current": "🌐 گروپ کی زبان: *{{language}}*\n(Global: {{global}})\n\nاستعمال: languagegroup <{{options}}|{{reset}}>",
+      "updated": "✅ گروپ کی زبان کو *{{language}}* پر اپڈیٹ کر دیا گیا۔",
+      "reset": "✅ گروپ کی زبان کو عالمی (*{{language}}*) پر ری سیٹ کر دیا گیا۔",
+      "invalid": "❌ غلط زبان۔ استعمال کریں: {{optionsList}} (یا عالمی زبان کے لیے \"{{reset}}\")",
+      "i18nAliases": {
+        "pt": [
+          "idiomagp",
+          "idiomagrupo"
+        ],
+        "es": [
+          "idiomgp",
+          "lenguajegrupo"
+        ],
+        "en": [
+          "langgroup",
+          "languagegroup",
+          "setlanggroup"
+        ],
+        "id": [
+          "bahasagrup",
+          "setbahasagrup",
+          "langgroup"
+        ],
+        "fr": [
+          "languegroupe",
+          "setlanguegroupe",
+          "langgroup"
+        ],
+        "hi": [
+          "bhashagroup",
+          "setbhashagroup",
+          "langgroup"
+        ],
+        "ur": [
+          "zabangroup",
+          "setzabangroup",
+          "langgroup"
+        ]
+      }
+    },
+    "soadmin": {
+      "enabled": "✅ اب اس گروپ میں صرف ایڈمنز کمانڈز استعمال کر سکتے ہیں۔",
+      "disabled": "✅ عام ارکان دوبارہ اس گروپ میں کمانڈز استعمال کر سکتے ہیں۔"
+    },
+    "modobn": {
+      "enabled": "✅ اس گروپ میں مزاحیہ موڈ فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں مزاحیہ موڈ غیرفعال کر دیا گیا۔"
+    },
+    "setprefixgp": {
+      "current": "⌨️ موجودہ پریفکس: *{{value}}*\nعالمی پریفکس: *{{global}}*\n\nاستعمال: setprefixgp <نیا پریفکس>\nری سیٹ کے لیے: setprefixgp {{reset}}",
+      "invalid": "❌ ایسا پریفکس استعمال کریں جس میں spaces نہ ہوں اور زیادہ سے زیادہ 5 حروف ہوں۔",
+      "updated": "✅ اس گروپ کا پریفکس *{{value}}* پر اپڈیٹ کر دیا گیا۔",
+      "reset": "✅ اس گروپ کا پریفکس عالمی (*{{value}}*) پر ری سیٹ کر دیا گیا۔"
+    },
+    "bangp": {
+      "alreadyActive": "❌ یہ گروپ پہلے ہی bangp میں ہے۔",
+      "enabled": "✅ اس گروپ میں bangp فعال کر دیا گیا۔\nوجہ: {{reason}}"
+    },
+    "unbangp": {
+      "notActive": "❌ یہ گروپ bangp میں نہیں ہے۔",
+      "disabled": "✅ bangp ہٹا دیا گیا۔ بوٹ اس گروپ میں دوبارہ معمول کے مطابق کام کرے گا۔"
+    },
+    "listbangp": {
+      "empty": "❌ کوئی گروپ bangp میں نہیں ہے۔",
+      "header": "╭─「 *LISTBANGP* 」\n│\n│ کل: {{total}}\n│\n{{items}}\n│\n╰─",
+      "reasonLabel": "وجہ",
+      "sinceLabel": "سے"
+    },
+    "blockuser": {
+      "noMention": "❌ صارف کو ٹیگ کریں یا اس کے پیغام کا جواب دیں.\n\nاستعمال: blockuser @صارف [30m|12h|7d] [وجہ]",
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "ownerBypass": "❌ مالک کو block نہیں کیا جا سکتا۔",
+      "alreadyBlocked": "❌ یہ صارف پہلے سے block ہے۔",
+      "permanent": "مستقل",
+      "success": "✅ صارف {{user}} block کر دیا گیا۔\nاختتام: {{expires}}\nوجہ: {{reason}}"
+    },
+    "unblockuser": {
+      "noMention": "❌ صارف کو ٹیگ کریں یا اس کے پیغام کا جواب دیں.\n\nاستعمال: unblockuser @صارف",
+      "lidFailed": "❌ ٹیگ کیے گئے صارف کا LID حل نہ ہو سکا۔",
+      "notBlocked": "❌ یہ صارف block نہیں ہے۔",
+      "success": "✅ صارف {{user}} unblock کر دیا گیا۔"
+    },
+    "listblock": {
+      "empty": "❌ کوئی صارف block نہیں ہے۔",
+      "header": "╭─「 *LISTBLOCK* 」\n│\n│ کل: {{total}}\n│\n{{items}}\n│\n╰─",
+      "expiresLabel": "اختتام",
+      "reasonLabel": "وجہ"
+    },
+    "blockcmd": {
+      "noArgs": "❌ استعمال: blockcmd <comando>",
+      "notFound": "❌ کمانڈ '{{command}}' موجود نہیں ہے۔",
+      "alreadyBlocked": "❌ کمانڈ '{{command}}' پہلے سے block ہے۔",
+      "success": "✅ کمانڈ '{{command}}' block کر دی گئی۔"
+    },
+    "unblockcmd": {
+      "noArgs": "❌ استعمال: unblockcmd <comando>",
+      "notFound": "❌ کمانڈ '{{command}}' موجود نہیں ہے۔",
+      "notBlocked": "❌ کمانڈ '{{command}}' block نہیں ہے۔",
+      "success": "✅ کمانڈ '{{command}}' unblock کر دی گئی۔"
+    },
+    "listblockcmd": {
+      "empty": "❌ کوئی کمانڈ block نہیں ہے۔",
+      "header": "╭─「 *LISTBLOCKCMD* 」\n│\n│ کل: {{total}}\n│\n{{items}}\n│\n╰─"
+    },
+    "antimidia": {
+      "blocked": "🚫 {{user}}, *{{type}}* قسم کے پیغامات اس گروپ میں اجازت نہیں رکھتے۔",
+      "types": {
+        "loc": "لوکیشن",
+        "audio": "آڈیو",
+        "foto": "تصویر",
+        "video": "ویڈیو",
+        "doc": "دستاویز",
+        "lista": "فہرست"
+      }
+    },
+    "antiloc": {
+      "enabled": "✅ اس گروپ میں Anti-location فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-location غیرفعال کر دیا گیا۔"
+    },
+    "antiaudio": {
+      "enabled": "✅ اس گروپ میں Anti-audio فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-audio غیرفعال کر دیا گیا۔"
+    },
+    "antifoto": {
+      "enabled": "✅ اس گروپ میں Anti-photo فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-photo غیرفعال کر دیا گیا۔"
+    },
+    "antivideo": {
+      "enabled": "✅ اس گروپ میں Anti-video فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-video غیرفعال کر دیا گیا۔"
+    },
+    "antidoc": {
+      "enabled": "✅ اس گروپ میں Anti-document فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-document غیرفعال کر دیا گیا۔"
+    },
+    "antilista": {
+      "enabled": "✅ اس گروپ میں Anti-list فعال کر دیا گیا!",
+      "disabled": "❌ اس گروپ میں Anti-list غیرفعال کر دیا گیا۔"
+    },
+    "apk": {
+      "usage": "╭─「 *APK MOD* 」\n│\n│ ✦ استعمال:\n│   {{prefix}}apk <ایپ کا نام>\n│\n╰─ مثال:\n   {{prefix}}apk minecraft",
+      "searching": "🔍 Modyolo پر تلاش ہو رہی ہے...",
+      "noResults": "❌ *{{query}}* کے لیے کوئی نتیجہ نہیں ملا",
+      "error": "❌ درخواست پروسیس کرتے وقت خرابی",
+      "select": "📱 *نتائج - {{query}}*",
+      "selectApp": "ایپ نمبر لکھیں:",
+      "selectVersion": "ورژن نمبر لکھیں:",
+      "versionsTitle": "📦 *ورژنز - {{name}}*",
+      "invalidOption": "❌ غلط اختیار! فہرست سے نمبر لکھیں۔",
+      "invalidRange": "❌ غلط اختیار! 1 سے {{max}} تک نمبر لکھیں",
+      "fetchError": "❌ ایپ کی معلومات حاصل نہیں ہو سکیں",
+      "downloadError": "❌ ڈاؤن لوڈ لنک نہیں ملا",
+      "downloadReady": "✅ *{{name}}*\n\n🔗 {{url}}",
+      "downloadReadyVersion": "✅ *{{name}} {{version}}*\n\n📦 {{size}}\n\n🔗 {{url}}",
+      "labelVersion": "ورژن",
+      "labelMod": "موڈ",
+      "labelSize": "سائز",
+      "labelPublisher": "ڈویلپر",
+      "labelGenre": "صنف"
+    },
+    "fun": {
+      "menuHint": "│  ⚠️ تفریحی موڈ فعال ہونا چاہیے (modobn)",
+      "modobnRequired": "❌ اس گروپ میں تفریحی موڈ فعال نہیں۔\nفعال کریں: modobn",
+      "percentResult": "📊 {{user}} کے پاس *{{level}}%* {{trait}} ہے! 🔥",
+      "rankHeader": "📊 *{{trait}} رینکنگ*:",
+      "rankItem": "🏅 *#{{pos}}* - {{user}}",
+      "rankNotEnough": "❌ رینکنگ کے لیے اراکین کم ہیں (کم از کم {{min}})۔",
+      "interactionUsage": "❌ کسی کا ذکر کریں یا پیغام کا جواب دیں۔\nمثال: {{command}} @صارف",
+      "interactionSelf": "❌ آپ اسے خود پر استعمال نہیں کر سکتے!",
+      "interactionGeneric": "{{from}} نے {{to}} پر *{{action}}* استعمال کیا!",
+      "interactions": {
+        "chute": "{{from}} نے {{to}} کو لات ماری! 🦵",
+        "tapa": "{{from}} نے {{to}} کو تھپڑ مارا! 👋",
+        "soco": "{{from}} نے {{to}} کو مکا مارا! 👊",
+        "beijo": "{{from}} نے {{to}} کو چوما! 😘",
+        "abraco": "{{from}} نے {{to}} کو گلے لگایا! 🤗",
+        "mata": "{{from}} نے {{to}} کو مار ڈالا! 💀",
+        "sexo": "{{from}} نے {{to}} کے ساتھ جنسی تعلق کیا! 🔥",
+        "goza": "{{from}} {{to}} پر خارج ہوا! 💦",
+        "mamar": "{{from}} نے {{to}} کو چوسا! 👅",
+        "cafune": "{{from}} نے {{to}} کے سر پر پیار سے ہاتھ پھیرا! ✨",
+        "morder": "{{from}} نے {{to}} کو کاٹا! 🦷",
+        "lamber": "{{from}} نے {{to}} کو چاٹا! 👅",
+        "explodir": "{{from}} نے {{to}} کو اڑا دیا! 💥",
+        "tomate": "{{from}} نے {{to}} پر ٹماٹر پھینکا! 🍅"
+      }
+    }
+  },
+  "group": {
+    "welcome": {
+      "defaultLegend": "خوش آمدید، @صارف! 👋\nآپ گروپ *@گروپ* کے رکن نمبر @کل ہیں۔"
+    },
+    "antilink": {
+      "defaultText": "🚫 @صارف، اس گروپ میں link کی اجازت نہیں ہے۔",
+      "defaultGroupText": "🚫 @صارف، اس گروپ میں group link کی اجازت نہیں ہے۔",
+      "defaultChannelText": "🚫 @صارف، اس گروپ میں channel link کی اجازت نہیں ہے۔",
+      "typeLink": "لنک",
+      "typeGroupLink": "گروپ لنک",
+      "typeChannelLink": "چینل لنک"
+    }
+  },
+  "owner": {
+    "cmdnf": {
+      "defaultText": "❌ @صارف، @کمانڈ کمانڈ موجود نہیں ہے۔\n\nشاید آپ کا مطلب تھا: @مشابہ (@مماثلت)\nکمانڈز دیکھنے کے لیے @پریفکسmenu استعمال کریں۔"
+    },
+    "text": "╭─「 *مالک* 」\n│\n│ نام: {{owner}}\n│ نمبر: {{ownerNumber}}\n│ بوٹ: {{bot}}\n│\n╰─",
+    "info": "╭─「 *بوٹ معلومات* 」\n│\n│ نام: {{bot}}\n│ مالک: {{owner}}\n│ پریفکس: {{prefix}}\n│ زبان: {{language}}\n│ چلنے کا وقت: {{uptime}}\n│ میموری: {{memory}}\n│ node: {{node}}\n│\n╰─"
+  }
+}

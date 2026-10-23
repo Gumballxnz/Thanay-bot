@@ -1,0 +1,34 @@
+/**
+ * @author Hiudy · github.com/hiudyy
+ * @project Misa Bot
+ */
+import { WAMessage } from "baileys";
+import { getGroup, saveGroup } from "../../../database/groupDB.js";
+import { Command } from "../../../types/Command.js";
+
+const soadminCommand: Command = {
+  name: "soadmin",
+  aliases: ["somenteadmin", "adminonlygp"],
+  i18nAliases: {
+    en: ["adminonlygroup", "groupadminonly"],
+    es: ["soloadmin", "adminsologrupo"],
+    id: ["hanyaadmin", "adminsajagrup"],
+  },
+  description: "Allows only admins to use commands in the group",
+  category: "grupo",
+  groupOnly: true,
+  adminOnly: true,
+  async execute({ misa, message, from, t }) {
+    const config = await getGroup(from);
+    const next = !config.soadmin;
+    await saveGroup(from, { soadmin: next });
+
+    await misa.sendMessage(
+      from,
+      { text: next ? t("commands.soadmin.enabled") : t("commands.soadmin.disabled") },
+      { quoted: message as WAMessage },
+    );
+  },
+};
+
+export default soadminCommand;
