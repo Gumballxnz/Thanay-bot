@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -13,12 +13,12 @@ const autoupdateCommand: Command = {
   description: "Enables or disables bot auto update",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const config = await getBotConfig();
     const words = getLocalizedCommandWordVars(locale);
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.autoupdate.current", { ...words, value: config.autoUpdate ? t("common.enabled") : t("common.disabled") }) },
         { quoted: message as WAMessage },
@@ -28,14 +28,14 @@ const autoupdateCommand: Command = {
 
     const value = resolveLocalizedToken(locale, args[0], ["on", "off"]);
     if (value !== "on" && value !== "off") {
-      await misa.sendMessage(from, { text: t("commands.autoupdate.invalid", words) }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.autoupdate.invalid", words) }, { quoted: message as WAMessage });
       return;
     }
 
     const autoUpdate = value === "on";
     await updateBotConfig((current) => ({ ...current, autoUpdate }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.autoupdate.updated", { value: autoUpdate ? t("common.enabled") : t("common.disabled") }) },
       { quoted: message as WAMessage },

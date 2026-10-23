@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,15 +14,15 @@ const unbangpCommand: Command = {
   category: "geral",
   ownerOnly: true,
   groupOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const current = await getGroup(from);
     if (!current.botBan.ativo) {
-      await misa.sendMessage(from, { text: t("commands.unbangp.notActive") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unbangp.notActive") }, { quoted: message as WAMessage });
       return;
     }
 
     await clearGroupBan(from);
-    await misa.sendMessage(from, { text: t("commands.unbangp.disabled") }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: t("commands.unbangp.disabled") }, { quoted: message as WAMessage });
   },
 };
 

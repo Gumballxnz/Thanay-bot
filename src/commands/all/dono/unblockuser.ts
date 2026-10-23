@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,16 +14,16 @@ const unblockuserCommand: Command = {
   description: "Removes the global block from a user",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const mentioned = extractMentionedUser(message);
     if (!mentioned) {
-      await misa.sendMessage(from, { text: t("commands.unblockuser.noMention") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockuser.noMention") }, { quoted: message as WAMessage });
       return;
     }
 
-    const userLID = await toLID(mentioned, misa);
+    const userLID = await toLID(mentioned, thanay);
     if (!userLID) {
-      await misa.sendMessage(from, { text: t("commands.unblockuser.lidFailed") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockuser.lidFailed") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -31,7 +31,7 @@ const unblockuserCommand: Command = {
     const nextUsers = activeUsers.filter((entry) => entry.lid !== userLID);
 
     if (nextUsers.length === activeUsers.length) {
-      await misa.sendMessage(from, { text: t("commands.unblockuser.notBlocked") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockuser.notBlocked") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -40,7 +40,7 @@ const unblockuserCommand: Command = {
       blockedUsers: current.blockedUsers.filter((entry) => entry.lid !== userLID),
     }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.unblockuser.success", { user: `@${mentioned.split("@")[0]}` }), mentions: [userLID] },
       { quoted: message as WAMessage },

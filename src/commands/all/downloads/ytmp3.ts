@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -18,21 +18,21 @@ const ytmp3Command: Command = {
   aliases: ["ytaudio"],
   description: "Downloads YouTube audio from a direct link",
   category: "all",
-  async execute({ misa, message, from, sender, args, t }) {
+  async execute({ thanay, message, from, sender, args, t }) {
     if (args.length === 0) {
-      await misa.sendMessage(from, { text: t("commands.ytmp3.usage") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.ytmp3.usage") }, { quoted: message as WAMessage });
       return;
     }
 
     const url = args[0].trim();
 
     if (!isYouTubeURL(url) || !getYouTubeVideoID(url)) {
-      await misa.sendMessage(from, { text: t("commands.ytmp3.invalidUrl") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.ytmp3.invalidUrl") }, { quoted: message as WAMessage });
       return;
     }
 
-    await runMediaJob({ misa, from, sender, kind: "youtube-audio", t }, async (signal) => {
-      await misa.sendMessage(from, { text: t("commands.ytmp3.downloading") }, { quoted: message as WAMessage });
+    await runMediaJob({ thanay, from, sender, kind: "youtube-audio", t }, async (signal) => {
+      await thanay.sendMessage(from, { text: t("commands.ytmp3.downloading") }, { quoted: message as WAMessage });
       let media: Awaited<ReturnType<typeof downloadYouTube>>["media"];
       try {
         const videoURL = `https://youtube.com/watch?v=${getYouTubeVideoID(url)}`;
@@ -41,14 +41,14 @@ const ytmp3Command: Command = {
         media = audio.media;
         const title = audio.title || t("common.file");
         const author = audio.author || t("common.unknown");
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           audio: { url: media.path },
           mimetype: "audio/mpeg",
           fileName: `${sanitizeYtFileName(title, "audio")}.mp3`,
           caption: `🎵 *${title}*\n👤 ${author}`,
         }, { quoted: message as WAMessage });
       } catch (error) {
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           text: t("commands.ytmp3.error", { message: localizeError(error, t, "commands.ytmp3.unknown") }),
         }, { quoted: message as WAMessage });
       } finally {

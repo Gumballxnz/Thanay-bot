@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -19,11 +19,11 @@ const antilocCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getGroup(from);
     const next = !config.antimidia.loc;
     await saveGroup(from, { antimidia: { ...config.antimidia, loc: next } });
-    await misa.sendMessage(from, { text: next ? t("commands.antiloc.enabled") : t("commands.antiloc.disabled") }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: next ? t("commands.antiloc.enabled") : t("commands.antiloc.disabled") }, { quoted: message as WAMessage });
   },
 };
 

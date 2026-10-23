@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { GroupParticipant, ParticipantAction } from "baileys";
@@ -19,21 +19,21 @@ type GroupParticipantsUpdateEvent = {
 const welcomeEvent: Event<GroupParticipantsUpdateEvent> = {
   event: "group-participants.update",
   name: "welcome",
-  async execute({ misa, data }) {
+  async execute({ thanay, data }) {
     if (data.action !== "add") return;
 
     const config = await getGroup(data.id);
     if (!config.bemvindo.ativo) return;
 
-    let groupMeta: Awaited<ReturnType<typeof misa.groupMetadata>> | null = null;
+    let groupMeta: Awaited<ReturnType<typeof thanay.groupMetadata>> | null = null;
     try {
-      groupMeta = await misa.groupMetadata(data.id);
+      groupMeta = await thanay.groupMetadata(data.id);
     } catch {
       groupMeta = null;
     }
 
     for (const participant of data.participants) {
-      const lid = await toLID(participant.id, misa);
+      const lid = await toLID(participant.id, thanay);
       if (!lid) continue;
 
       const numero = lid.split("@")[0];
@@ -62,14 +62,14 @@ const welcomeEvent: Event<GroupParticipantsUpdateEvent> = {
         try {
           const buffer = await fs.readFile(config.bemvindo.midia.path);
           if (config.bemvindo.midia.tipo === "video") {
-            await misa.sendMessage(data.id, {
+            await thanay.sendMessage(data.id, {
               video: buffer,
               caption: texto,
               gifPlayback: true,
               mentions: [lid],
             });
           } else {
-            await misa.sendMessage(data.id, {
+            await thanay.sendMessage(data.id, {
               image: buffer,
               caption: texto,
               mentions: [lid],
@@ -81,7 +81,7 @@ const welcomeEvent: Event<GroupParticipantsUpdateEvent> = {
         }
       }
 
-      await misa.sendMessage(data.id, {
+      await thanay.sendMessage(data.id, {
         text: texto,
         mentions: [lid],
       });

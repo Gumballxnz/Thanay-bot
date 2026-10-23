@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -13,7 +13,7 @@ const debugCommand: Command = {
   description: "Turns full message event logs on or off",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const option = resolveLocalizedToken(locale, args[0], ["on", "off"]);
     const enabled = option === "on"
       ? setMessageDebugEnabled(true)
@@ -21,7 +21,7 @@ const debugCommand: Command = {
         ? setMessageDebugEnabled(false)
         : toggleMessageDebug();
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: enabled ? t("commands.debug.enabled") : t("commands.debug.disabled") },
       { quoted: message as WAMessage },

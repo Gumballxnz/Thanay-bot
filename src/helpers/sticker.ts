@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { promises as fs } from "node:fs";
@@ -214,12 +214,12 @@ export async function buildStickerBuffer(
 }
 
 export async function sendSticker(
-  misa: WASocket,
+  thanay: WASocket,
   jid: string,
   options: SendStickerOptions,
   extras?: { quoted?: WAMessage },
 ): Promise<Buffer> {
   const webpBuffer = await buildStickerBuffer(options.sticker, options.type ?? "image", options);
-  await misa.sendMessage(jid, { sticker: webpBuffer }, { quoted: extras?.quoted });
+  await thanay.sendMessage(jid, { sticker: webpBuffer }, { quoted: extras?.quoted });
   return webpBuffer;
 }

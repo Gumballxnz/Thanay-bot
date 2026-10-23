@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage, downloadMediaMessage } from "baileys";
@@ -22,11 +22,11 @@ const midiabvCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, sender, args, t, locale }) {
+  async execute({ thanay, message, from, sender, args, t, locale }) {
     if (matchesLocalizedToken(locale, args[0], "off")) {
       const current = await getGroup(from);
       await saveGroup(from, { bemvindo: { ...current.bemvindo, midia: null } });
-      await misa.sendMessage(from, { text: t("commands.midiabv.removed") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.midiabv.removed") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -39,7 +39,7 @@ const midiabvCommand: Command = {
       const midiaStatus = config.bemvindo.midia
         ? `${config.bemvindo.midia.tipo === "video" ? t("commands.midiabv.statusVideo") : t("commands.midiabv.statusImage")}`
         : t("commands.midiabv.statusNone");
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.midiabv.noMedia", { status: midiaStatus }),
@@ -53,7 +53,7 @@ const midiabvCommand: Command = {
     if (videoMsg) {
       const segundos = videoMsg.seconds ?? 0;
       if (segundos > MAX_VIDEO_SECONDS) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.midiabv.videoTooLong", { seconds: String(segundos), max: String(MAX_VIDEO_SECONDS) }) },
           { quoted: message as WAMessage },
@@ -67,7 +67,7 @@ const midiabvCommand: Command = {
     try {
       assertMediaSize(imageMsg?.fileLength ?? videoMsg?.fileLength, videoMsg ? "video" : "image");
     } catch {
-      await misa.sendMessage(from, { text: t("errors.media.tooLarge") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("errors.media.tooLarge") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -75,7 +75,7 @@ const midiabvCommand: Command = {
       ? message
       : { key: message.key, message: quoted! };
 
-    await runMediaJob({ misa, from, sender, kind: "welcome-media", t }, async () => {
+    await runMediaJob({ thanay, from, sender, kind: "welcome-media", t }, async () => {
       const buffer = await downloadMediaMessage(
         msgToDownload as Parameters<typeof downloadMediaMessage>[0],
         "buffer",
@@ -88,7 +88,7 @@ const midiabvCommand: Command = {
       await fs.writeFile(filePath, buffer);
       const current = await getGroup(from);
       await saveGroup(from, { bemvindo: { ...current.bemvindo, midia: { tipo, path: filePath } } });
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         text: tipo === "video" ? t("commands.midiabv.successVideo") : t("commands.midiabv.successImage"),
       }, { quoted: message as WAMessage });
     });

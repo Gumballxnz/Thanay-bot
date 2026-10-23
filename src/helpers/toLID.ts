@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { USyncQuery, USyncUser } from "baileys";
@@ -27,7 +27,7 @@ function normalizeToPN(input: string): string | null {
   return jidEncode(digits, "s.whatsapp.net");
 }
 
-export async function toLID(input: string, misa: WASocket): Promise<string | null> {
+export async function toLID(input: string, thanay: WASocket): Promise<string | null> {
   const trimmed = input.trim();
   if (!trimmed) return null;
 
@@ -46,7 +46,7 @@ export async function toLID(input: string, misa: WASocket): Promise<string | nul
   if (cached) return cached;
 
   // 2. tenta o store local do Baileys
-  const fromStore = await misa.signalRepository.lidMapping.getLIDForPN(pn).catch(() => null);
+  const fromStore = await thanay.signalRepository.lidMapping.getLIDForPN(pn).catch(() => null);
   if (fromStore) {
     lidCache.set(pn, fromStore);
     return fromStore;
@@ -59,7 +59,7 @@ export async function toLID(input: string, misa: WASocket): Promise<string | nul
       .withContext("interactive")
       .withUser(new USyncUser().withId(pn));
 
-    const result = await misa.executeUSyncQuery(query);
+    const result = await thanay.executeUSyncQuery(query);
     const entry = result?.list.find((r) => r.id === pn);
     const lid = entry?.["lid"] as string | undefined;
     const normalized = lid ? jidNormalizedUser(lid) : null;

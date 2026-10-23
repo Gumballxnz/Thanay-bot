@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -11,10 +11,10 @@ const donoCommand: Command = {
   aliases: ["owner", "infodono", "ownerinfo"],
   description: "Shows bot owner information",
   category: "geral",
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getBotConfig();
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: t("commands.dono.text", {

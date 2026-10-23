@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -15,11 +15,11 @@ const demoteCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const targetJid = extractTargetUserJid(message);
     
     if (!targetJid) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.demote.noMention") },
         { quoted: message as WAMessage },
@@ -27,9 +27,9 @@ const demoteCommand: Command = {
       return;
     }
 
-    const userToDemote = await toLID(targetJid, misa);
+    const userToDemote = await toLID(targetJid, thanay);
     if (!userToDemote) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.demote.lidFailed") },
         { quoted: message as WAMessage },
@@ -38,9 +38,9 @@ const demoteCommand: Command = {
     }
 
     try {
-      await misa.groupParticipantsUpdate(from, [userToDemote], "demote");
+      await thanay.groupParticipantsUpdate(from, [userToDemote], "demote");
       
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.demote.success"),
@@ -48,7 +48,7 @@ const demoteCommand: Command = {
         { quoted: message as WAMessage },
       );
     } catch (error) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.demote.error", { error: String(error) }) },
         { quoted: message as WAMessage },

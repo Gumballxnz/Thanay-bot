@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -13,9 +13,9 @@ const nomeGpCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, args, rawArgs, t }) {
+  async execute({ thanay, message, from, args, rawArgs, t }) {
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.nomegp.noArgs") },
         { quoted: message as WAMessage },
@@ -24,8 +24,8 @@ const nomeGpCommand: Command = {
     }
 
     const novoNome = rawArgs;
-    await misa.groupUpdateSubject(from, novoNome);
-    await misa.sendMessage(
+    await thanay.groupUpdateSubject(from, novoNome);
+    await thanay.sendMessage(
       from,
       { text: t("commands.nomegp.success", { name: novoNome }) },
       { quoted: message as WAMessage },

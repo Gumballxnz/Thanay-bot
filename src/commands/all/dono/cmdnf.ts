@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,7 +14,7 @@ const cmdnfCommand: Command = {
   description: "Configures the command-not-found message",
   category: "all",
   ownerOnly: true,
-  async execute({ misa, message, from, args, rawArgs, t, locale }) {
+  async execute({ thanay, message, from, args, rawArgs, t, locale }) {
     const config = await getOwnerConfig();
     const words = getLocalizedCommandWordVars(locale);
     const currentMode = config.comandoNaoEncontrado.modo === "mencao"
@@ -22,7 +22,7 @@ const cmdnfCommand: Command = {
       : getLocalizedToken(locale, "text");
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.cmdnf.header", {
@@ -45,7 +45,7 @@ const cmdnfCommand: Command = {
     if (action === "modo") {
       const modo = resolveLocalizedToken(locale, args[1], ["text", "mention"]);
       if (modo !== "texto" && modo !== "mencao") {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.cmdnf.invalidMode", words) },
           { quoted: message as WAMessage },
@@ -58,7 +58,7 @@ const cmdnfCommand: Command = {
         comandoNaoEncontrado: { ...current.comandoNaoEncontrado, modo },
       }));
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.cmdnf.modeUpdated", { mode: getLocalizedToken(locale, modo === "mencao" ? "mention" : "text") }) },
         { quoted: message as WAMessage },
@@ -68,7 +68,7 @@ const cmdnfCommand: Command = {
 
     if (action === "texto") {
       if (args.length === 1) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           {
             text: t("commands.cmdnf.textHeader", {
@@ -91,7 +91,7 @@ const cmdnfCommand: Command = {
         comandoNaoEncontrado: { ...current.comandoNaoEncontrado, texto },
       }));
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.cmdnf.textUpdated", { text: texto }) },
         { quoted: message as WAMessage },
@@ -99,7 +99,7 @@ const cmdnfCommand: Command = {
       return;
     }
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: t("commands.cmdnf.usage", words),

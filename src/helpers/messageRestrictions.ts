@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WAMessage, WASocket } from "baileys";
@@ -25,7 +25,7 @@ function detectRestrictedMedia(message: proto.IWebMessageInfo, config: GroupData
 }
 
 export async function applyMediaRestriction(
-  misa: WASocket,
+  thanay: WASocket,
   message: proto.IWebMessageInfo,
   groupId: string,
   sender: string,
@@ -36,8 +36,8 @@ export async function applyMediaRestriction(
   if (!blockedType || !message.key) return false;
 
   const { t } = await import("../i18n/index.js");
-  await misa.sendMessage(groupId, { delete: message.key });
-  await misa.sendMessage(
+  await thanay.sendMessage(groupId, { delete: message.key });
+  await thanay.sendMessage(
     groupId,
     {
       text: t("commands.antimidia.blocked", locale, {

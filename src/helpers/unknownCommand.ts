@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WAMessage, WASocket } from "baileys";
@@ -64,7 +64,7 @@ function getDisplayName(message: proto.IWebMessageInfo, sender: string): string 
 }
 
 export async function sendUnknownCommandMessage(
-  misa: WASocket,
+  thanay: WASocket,
   from: string,
   sender: string,
   prefix: string,
@@ -77,7 +77,7 @@ export async function sendUnknownCommandMessage(
   const { t } = await import("../i18n/index.js");
 
   if (ownerConfig.comandoNaoEncontrado.modo === "mencao") {
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: `@${sender.split("@")[0]}`,
@@ -108,7 +108,7 @@ export async function sendUnknownCommandMessage(
     bot: config.botName,
   });
 
-  await misa.sendMessage(
+  await thanay.sendMessage(
     from,
     {
       text: texto,

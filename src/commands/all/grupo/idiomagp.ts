@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -24,13 +24,13 @@ const idiomagpCommand: Command = {
   category: "grupo",
   groupOnly: true,
   adminOnly: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const words = getLocalizedCommandWordVars(locale);
     const groupConfig = await getGroup(from);
     const globalConfig = await getBotConfig();
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.idiomagp.current", {
             ...words,
@@ -48,7 +48,7 @@ const idiomagpCommand: Command = {
     
     if (matchesLocalizedToken(locale, newLang, "reset")) {
       await saveGroup(from, { language: undefined });
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.idiomagp.reset", { ...words, language: getLocaleLabel(globalConfig.language) }) },
         { quoted: message as WAMessage },
@@ -57,7 +57,7 @@ const idiomagpCommand: Command = {
     }
 
     if (!isValidLocale(newLang)) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.idiomagp.invalid", { ...words, optionsList: getLocaleDisplayList(), options: getLocaleCommandOptions() }) },
         { quoted: message as WAMessage },
@@ -67,7 +67,7 @@ const idiomagpCommand: Command = {
 
     await saveGroup(from, { language: newLang });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: createTranslator(newLang)("commands.idiomagp.updated", { language: getLocaleLabel(newLang) }) },
       { quoted: message as WAMessage },

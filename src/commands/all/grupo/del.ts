@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,7 +12,7 @@ const delCommand: Command = {
   category: "grupo",
   groupOnly: true,
   adminOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     // Get the quoted message
     const quotedMsg = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
     const quotedKey = message.message?.extendedTextMessage?.contextInfo?.remoteJid;
@@ -20,7 +20,7 @@ const delCommand: Command = {
     const quotedMessageId = message.message?.extendedTextMessage?.contextInfo?.stanzaId;
 
     if (!quotedMsg || !quotedMessageId) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.del.noQuoted") },
         { quoted: message as WAMessage },
@@ -30,7 +30,7 @@ const delCommand: Command = {
 
     try {
       // Delete the quoted message
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         delete: {
           remoteJid: from,
           id: quotedMessageId,
@@ -38,13 +38,13 @@ const delCommand: Command = {
         },
       });
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.del.success") },
         { quoted: message as WAMessage },
       );
     } catch (error) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.del.error", { error: String(error) }) },
         { quoted: message as WAMessage },

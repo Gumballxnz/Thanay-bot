@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WASocket } from "baileys";
@@ -22,7 +22,7 @@ export type MessageHandlerControl = {
 };
 
 export function setupMessageHandler(
-  misa: WASocket,
+  thanay: WASocket,
   commandHandler: CommandHandler,
   processor: MessageProcessor = processMessage,
 ): MessageHandlerControl {
@@ -39,7 +39,7 @@ export function setupMessageHandler(
     log.warn("MESSAGE", `${code}:${chatId}`);
   };
 
-  const listener = (event: Parameters<Parameters<typeof misa.ev.on<"messages.upsert">>[1]>[0]) => {
+  const listener = (event: Parameters<Parameters<typeof thanay.ev.on<"messages.upsert">>[1]>[0]) => {
     if (isMessageDebugEnabled()) logMessageDebug(event);
     if (event.type !== "notify") return;
 
@@ -51,7 +51,7 @@ export function setupMessageHandler(
       const pendingBefore = dispatcher.snapshot().pending;
       void dispatcher.submit(async () => {
         try {
-          await processor(misa, commandHandler, message);
+          await processor(thanay, commandHandler, message);
           metrics.recordMessage("processed");
         } catch (error) {
           metrics.recordMessage("failed");
@@ -77,12 +77,12 @@ export function setupMessageHandler(
     }
   };
 
-  misa.ev.on("messages.upsert", listener);
+  thanay.ev.on("messages.upsert", listener);
 
   return {
     dispose() {
       dispatcher.stop({ cancelPending: true });
-      misa.ev.off("messages.upsert", listener);
+      thanay.ev.off("messages.upsert", listener);
     },
     drain: (timeoutMs) => dispatcher.drain(timeoutMs),
   };

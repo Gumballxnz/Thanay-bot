@@ -1,12 +1,11 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WASocket } from "baileys";
 
 export interface EventContext<T = unknown> {
   thanay: WASocket;
-  misa: WASocket;
   data: T;
 }
 

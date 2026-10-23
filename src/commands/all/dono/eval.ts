@@ -1,9 +1,9 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  *
  * ATENÇÃO: RCE intencional restrito ao dono (`ownerOnly`).
- * O contexto expõe o socket `misa` de propósito para manutenção.
+ * O contexto expõe o socket `thanay` de propósito para manutenção.
  * O timeout do `vm` cobre só o código síncrono; trabalho async pós-retorno
  * não é cancelado automaticamente.
  */
@@ -18,7 +18,7 @@ const EVAL_TIMEOUT_MS = 5000;
 function createEvalSandbox(thanay: unknown, message: unknown, args: string[]) {
   return {
     thanay,
-    misa: thanay,
+
     bot: thanay,
     message,
     args,
@@ -59,8 +59,8 @@ const evalCommand: Command = {
   description: "Runs JavaScript code (DANGEROUS - owner only)",
   category: "all",
   ownerOnly: true,
-  async execute({ thanay, misa, message, from, args, rawArgs, t }) {
-    const socket = (thanay ?? misa)!;
+  async execute({ thanay, message, from, args, rawArgs, t }) {
+    const socket = thanay;
     if (args.length === 0) {
       await socket.sendMessage(
         from,

@@ -13,14 +13,14 @@ const command: Command = {
 
 function authorization(overrides: Record<string, unknown> = {}) {
   const sent: string[] = [];
-  const misa = {
+  const thanay = {
     sendMessage: async (_from: string, content: { text?: string }) => { sent.push(content.text ?? ""); },
   } as unknown as WASocket;
   return {
     sent,
     input: {
       command,
-      misa,
+      thanay,
       from: "chat",
       isGroup: true,
       userIsOwner: false,

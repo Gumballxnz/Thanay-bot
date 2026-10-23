@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -17,8 +17,8 @@ const restartCommand: Command = {
   description: "Restarts the bot process",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t }) {
-    await misa.sendMessage(from, { text: t("commands.restart.restarting") }, { quoted: message as WAMessage });
+  async execute({ thanay, message, from, t }) {
+    await thanay.sendMessage(from, { text: t("commands.restart.restarting") }, { quoted: message as WAMessage });
     setTimeout(() => requestShutdown("restart"), 300);
   },
 };

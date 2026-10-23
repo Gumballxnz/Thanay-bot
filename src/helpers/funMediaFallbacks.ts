@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  *
  * Fallbacks: traits sem mídia própria reutilizam um arquivo local existente.

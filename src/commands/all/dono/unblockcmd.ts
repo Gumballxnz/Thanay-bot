@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,16 +12,16 @@ const unblockcmdCommand: Command = {
   description: "Removes the global block from a command",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, commandDirectory, t }) {
+  async execute({ thanay, message, from, args, commandDirectory, t }) {
     const input = args[0]?.toLowerCase();
     if (!input) {
-      await misa.sendMessage(from, { text: t("commands.unblockcmd.noArgs") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockcmd.noArgs") }, { quoted: message as WAMessage });
       return;
     }
 
     const command = commandDirectory.get(input);
     if (!command) {
-      await misa.sendMessage(from, { text: t("commands.unblockcmd.notFound", { command: input }) }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockcmd.notFound", { command: input }) }, { quoted: message as WAMessage });
       return;
     }
 
@@ -29,7 +29,7 @@ const unblockcmdCommand: Command = {
     const nextCommands = config.blockedCommands.filter((name) => name !== command.name);
 
     if (nextCommands.length === config.blockedCommands.length) {
-      await misa.sendMessage(from, { text: t("commands.unblockcmd.notBlocked", { command: command.name }) }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.unblockcmd.notBlocked", { command: command.name }) }, { quoted: message as WAMessage });
       return;
     }
 
@@ -38,7 +38,7 @@ const unblockcmdCommand: Command = {
       blockedCommands: current.blockedCommands.filter((name) => name !== command.name),
     }));
 
-    await misa.sendMessage(from, { text: t("commands.unblockcmd.success", { command: command.name }) }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: t("commands.unblockcmd.success", { command: command.name }) }, { quoted: message as WAMessage });
   },
 };
 

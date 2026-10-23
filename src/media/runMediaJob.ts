@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import type { WASocket } from "baileys";
@@ -9,8 +9,8 @@ import { log } from "../logger.js";
 type Translator = (key: string, vars?: Record<string, string>) => string;
 
 type MediaJobContext = {
-  thanay?: WASocket;
-  misa?: WASocket;
+  thanay: WASocket;
+
   from: string;
   sender: string;
   kind: string;
@@ -25,12 +25,12 @@ type RunMediaJobOptions = {
 async function handleCompletionError(context: MediaJobContext, error: unknown): Promise<void> {
   const code = error instanceof MediaQueueError ? error.code : error instanceof Error ? error.message : "";
   if (code === MediaQueueCode.TIMEOUT) {
-    await (context.thanay ?? context.misa)!.sendMessage(context.from, { text: context.t("errors.media.timeout") }).catch(() => undefined);
+    await context.thanay.sendMessage(context.from, { text: context.t("errors.media.timeout") }).catch(() => undefined);
     return;
   }
   if (code === MediaQueueCode.ABORTED) return;
   log.error("MEDIA", `MEDIA_JOB_FAILED:${context.kind}`, error);
-  await (context.thanay ?? context.misa)!.sendMessage(context.from, { text: context.t("errors.media.failed") }).catch(() => undefined);
+  await context.thanay.sendMessage(context.from, { text: context.t("errors.media.failed") }).catch(() => undefined);
 }
 
 export async function runMediaJob<T>(
@@ -49,7 +49,7 @@ export async function runMediaJob<T>(
       action,
     );
     if (handle.position !== null) {
-      await (context.thanay ?? context.misa)!.sendMessage(context.from, {
+      await context.thanay.sendMessage(context.from, {
         text: context.t("errors.media.queued", { position: String(handle.position) }),
       });
     }
@@ -63,7 +63,7 @@ export async function runMediaJob<T>(
   } catch (error) {
     const code = error instanceof MediaQueueError ? error.code : error instanceof Error ? error.message : "";
     if (code === MediaQueueCode.FULL) {
-      await (context.thanay ?? context.misa)!.sendMessage(context.from, { text: context.t("errors.media.queueFull") });
+      await context.thanay.sendMessage(context.from, { text: context.t("errors.media.queueFull") });
       return undefined;
     }
     await handleCompletionError(context, error);

@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
@@ -17,7 +17,6 @@ export type CommandCategory = typeof COMMAND_CATEGORIES[number];
 
 export interface CommandContext {
   thanay: WASocket;
-  misa: WASocket;
   message: proto.IWebMessageInfo;
   args: string[];
   /** Texto bruto após o nome do comando, preservando quebras de linha */

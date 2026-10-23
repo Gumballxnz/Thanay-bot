@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,12 +14,12 @@ const gpCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const words = getLocalizedCommandWordVars(locale);
     const opcao = resolveLocalizedToken(locale, args[0], ["open", "close"]);
 
     if (opcao !== "open" && opcao !== "close") {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.gp.usage", words),
@@ -31,8 +31,8 @@ const gpCommand: Command = {
 
     const fechar = opcao === "close";
 
-    await misa.groupSettingUpdate(from, fechar ? "announcement" : "not_announcement");
-    await misa.sendMessage(
+    await thanay.groupSettingUpdate(from, fechar ? "announcement" : "not_announcement");
+    await thanay.sendMessage(
       from,
       { text: fechar ? t("commands.gp.closed") : t("commands.gp.opened") },
       { quoted: message as WAMessage },

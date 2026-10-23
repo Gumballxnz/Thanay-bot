@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -10,9 +10,9 @@ const command: Command = {
   aliases: ["encurtar", "short", "encurtarlink"],
   description: "Shortens a link/URL",
   category: "geral",
-  async execute({ misa, message, from, args, t }) {
+  async execute({ thanay, message, from, args, t }) {
     if (!args[0]) {
-      await misa.sendMessage(from, { text: t("commands.shorturl.usage") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.shorturl.usage") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -26,24 +26,24 @@ const command: Command = {
       const response = await fetch(apiUrl);
 
       if (!response.ok) {
-        await misa.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
         return;
       }
 
       const shortenedUrl = await response.text();
 
       if (!shortenedUrl || !shortenedUrl.startsWith("http")) {
-        await misa.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
         return;
       }
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.shorturl.success", { url: shortenedUrl }) },
         { quoted: message as WAMessage },
       );
     } catch {
-      await misa.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.shorturl.error") }, { quoted: message as WAMessage });
     }
   },
 };

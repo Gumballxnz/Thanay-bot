@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -13,9 +13,9 @@ const descGpCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, args, rawArgs, t }) {
+  async execute({ thanay, message, from, args, rawArgs, t }) {
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.descgp.noArgs") },
         { quoted: message as WAMessage },
@@ -24,8 +24,8 @@ const descGpCommand: Command = {
     }
 
     const novaDesc = rawArgs;
-    await misa.groupUpdateDescription(from, novaDesc);
-    await misa.sendMessage(
+    await thanay.groupUpdateDescription(from, novaDesc);
+    await thanay.sendMessage(
       from,
       { text: t("commands.descgp.success") },
       { quoted: message as WAMessage },

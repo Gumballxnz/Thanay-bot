@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { promises as fs } from "node:fs";
@@ -203,7 +203,7 @@ export async function createConnection(authMode: "qr" | "pairing" = "qr", phoneN
     log.info("CONNECTION", t("connection.sessionDetected"));
   }
 
-  const misa = makeWASocket({
+  const thanay = makeWASocket({
     version,
     auth: state,
     logger,
@@ -211,11 +211,11 @@ export async function createConnection(authMode: "qr" | "pairing" = "qr", phoneN
     markOnlineOnConnect: false,
   });
 
-  misa.ev.on("creds.update", saveCreds);
+  thanay.ev.on("creds.update", saveCreds);
 
   let pairingRequested = false;
 
-  misa.ev.on("connection.update", (update) => {
+  thanay.ev.on("connection.update", (update) => {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
@@ -226,7 +226,7 @@ export async function createConnection(authMode: "qr" | "pairing" = "qr", phoneN
 
       if (authMode === "pairing" && !pairingRequested && phoneNumber) {
         pairingRequested = true;
-        misa.requestPairingCode(phoneNumber).then((code) => {
+        thanay.requestPairingCode(phoneNumber).then((code) => {
           log.box("PAIRING", t("connection.pairingCode"), [t("connection.pairingCodeValue", { code }), t("connection.pairingInstruction")], "magenta");
         }).catch((error) => {
           log.error("PAIRING", t("connection.pairingError"), error);
@@ -243,7 +243,7 @@ export async function createConnection(authMode: "qr" | "pairing" = "qr", phoneN
         if (pairingRequested) {
           log.warn("PAIRING", t("connection.pairingExpired"));
           if (phoneNumber) {
-            misa.requestPairingCode(phoneNumber).then((code) => {
+            thanay.requestPairingCode(phoneNumber).then((code) => {
               log.box("PAIRING", t("connection.pairingNewCode"), [t("connection.pairingCodeValue", { code }), t("connection.pairingInstruction")], "magenta");
             }).catch((error) => {
               log.error("PAIRING", t("connection.pairingError"), error);
@@ -275,5 +275,5 @@ export async function createConnection(authMode: "qr" | "pairing" = "qr", phoneN
     }
   });
 
-  return misa;
+  return thanay;
 }

@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,16 +12,16 @@ const listblockcmdCommand: Command = {
   description: "Lists globally blocked commands",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getOwnerConfig();
 
     if (config.blockedCommands.length === 0) {
-      await misa.sendMessage(from, { text: t("commands.listblockcmd.empty") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.listblockcmd.empty") }, { quoted: message as WAMessage });
       return;
     }
 
     const items = config.blockedCommands.map((command, index) => `│ ${index + 1}. ${command}`).join("\n");
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.listblockcmd.header", { total: String(config.blockedCommands.length), items }) },
       { quoted: message as WAMessage },

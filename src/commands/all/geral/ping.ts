@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -31,7 +31,7 @@ const pingCommand: Command = {
   aliases: [],
   description: "Checks if the bot is responding",
   category: "all",
-  async execute({ misa, message, from, isOwner, t }) {
+  async execute({ thanay, message, from, isOwner, t }) {
     const config = await getBotConfig();
     const messageTimestamp = Number(message.messageTimestamp ?? 0);
     const latency = messageTimestamp > 0 ? Math.max(0, Date.now() - messageTimestamp * 1000) : null;
@@ -40,7 +40,7 @@ const pingCommand: Command = {
     const ramUsage = formatMemory(process.memoryUsage().rss);
     const userIsOwner = await isOwner();
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: [

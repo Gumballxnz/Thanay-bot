@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,23 +14,23 @@ const checkAtivoCommand: Command = {
   description: "Shows a group member's activity",
   category: "grupo",
   groupOnly: true,
-  async execute({ misa, message, from, sender, groupCache, t }) {
+  async execute({ thanay, message, from, sender, groupCache, t }) {
     const selected = extractTargetUserJid(message);
-    const target = selected ? await toLID(selected, misa) : sender;
+    const target = selected ? await toLID(selected, thanay) : sender;
 
     if (!target) {
-      await misa.sendMessage(from, { text: t("commands.checkativo.lidFailed") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.checkativo.lidFailed") }, { quoted: message as WAMessage });
       return;
     }
 
-    const groupMeta = await groupCache.ensure(from, misa);
+    const groupMeta = await groupCache.ensure(from, thanay);
     const participants = groupMeta?.participants.map((participant) => participant.id) ?? [];
     const entries = await Promise.all(participants.map((userId) => getUserActivity(from, userId)));
     const ranked = entries.sort((a, b) => b.total - a.total || b.messages - a.messages || b.commands - a.commands || b.stickers - a.stickers);
     const position = ranked.findIndex((entry) => entry.userId === target) + 1;
     const stats = await getUserActivity(from, target);
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: t("commands.checkativo.text", {

@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -20,13 +20,13 @@ const setprefixgpCommand: Command = {
   category: "grupo",
   groupOnly: true,
   adminOnly: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const groupConfig = await getGroup(from);
     const globalConfig = await getBotConfig();
     const words = getLocalizedCommandWordVars(locale);
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.setprefixgp.current", {
@@ -43,7 +43,7 @@ const setprefixgpCommand: Command = {
     const value = args[0]?.trim() || "";
     if (matchesLocalizedToken(locale, value, "reset") || matchesLocalizedToken(locale, value, "off")) {
       await saveGroup(from, { prefix: undefined });
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.setprefixgp.reset", { ...words, value: globalConfig.prefix }) },
         { quoted: message as WAMessage },
@@ -52,12 +52,12 @@ const setprefixgpCommand: Command = {
     }
 
     if (!value || value.length > 5 || /\s/.test(value)) {
-      await misa.sendMessage(from, { text: t("commands.setprefixgp.invalid") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.setprefixgp.invalid") }, { quoted: message as WAMessage });
       return;
     }
 
     await saveGroup(from, { prefix: value });
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.setprefixgp.updated", { value }) },
       { quoted: message as WAMessage },

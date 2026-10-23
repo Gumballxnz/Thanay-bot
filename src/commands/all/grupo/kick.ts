@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -15,11 +15,11 @@ const kickCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const targetJid = extractTargetUserJid(message);
     
     if (!targetJid) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.kick.noMention") },
         { quoted: message as WAMessage },
@@ -27,9 +27,9 @@ const kickCommand: Command = {
       return;
     }
 
-    const userToKick = await toLID(targetJid, misa);
+    const userToKick = await toLID(targetJid, thanay);
     if (!userToKick) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.kick.lidFailed") },
         { quoted: message as WAMessage },
@@ -38,9 +38,9 @@ const kickCommand: Command = {
     }
 
     try {
-      await misa.groupParticipantsUpdate(from, [userToKick], "remove");
+      await thanay.groupParticipantsUpdate(from, [userToKick], "remove");
       
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.kick.success"),
@@ -48,7 +48,7 @@ const kickCommand: Command = {
         { quoted: message as WAMessage },
       );
     } catch (error) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.kick.error", { error: String(error) }) },
         { quoted: message as WAMessage },

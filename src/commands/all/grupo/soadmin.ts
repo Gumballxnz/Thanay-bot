@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -18,12 +18,12 @@ const soadminCommand: Command = {
   category: "grupo",
   groupOnly: true,
   adminOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getGroup(from);
     const next = !config.soadmin;
     await saveGroup(from, { soadmin: next });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: next ? t("commands.soadmin.enabled") : t("commands.soadmin.disabled") },
       { quoted: message as WAMessage },

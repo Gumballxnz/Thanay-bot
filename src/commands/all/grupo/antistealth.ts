@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,11 +14,11 @@ const antistealthCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getGroup(from);
     const next = !config.antistealth;
     await saveGroup(from, { antistealth: next });
-    await misa.sendMessage(from, { text: next ? t("commands.antistealth.enabled") : t("commands.antistealth.disabled") }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: next ? t("commands.antistealth.enabled") : t("commands.antistealth.disabled") }, { quoted: message as WAMessage });
   },
 };
 

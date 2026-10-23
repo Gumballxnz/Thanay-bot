@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -34,7 +34,7 @@ function formatUptime(totalSeconds: number): string {
 
 const statusbotCommand: Command = {
   name: "statusbot",
-  aliases: ["botstatus", "statusmisa"],
+  aliases: ["botstatus", "statusthanay"],
   i18nAliases: {
     en: ["botstatus", "statusbot"],
     es: ["estadobot", "statusbot"],
@@ -43,7 +43,7 @@ const statusbotCommand: Command = {
   description: "Shows overall bot status",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const [botConfig, ownerConfig, blockedUsers, bannedGroups, storedGroups, buildInfo] = await Promise.all([
       getBotConfig(),
       getOwnerConfig(),
@@ -88,7 +88,7 @@ const statusbotCommand: Command = {
       schema: String(buildInfo.schemaVersion),
     });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: `${t("commands.statusbot.text", {
@@ -104,7 +104,7 @@ const statusbotCommand: Command = {
           bannedGroups: String(bannedGroups.length),
           groups: String(storedGroups.length),
           uptime: formatUptime(process.uptime()),
-          user: misa.user?.id || t("common.unknown"),
+          user: thanay.user?.id || t("common.unknown"),
         })}\n\n${versionSection}\n\n${metricsSection}`,
       },
       { quoted: message as WAMessage },

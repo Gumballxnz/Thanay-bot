@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -41,12 +41,12 @@ const prefixoCommand: Command = {
   description: "Updates the bot prefix or locale prefix map",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, t }) {
+  async execute({ thanay, message, from, args, t }) {
     const config = await getBotConfig();
     const quoted = { quoted: message as WAMessage };
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.prefixo.current", {
@@ -67,7 +67,7 @@ const prefixoCommand: Command = {
       const prefix = args[2]?.trim() || "";
 
       if (!localeArg || !prefix) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.prefixo.setUsage", { options: getLocaleCommandOptions() }) },
           quoted,
@@ -76,7 +76,7 @@ const prefixoCommand: Command = {
       }
 
       if (!isValidLocale(localeArg)) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.prefixo.invalidLocale", { options: getLocaleCommandOptions() }) },
           quoted,
@@ -85,14 +85,14 @@ const prefixoCommand: Command = {
       }
 
       if (!isValidPrefixSymbol(prefix)) {
-        await misa.sendMessage(from, { text: t("commands.prefixo.invalid") }, quoted);
+        await thanay.sendMessage(from, { text: t("commands.prefixo.invalid") }, quoted);
         return;
       }
 
       const map = { ...(config.prefixByLocale ?? {}) };
       const duplicate = findDuplicatePrefixLocale(map, localeArg, prefix);
       if (duplicate) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           {
             text: t("commands.prefixo.duplicate", {
@@ -109,7 +109,7 @@ const prefixoCommand: Command = {
       map[localeArg] = prefix;
       await updateBotConfig((current) => ({ ...current, prefixByLocale: map }));
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.prefixo.setOk", {
@@ -126,7 +126,7 @@ const prefixoCommand: Command = {
     if (action === "del" || action === "delete" || action === "rm") {
       const localeArg = args[1]?.toLowerCase() || "";
       if (!localeArg) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.prefixo.delUsage", { options: getLocaleCommandOptions() }) },
           quoted,
@@ -135,7 +135,7 @@ const prefixoCommand: Command = {
       }
 
       if (!isValidLocale(localeArg)) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.prefixo.invalidLocale", { options: getLocaleCommandOptions() }) },
           quoted,
@@ -145,7 +145,7 @@ const prefixoCommand: Command = {
 
       const map = { ...(config.prefixByLocale ?? {}) };
       if (!map[localeArg]) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           {
             text: t("commands.prefixo.delMissing", {
@@ -161,7 +161,7 @@ const prefixoCommand: Command = {
       delete map[localeArg];
       await updateBotConfig((current) => ({ ...current, prefixByLocale: map }));
 
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.prefixo.delOk", {
@@ -176,20 +176,20 @@ const prefixoCommand: Command = {
 
     if (action === "clear") {
       await updateBotConfig((current) => ({ ...current, prefixByLocale: {} }));
-      await misa.sendMessage(from, { text: t("commands.prefixo.clearOk") }, quoted);
+      await thanay.sendMessage(from, { text: t("commands.prefixo.clearOk") }, quoted);
       return;
     }
 
     // Legacy: prefixo <symbol>
     const prefix = args[0]?.trim() || "";
     if (!isValidPrefixSymbol(prefix)) {
-      await misa.sendMessage(from, { text: t("commands.prefixo.invalid") }, quoted);
+      await thanay.sendMessage(from, { text: t("commands.prefixo.invalid") }, quoted);
       return;
     }
 
     await updateBotConfig((current) => ({ ...current, prefix }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.prefixo.updated", { value: prefix }) },
       quoted,

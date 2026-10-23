@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { downloadMediaMessage, proto } from "baileys";
@@ -89,18 +89,18 @@ const hidetagCommand: Command = {
   category: "grupo",
   groupOnly: true,
   adminOnly: true,
-  async execute({ misa, message, from, sender, args, rawArgs, groupCache, t }) {
-    const groupMeta = await groupCache.ensure(from, misa);
+  async execute({ thanay, message, from, sender, args, rawArgs, groupCache, t }) {
+    const groupMeta = await groupCache.ensure(from, thanay);
 
     if (!groupMeta) {
-      await misa.sendMessage(from, { text: t("commands.hidetag.fetchError") });
+      await thanay.sendMessage(from, { text: t("commands.hidetag.fetchError") });
       return;
     }
 
     const mentions = groupMeta.participants.map((p) => p.id);
 
     if (mentions.length === 0) {
-      await misa.sendMessage(from, { text: t("commands.hidetag.noMembers") });
+      await thanay.sendMessage(from, { text: t("commands.hidetag.noMembers") });
       return;
     }
 
@@ -111,10 +111,10 @@ const hidetagCommand: Command = {
       try {
         assertMediaSize(media.fileLength, media.kind);
       } catch {
-        await misa.sendMessage(from, { text: t("errors.media.tooLarge") });
+        await thanay.sendMessage(from, { text: t("errors.media.tooLarge") });
         return;
       }
-      await runMediaJob({ misa, from, sender, kind: "hidetag-media", t }, async () => {
+      await runMediaJob({ thanay, from, sender, kind: "hidetag-media", t }, async () => {
         try {
           const buffer = (await downloadMediaMessage(
             media.toDownload as Parameters<typeof downloadMediaMessage>[0],
@@ -123,18 +123,18 @@ const hidetagCommand: Command = {
           )) as Buffer;
           assertMediaSize(buffer.length, media.kind);
 
-          if (media.kind === "image") await misa.sendMessage(from, { image: buffer, caption, mentions });
-          else if (media.kind === "video") await misa.sendMessage(from, { video: buffer, caption, mentions });
-          else if (media.kind === "sticker") await misa.sendMessage(from, { sticker: buffer, mentions });
+          if (media.kind === "image") await thanay.sendMessage(from, { image: buffer, caption, mentions });
+          else if (media.kind === "video") await thanay.sendMessage(from, { video: buffer, caption, mentions });
+          else if (media.kind === "sticker") await thanay.sendMessage(from, { sticker: buffer, mentions });
           else if (media.kind === "audio") {
-            await misa.sendMessage(from, {
+            await thanay.sendMessage(from, {
               audio: buffer,
               mimetype: media.mimetype || "audio/ogg; codecs=opus",
               ptt: Boolean(media.ptt),
               mentions,
             });
           } else {
-            await misa.sendMessage(from, {
+            await thanay.sendMessage(from, {
               document: buffer,
               mimetype: media.mimetype || "application/octet-stream",
               fileName: media.fileName || "file",
@@ -143,14 +143,14 @@ const hidetagCommand: Command = {
             });
           }
         } catch {
-          await misa.sendMessage(from, { text: t("commands.hidetag.mediaError") });
+          await thanay.sendMessage(from, { text: t("commands.hidetag.mediaError") });
         }
       });
       return;
     }
 
     const text = caption || t("commands.hidetag.defaultMessage");
-    await misa.sendMessage(from, { text, mentions });
+    await thanay.sendMessage(from, { text, mentions });
   },
 };
 

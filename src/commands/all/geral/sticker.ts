@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { downloadMediaMessage, WAMessage } from "baileys";
@@ -23,26 +23,26 @@ export function createStickerCommand(
     aliases,
     description: "Creates a sticker from a photo or video",
     category: "geral",
-    async execute({ misa, message, from, sender, t }) {
+    async execute({ thanay, message, from, sender, t }) {
       const quoted = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
       const imageMessage = message.message?.imageMessage ?? quoted?.imageMessage ?? null;
       const videoMessage = message.message?.videoMessage ?? quoted?.videoMessage ?? null;
 
       if (!imageMessage && !videoMessage) {
-        await misa.sendMessage(from, { text: t(usageKey) }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: t(usageKey) }, { quoted: message as WAMessage });
         return;
       }
 
       if (videoMessage && (videoMessage.seconds ?? 0) > MAX_VIDEO_SECONDS) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.sticker.videoTooLong", { max: String(MAX_VIDEO_SECONDS) }) },
           { quoted: message as WAMessage },
         );
         return;
       }
-      await runMediaJob({ misa, from, sender, kind: "sticker", t }, async (signal) => {
-        await misa.sendMessage(from, { text: t("commands.sticker.creating") }, { quoted: message as WAMessage });
+      await runMediaJob({ thanay, from, sender, kind: "sticker", t }, async (signal) => {
+        await thanay.sendMessage(from, { text: t("commands.sticker.creating") }, { quoted: message as WAMessage });
         try {
           assertMediaSize(imageMessage?.fileLength ?? videoMessage?.fileLength, videoMessage ? "video" : "image");
           const sourceIsDirectMedia = imageMessage ? Boolean(message.message?.imageMessage) : Boolean(message.message?.videoMessage);
@@ -55,7 +55,7 @@ export function createStickerCommand(
           assertMediaSize(mediaBuffer.length, videoMessage ? "video" : "image");
           const config = await getBotConfig();
         await sendSticker(
-          misa,
+          thanay,
           from,
           {
             sticker: mediaBuffer,
@@ -68,7 +68,7 @@ export function createStickerCommand(
           { quoted: message as WAMessage },
         );
         } catch (error) {
-          await misa.sendMessage(from, {
+          await thanay.sendMessage(from, {
             text: t("commands.sticker.error", {
               message: localizeError(error, t, "commands.sticker.unknown"),
             }),

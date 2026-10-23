@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -15,11 +15,11 @@ const promoteCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const targetJid = extractTargetUserJid(message);
     
     if (!targetJid) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.promote.noMention") },
         { quoted: message as WAMessage },
@@ -27,9 +27,9 @@ const promoteCommand: Command = {
       return;
     }
 
-    const userToPromote = await toLID(targetJid, misa);
+    const userToPromote = await toLID(targetJid, thanay);
     if (!userToPromote) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.promote.lidFailed") },
         { quoted: message as WAMessage },
@@ -38,9 +38,9 @@ const promoteCommand: Command = {
     }
 
     try {
-      await misa.groupParticipantsUpdate(from, [userToPromote], "promote");
+      await thanay.groupParticipantsUpdate(from, [userToPromote], "promote");
       
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.promote.success"),
@@ -48,7 +48,7 @@ const promoteCommand: Command = {
         { quoted: message as WAMessage },
       );
     } catch (error) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.promote.error", { error: String(error) }) },
         { quoted: message as WAMessage },

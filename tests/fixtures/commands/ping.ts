@@ -9,8 +9,8 @@ const pingCommand: Command = {
   },
   description: "Ping command for tests",
   category: "all",
-  async execute({ misa, from }) {
-    await misa.sendMessage(from, { text: "pong" });
+  async execute({ thanay, from }) {
+    await thanay.sendMessage(from, { text: "pong" });
   },
 };
 

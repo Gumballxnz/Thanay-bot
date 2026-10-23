@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,11 +12,11 @@ const listbangpCommand: Command = {
   description: "Lists groups where the bot is blocked",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t, locale }) {
+  async execute({ thanay, message, from, t, locale }) {
     const groups = await listBannedGroups();
 
     if (groups.length === 0) {
-      await misa.sendMessage(from, { text: t("commands.listbangp.empty") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.listbangp.empty") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -33,7 +33,7 @@ const listbangpCommand: Command = {
       ].join("\n");
     });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.listbangp.header", { total: String(groups.length), items: lines.join("\n│\n") }) },
       { quoted: message as WAMessage },

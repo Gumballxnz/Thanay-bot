@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -28,7 +28,7 @@ const menuBrincadeiraCommand: Command = {
   description: "Shows fun/game commands (requires fun mode)",
   category: "geral",
   groupOnly: true,
-  async execute({ misa, message, from, prefix, t }) {
+  async execute({ thanay, message, from, prefix, t }) {
     const config = await getBotConfig();
 
     const malePercent = MALE_PERCENT_TRAITS.map((trait) => trait.name);
@@ -38,7 +38,7 @@ const menuBrincadeiraCommand: Command = {
     const interactions = INTERACTION_ACTIONS.map((trait) => trait.name);
 
     await sendMenu(
-      misa,
+      thanay,
       from,
       [
         t("commands.menu.mainTitle", { botName: config.botName }),

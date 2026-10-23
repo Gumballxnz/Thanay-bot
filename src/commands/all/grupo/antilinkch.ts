@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -16,14 +16,14 @@ const antilinkchCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, args, rawArgs, t, locale }) {
+  async execute({ thanay, message, from, args, rawArgs, t, locale }) {
     const config = await getGroup(from);
     const words = getLocalizedCommandWordVars(locale);
 
     if (args.length === 0) {
       const novoEstado = !config.antilinkch.ativo;
       await saveGroup(from, { antilinkch: { ...config.antilinkch, ativo: novoEstado } });
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: novoEstado
@@ -40,7 +40,7 @@ const antilinkchCommand: Command = {
     if (action === "punicao") {
       const punicao = resolveLocalizedToken(locale, args[1], ["delete", "ban"]) as AntiLinkPunicao | null;
       if (punicao !== "apagar" && punicao !== "banir") {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.antilinkch.invalidPunishment", words) },
           { quoted: message as WAMessage },
@@ -49,7 +49,7 @@ const antilinkchCommand: Command = {
       }
 
       await saveGroup(from, { antilinkch: { ...config.antilinkch, punicao } });
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.antilinkch.punishmentUpdated", { value: words[punicao === "apagar" ? "delete" : "ban"] }) },
         { quoted: message as WAMessage },
@@ -59,7 +59,7 @@ const antilinkchCommand: Command = {
 
     if (action === "texto") {
       if (args.length === 1) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           {
             text: t("commands.antilinkch.textHeader", {
@@ -75,7 +75,7 @@ const antilinkchCommand: Command = {
 
       const texto = textAfterTokens(rawArgs, 1);
       await saveGroup(from, { antilinkch: { ...config.antilinkch, texto } });
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.antilinkch.textUpdated", { text: texto }) },
         { quoted: message as WAMessage },
@@ -83,7 +83,7 @@ const antilinkchCommand: Command = {
       return;
     }
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: t("commands.antilinkch.usage", words),

@@ -3,7 +3,7 @@ import assert from "node:assert";
 import evalCommand, { MAX_CODE_LENGTH } from "../src/commands/all/dono/eval.js";
 import { clearLocaleCache, createTranslator } from "../src/i18n/index.js";
 
-function createMockMisa() {
+function createMockThanay() {
   const messages: Array<{ jid: string; content: unknown }> = [];
   return {
     messages,
@@ -13,7 +13,7 @@ function createMockMisa() {
   };
 }
 
-function getLastText(messages: ReturnType<typeof createMockMisa>["messages"]): string {
+function getLastText(messages: ReturnType<typeof createMockThanay>["messages"]): string {
   const last = messages.at(-1);
   if (!last) return "";
   if (typeof last.content === "object" && last.content !== null && "text" in last.content) {
@@ -29,15 +29,15 @@ function createMockMessage() {
   } as unknown as import("baileys").proto.IWebMessageInfo;
 }
 
-async function runEval(args: string[]): Promise<{ messages: ReturnType<typeof createMockMisa>["messages"] }> {
-  const misa = createMockMisa();
+async function runEval(args: string[]): Promise<{ messages: ReturnType<typeof createMockThanay>["messages"] }> {
+  const thanay = createMockThanay();
   const message = createMockMessage();
   const t = createTranslator("pt");
   const rawArgs = args.join(" ");
 
   await evalCommand.execute({
-    thanay: misa as unknown as import("baileys").WASocket,
-    misa: misa as unknown as import("baileys").WASocket,
+    thanay: thanay as unknown as import("baileys").WASocket,
+
     message,
     args,
     rawArgs,
@@ -59,7 +59,7 @@ async function runEval(args: string[]): Promise<{ messages: ReturnType<typeof cr
     t,
   });
 
-  return { messages: misa.messages };
+  return { messages: thanay.messages };
 }
 
 describe("eval command sandbox", () => {
@@ -72,7 +72,7 @@ describe("eval command sandbox", () => {
     assert.ok(getLastText(messages).includes("4"));
   });
 
-  it("exposes thanay and misa in sandbox context", async () => {
+  it("exposes thanay in sandbox context", async () => {
     const { messages } = await runEval(["return", "await", "thanay.sendMessage('test', { text: 'ok' })"]);
     assert.ok(messages.length >= 1);
     assert.ok(getLastText(messages).includes("ok") || messages.some((m) => JSON.stringify(m).includes("ok")));

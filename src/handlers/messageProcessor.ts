@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
@@ -44,7 +44,7 @@ export function parseCommandInput(body: string, prefix: string): ParsedCommandIn
 
 type AuthorizationInput = {
   command: Command;
-  misa: WASocket;
+  thanay: WASocket;
   from: string;
   isGroup: boolean;
   userIsOwner: boolean;
@@ -56,17 +56,17 @@ type AuthorizationInput = {
 };
 
 export async function authorizeCommand(input: AuthorizationInput): Promise<boolean> {
-  const { command, misa, from, isGroup, userIsOwner, groupAdminOnly, t } = input;
+  const { command, thanay, from, isGroup, userIsOwner, groupAdminOnly, t } = input;
   if (command.ownerOnly && !userIsOwner) {
-    await misa.sendMessage(from, { text: t("errors.ownerOnly") });
+    await thanay.sendMessage(from, { text: t("errors.ownerOnly") });
     return false;
   }
   if (command.groupOnly && !isGroup) {
-    await misa.sendMessage(from, { text: t("errors.groupOnly") });
+    await thanay.sendMessage(from, { text: t("errors.groupOnly") });
     return false;
   }
   if (command.privateOnly && isGroup) {
-    await misa.sendMessage(from, { text: t("errors.privateOnly") });
+    await thanay.sendMessage(from, { text: t("errors.privateOnly") });
     return false;
   }
 
@@ -77,26 +77,26 @@ export async function authorizeCommand(input: AuthorizationInput): Promise<boole
   ]);
 
   if (command.adminOnly && isGroup && !userAdmin && !userIsOwner) {
-    await misa.sendMessage(from, { text: t("errors.adminOnly") });
+    await thanay.sendMessage(from, { text: t("errors.adminOnly") });
     return false;
   }
   if (isGroup && groupAdminOnly && !userIsOwner && !userAdmin) {
-    await misa.sendMessage(from, { text: t("errors.groupCommandsAdminOnly") });
+    await thanay.sendMessage(from, { text: t("errors.groupCommandsAdminOnly") });
     return false;
   }
   if (command.botAdminRequired && isGroup && !botAdmin) {
-    await misa.sendMessage(from, { text: t("errors.botAdminRequired") });
+    await thanay.sendMessage(from, { text: t("errors.botAdminRequired") });
     return false;
   }
   if (!userIsOwner && blocked) {
-    await misa.sendMessage(from, { text: t("errors.commandBlocked") });
+    await thanay.sendMessage(from, { text: t("errors.commandBlocked") });
     return false;
   }
   return true;
 }
 
 export async function processMessage(
-  misa: WASocket,
+  thanay: WASocket,
   commandHandler: CommandHandler,
   message: proto.IWebMessageInfo,
 ): Promise<void> {
@@ -115,7 +115,7 @@ export async function processMessage(
   const sessionLocale = groupConfig?.language ?? runtimeConfig.language;
 
   const rawSender = (isGroup ? key.participant : key.remoteJid) || "";
-  const senderLID = rawSender ? await toLID(rawSender, misa) : null;
+  const senderLID = rawSender ? await toLID(rawSender, thanay) : null;
 
   if (!senderLID) {
     const tGlobal = createTranslator(runtimeConfig.language || "pt");
@@ -130,13 +130,13 @@ export async function processMessage(
   const userIsOwner = isOwnerFromConfig(sender, runtimeConfig);
   let userAdmin: Promise<boolean> | undefined;
   let botAdmin: Promise<boolean> | undefined;
-  const getUserAdmin = () => userAdmin ??= isAdmin(from, sender, misa);
-  const getBotAdmin = () => botAdmin ??= isBotAdmin(from, misa);
+  const getUserAdmin = () => userAdmin ??= isAdmin(from, sender, thanay);
+  const getBotAdmin = () => botAdmin ??= isBotAdmin(from, thanay);
 
   if (!message.message) {
     if (isGroup && !userIsOwner) {
       if (!(await getUserAdmin()) && await getBotAdmin()) {
-        await applyAntiStealth(misa, message, from, sender, sessionLocale);
+        await applyAntiStealth(thanay, message, from, sender, sessionLocale);
       }
     }
     return;
@@ -173,12 +173,12 @@ export async function processMessage(
       : await Promise.all([getUserAdmin(), getBotAdmin()]);
 
     if (!userIsOwner && !currentUserAdmin && currentBotAdmin) {
-      const blockedMedia = await applyMediaRestriction(misa, message, from, sender, sessionLocale);
+      const blockedMedia = await applyMediaRestriction(thanay, message, from, sender, sessionLocale);
       if (blockedMedia) return;
     }
 
     if (!isCommandMessage && !userIsOwner && !currentUserAdmin && currentBotAdmin) {
-      const handled = await applyAntiLink(misa, message, from, sender, sessionLocale);
+      const handled = await applyAntiLink(thanay, message, from, sender, sessionLocale);
       if (handled) return;
     }
   }
@@ -187,7 +187,7 @@ export async function processMessage(
     const sessionT = createTranslator(sessionLocale);
     const activityT = createTranslator(runtimeConfig.language || "pt");
     logMessageActivity({ message, from, sender, isGroup, body, t: activityT });
-    await tryHandleApkReply({ misa, from, sender, body, message, t: sessionT });
+    await tryHandleApkReply({ thanay, from, sender, body, message, t: sessionT });
     return;
   }
 
@@ -200,14 +200,14 @@ export async function processMessage(
 
   if (!command) {
     const similar = findSimilarCommand(commandName, commandHandler.listNames());
-    await sendUnknownCommandMessage(misa, from, sender, prefix, commandName, similar, message, locale);
+    await sendUnknownCommandMessage(thanay, from, sender, prefix, commandName, similar, message, locale);
     return;
   }
 
   metrics.startCommand();
   const authorized = await authorizeCommand({
     command,
-    misa,
+    thanay,
     from,
     isGroup,
     userIsOwner,
@@ -227,8 +227,8 @@ export async function processMessage(
     const activityT = createTranslator(runtimeConfig.language || "pt");
     logCommandActivity({ message, from, sender, isGroup, prefix, commandName, args, t: activityT });
     await command.execute({
-      thanay: misa,
-      misa,
+
+      thanay,
       message,
       args,
       rawArgs,
@@ -249,6 +249,6 @@ export async function processMessage(
   } catch (error) {
     metrics.recordCommand(command.name, "failure", Date.now() - commandStartedAt);
     log.error("COMMAND", cmdTranslator("logs.commandError", { commandName }), error);
-    await misa.sendMessage(from, { text: cmdTranslator("errors.commandExecution") });
+    await thanay.sendMessage(from, { text: cmdTranslator("errors.commandExecution") });
   }
 }

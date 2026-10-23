@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
@@ -53,7 +53,7 @@ function detectAntiLink(body: string, config: GroupData): AntiLinkMatch | null {
 }
 
 export async function applyAntiLink(
-  misa: WASocket,
+  thanay: WASocket,
   message: proto.IWebMessageInfo,
   groupId: string,
   sender: string,
@@ -72,7 +72,7 @@ export async function applyAntiLink(
   const matched = detectAntiLink(body, config);
   if (!matched) return false;
 
-  const groupMeta = await misa.groupMetadata(groupId).catch(() => null);
+  const groupMeta = await thanay.groupMetadata(groupId).catch(() => null);
   const nome = getDisplayName(message);
   const { t } = await import("../i18n/index.js");
   const grupo = groupMeta?.subject ?? t("common.none", locale);
@@ -100,7 +100,7 @@ export async function applyAntiLink(
 
   if (message.key) {
     try {
-      await misa.sendMessage(groupId, { delete: message.key });
+      await thanay.sendMessage(groupId, { delete: message.key });
     } catch (error) {
       log.warn("ANTILINK", t("logs.antilinkDeleteFailed", locale, { groupId, error: String(error) }));
     }
@@ -108,12 +108,12 @@ export async function applyAntiLink(
 
   if (antiConfig.punicao === "banir") {
     try {
-      await misa.groupParticipantsUpdate(groupId, [sender], "remove");
+      await thanay.groupParticipantsUpdate(groupId, [sender], "remove");
     } catch (error) {
       log.warn("ANTILINK", t("logs.antilinkBanFailed", locale, { sender, groupId, error: String(error) }));
     }
   }
 
-  await misa.sendMessage(groupId, { text: texto, mentions: [sender] });
+  await thanay.sendMessage(groupId, { text: texto, mentions: [sender] });
   return true;
 }

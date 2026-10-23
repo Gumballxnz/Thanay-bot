@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -26,7 +26,7 @@ async function ensureFunMode(ctx: CommandContext): Promise<boolean> {
   const group = await getGroup(ctx.from);
   if (group.modobn) return true;
 
-  await ctx.misa.sendMessage(
+  await ctx.thanay.sendMessage(
     ctx.from,
     { text: ctx.t("commands.fun.modobnRequired") },
     { quoted: ctx.message as WAMessage },
@@ -37,12 +37,12 @@ async function ensureFunMode(ctx: CommandContext): Promise<boolean> {
 async function resolveTarget(ctx: CommandContext): Promise<string> {
   const selected = extractTargetUserJid(ctx.message);
   if (!selected) return ctx.sender;
-  return (await toLID(selected, ctx.misa)) || ctx.sender;
+  return (await toLID(selected, ctx.thanay)) || ctx.sender;
 }
 
 async function resolveInteractionTarget(ctx: CommandContext): Promise<string | null> {
   const selected = extractTargetUserJid(ctx.message);
-  if (selected) return (await toLID(selected, ctx.misa)) || selected;
+  if (selected) return (await toLID(selected, ctx.thanay)) || selected;
 
   return null;
 }
@@ -58,7 +58,7 @@ async function sendFunCaption(
   const quoted = { quoted: ctx.message as WAMessage };
 
   if (media?.type === "image") {
-    await ctx.misa.sendMessage(
+    await ctx.thanay.sendMessage(
       ctx.from,
       { image: media.buffer, caption, mentions },
       quoted,
@@ -67,7 +67,7 @@ async function sendFunCaption(
   }
 
   if (media?.type === "video") {
-    await ctx.misa.sendMessage(
+    await ctx.thanay.sendMessage(
       ctx.from,
       { video: media.buffer, caption, mentions, gifPlayback: true },
       quoted,
@@ -75,7 +75,7 @@ async function sendFunCaption(
     return;
   }
 
-  await ctx.misa.sendMessage(ctx.from, { text: caption, mentions }, quoted);
+  await ctx.thanay.sendMessage(ctx.from, { text: caption, mentions }, quoted);
 }
 
 function createPercentCommand(trait: FunTrait): Command {
@@ -113,13 +113,13 @@ function createRankCommand(trait: FunTrait): Command {
     async execute(ctx) {
       if (!(await ensureFunMode(ctx))) return;
 
-      const meta = await ctx.misa.groupMetadata(ctx.from).catch(() => null);
+      const meta = await ctx.thanay.groupMetadata(ctx.from).catch(() => null);
       const members = (meta?.participants ?? [])
         .map((p) => p.id)
         .filter((id): id is string => Boolean(id));
 
       if (members.length < FUN_RANK_MIN_MEMBERS) {
-        await ctx.misa.sendMessage(
+        await ctx.thanay.sendMessage(
           ctx.from,
           { text: ctx.t("commands.fun.rankNotEnough", { min: String(FUN_RANK_MIN_MEMBERS) }) },
           { quoted: ctx.message as WAMessage },
@@ -160,7 +160,7 @@ function createInteractionCommand(action: FunTrait): Command {
 
       const target = await resolveInteractionTarget(ctx);
       if (!target) {
-        await ctx.misa.sendMessage(
+        await ctx.thanay.sendMessage(
           ctx.from,
           { text: ctx.t("commands.fun.interactionUsage", { command: action.name }) },
           { quoted: ctx.message as WAMessage },
@@ -169,7 +169,7 @@ function createInteractionCommand(action: FunTrait): Command {
       }
 
       if (target === ctx.sender) {
-        await ctx.misa.sendMessage(
+        await ctx.thanay.sendMessage(
           ctx.from,
           { text: ctx.t("commands.fun.interactionSelf") },
           { quoted: ctx.message as WAMessage },

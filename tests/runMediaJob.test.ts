@@ -6,12 +6,12 @@ import { runMediaJob } from "../src/media/runMediaJob.js";
 
 function context() {
   const sent: string[] = [];
-  const misa = {
+  const thanay = {
     sendMessage: async (_from: string, content: { text?: string }) => { sent.push(content.text ?? ""); },
   } as unknown as WASocket;
   return {
     sent,
-    value: { misa, from: "chat", sender: "user", kind: "test", t: (key: string, vars?: Record<string, string>) => `${key}:${vars?.position ?? ""}` },
+    value: { thanay, from: "chat", sender: "user", kind: "test", t: (key: string, vars?: Record<string, string>) => `${key}:${vars?.position ?? ""}` },
   };
 }
 

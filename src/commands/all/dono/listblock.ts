@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -13,11 +13,11 @@ const listblockCommand: Command = {
   description: "Lists users blocked on the bot",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t, locale }) {
+  async execute({ thanay, message, from, t, locale }) {
     const users = await cleanupExpiredBlockedUsers();
 
     if (users.length === 0) {
-      await misa.sendMessage(from, { text: t("commands.listblock.empty") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.listblock.empty") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -30,7 +30,7 @@ const listblockCommand: Command = {
       ].join("\n");
     });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.listblock.header", { total: String(users.length), items: lines.join("\n│\n") }) },
       { quoted: message as WAMessage },

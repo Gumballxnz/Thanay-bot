@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { GroupMetadata, GroupParticipant, ParticipantAction, WASocket } from "baileys";
@@ -54,20 +54,20 @@ class GroupCache {
     }
   }
 
-  private async normalizeParticipant(participant: GroupParticipant, misa: WASocket): Promise<GroupParticipant | null> {
-    const lid = await toLID(participant.id, misa);
+  private async normalizeParticipant(participant: GroupParticipant, thanay: WASocket): Promise<GroupParticipant | null> {
+    const lid = await toLID(participant.id, thanay);
     if (!lid) return null;
 
     return { ...participant, id: lid };
   }
 
-  private async normalizeParticipants(participants: GroupParticipant[], misa: WASocket): Promise<GroupParticipant[]> {
-    const normalized = await Promise.all(participants.map((participant) => this.normalizeParticipant(participant, misa)));
+  private async normalizeParticipants(participants: GroupParticipant[], thanay: WASocket): Promise<GroupParticipant[]> {
+    const normalized = await Promise.all(participants.map((participant) => this.normalizeParticipant(participant, thanay)));
     return normalized.filter((participant): participant is GroupParticipant => participant !== null);
   }
 
-  async set(data: GroupMetadata, misa: WASocket): Promise<void> {
-    const participants = await this.normalizeParticipants(data.participants, misa);
+  async set(data: GroupMetadata, thanay: WASocket): Promise<void> {
+    const participants = await this.normalizeParticipants(data.participants, thanay);
     this.put(data.id, { ...data, participants });
   }
 
@@ -88,22 +88,22 @@ class GroupCache {
     this.lastAccess.clear();
   }
 
-  async patch(id: string, partial: Partial<GroupMetadata>, misa: WASocket): Promise<void> {
+  async patch(id: string, partial: Partial<GroupMetadata>, thanay: WASocket): Promise<void> {
     const existing = this.cache.get(id);
     if (existing) {
       const participants = partial.participants
-        ? await this.normalizeParticipants(partial.participants, misa)
+        ? await this.normalizeParticipants(partial.participants, thanay)
         : existing.participants;
 
       this.put(id, { ...existing, ...partial, participants });
     }
   }
 
-  async updateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, misa: WASocket): Promise<void> {
+  async updateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, thanay: WASocket): Promise<void> {
     const group = this.cache.get(id);
     if (!group) return;
 
-    const normalizedParticipants = await this.normalizeParticipants(participants, misa);
+    const normalizedParticipants = await this.normalizeParticipants(participants, thanay);
     let updated = [...group.participants];
 
     if (action === "add") {
@@ -126,15 +126,15 @@ class GroupCache {
     this.put(id, { ...group, participants: updated });
   }
 
-  async ensure(id: string, misa: WASocket): Promise<GroupMetadata | undefined> {
+  async ensure(id: string, thanay: WASocket): Promise<GroupMetadata | undefined> {
     const cached = this.get(id);
     if (cached) return cached;
     const existing = this.inflight.get(id);
     if (existing) return existing;
     const loading = (async () => {
       try {
-        const meta = await misa.groupMetadata(id);
-        await this.set(meta, misa);
+        const meta = await thanay.groupMetadata(id);
+        await this.set(meta, thanay);
         return this.get(id);
       } catch {
         return undefined;
@@ -146,43 +146,43 @@ class GroupCache {
     return loading;
   }
 
-  async ensureAndPatch(id: string, partial: Partial<GroupMetadata>, misa: WASocket): Promise<void> {
-    await this.ensure(id, misa);
-    await this.patch(id, partial, misa);
+  async ensureAndPatch(id: string, partial: Partial<GroupMetadata>, thanay: WASocket): Promise<void> {
+    await this.ensure(id, thanay);
+    await this.patch(id, partial, thanay);
   }
 
-  async ensureAndUpdateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, misa: WASocket): Promise<void> {
-    await this.ensure(id, misa);
-    await this.updateParticipants(id, participants, action, misa);
+  async ensureAndUpdateParticipants(id: string, participants: GroupParticipant[], action: ParticipantAction, thanay: WASocket): Promise<void> {
+    await this.ensure(id, thanay);
+    await this.updateParticipants(id, participants, action, thanay);
   }
 
-  registerEvents(misa: WASocket): () => void {
+  registerEvents(thanay: WASocket): () => void {
     const onGroupsUpsert = (groups: GroupMetadata[]) => {
-      for (const group of groups) void this.set(group, misa).catch(() => undefined);
+      for (const group of groups) void this.set(group, thanay).catch(() => undefined);
     };
 
-    const onGroupsUpdate: Parameters<Parameters<typeof misa.ev.on<"groups.update">>[1]>[0] extends infer T
+    const onGroupsUpdate: Parameters<Parameters<typeof thanay.ev.on<"groups.update">>[1]>[0] extends infer T
       ? (updates: T) => void
       : never = (updates) => {
       for (const update of updates) {
-        if (update.id) void this.ensureAndPatch(update.id, update, misa).catch(() => undefined);
+        if (update.id) void this.ensureAndPatch(update.id, update, thanay).catch(() => undefined);
       }
     };
 
-    const onParticipantsUpdate: Parameters<Parameters<typeof misa.ev.on<"group-participants.update">>[1]>[0] extends infer T
+    const onParticipantsUpdate: Parameters<Parameters<typeof thanay.ev.on<"group-participants.update">>[1]>[0] extends infer T
       ? (update: T) => void
       : never = ({ id, participants, action }) => {
-      void this.ensureAndUpdateParticipants(id, participants, action, misa).catch(() => undefined);
+      void this.ensureAndUpdateParticipants(id, participants, action, thanay).catch(() => undefined);
     };
 
-    misa.ev.on("groups.upsert", onGroupsUpsert);
-    misa.ev.on("groups.update", onGroupsUpdate);
-    misa.ev.on("group-participants.update", onParticipantsUpdate);
+    thanay.ev.on("groups.upsert", onGroupsUpsert);
+    thanay.ev.on("groups.update", onGroupsUpdate);
+    thanay.ev.on("group-participants.update", onParticipantsUpdate);
 
     return () => {
-      misa.ev.off("groups.upsert", onGroupsUpsert);
-      misa.ev.off("groups.update", onGroupsUpdate);
-      misa.ev.off("group-participants.update", onParticipantsUpdate);
+      thanay.ev.off("groups.upsert", onGroupsUpsert);
+      thanay.ev.off("groups.update", onGroupsUpdate);
+      thanay.ev.off("group-participants.update", onParticipantsUpdate);
     };
   }
 }

@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,12 +14,12 @@ const bemvindoCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     const config = await getGroup(from);
     const novoEstado = !config.bemvindo.ativo;
     await saveGroup(from, { bemvindo: { ...config.bemvindo, ativo: novoEstado } });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: novoEstado ? t("commands.bemvindo.enabled") : t("commands.bemvindo.disabled") },
       { quoted: message as WAMessage },

@@ -69,14 +69,14 @@ describe("target user resolution", () => {
   ] as const) {
     it(`${command.name} accepts a replied message`, async () => {
       const updates: Array<{ ids: string[]; action: string }> = [];
-      const misa = {
+      const thanay = {
         groupParticipantsUpdate: async (_group: string, ids: string[], updateAction: string) => {
           updates.push({ ids, action: updateAction });
         },
         sendMessage: async () => undefined,
       } as unknown as WASocket;
       await command.execute({
-        misa,
+        thanay,
         message: quotedMessage(),
         from: "group@g.us",
         t: (key: string) => key,

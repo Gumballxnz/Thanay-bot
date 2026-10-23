@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -14,9 +14,9 @@ const instagramCommand: Command = {
   aliases: ["ig", "insta"],
   description: "Downloads Instagram photos and videos",
   category: "all",
-  async execute({ misa, message, from, sender, args, t }) {
+  async execute({ thanay, message, from, sender, args, t }) {
     if (args.length === 0) {
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         text: t("commands.instagram.usage"),
       });
       return;
@@ -25,21 +25,21 @@ const instagramCommand: Command = {
     const url = args[0];
 
     if (!isValidInstagramURL(url)) {
-      await misa.sendMessage(from, { text: t("commands.instagram.invalidUrl") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.instagram.invalidUrl") }, { quoted: message as WAMessage });
       return;
     }
 
-    await runMediaJob({ misa, from, sender, kind: "instagram", t }, async (signal) => {
-      await misa.sendMessage(from, { text: t("commands.instagram.downloading") }, { quoted: message as WAMessage });
+    await runMediaJob({ thanay, from, sender, kind: "instagram", t }, async (signal) => {
+      await thanay.sendMessage(from, { text: t("commands.instagram.downloading") }, { quoted: message as WAMessage });
       try {
         const data = await downloadInstagram(url, { signal });
 
         if (data.count === 0) {
-          await misa.sendMessage(from, { text: t("commands.instagram.downloadFailed") }, { quoted: message as WAMessage });
+          await thanay.sendMessage(from, { text: t("commands.instagram.downloadFailed") }, { quoted: message as WAMessage });
           return;
         }
 
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           text: t("commands.instagram.sending", {
             count: String(data.count),
             fileWord: data.count === 1 ? t("common.file") : t("common.files"),
@@ -52,7 +52,7 @@ const instagramCommand: Command = {
           const caption = i === 0 ? t("commands.instagram.done") : undefined;
           try {
             const isImage = local.contentType.startsWith("image/");
-            await misa.sendMessage(from, isImage
+            await thanay.sendMessage(from, isImage
               ? { image: { url: local.path }, caption }
               : { video: { url: local.path }, caption }, { quoted: message as WAMessage });
           } finally {
@@ -60,7 +60,7 @@ const instagramCommand: Command = {
           }
         }
       } catch (error) {
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           text: t("commands.instagram.error", { message: localizeError(error, t, "commands.instagram.unknown") }),
         }, { quoted: message as WAMessage });
       }

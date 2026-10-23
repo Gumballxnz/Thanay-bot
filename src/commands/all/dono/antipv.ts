@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -17,13 +17,13 @@ const antipvCommand: Command = {
   description: "Enables or disables the bot in private chats for non-owners",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, t }) {
+  async execute({ thanay, message, from, t }) {
     let next = false;
     await updateOwnerConfig((config) => {
       next = !config.antiPrivate;
       return { ...config, antiPrivate: next };
     });
-    await misa.sendMessage(from, { text: next ? t("commands.antipv.enabled") : t("commands.antipv.disabled") }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: next ? t("commands.antipv.enabled") : t("commands.antipv.disabled") }, { quoted: message as WAMessage });
   },
 };
 

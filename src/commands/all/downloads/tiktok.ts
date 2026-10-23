@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -15,7 +15,7 @@ import { downloadToTemp } from "../../../media/downloadToTemp.js";
 import { runMediaJob } from "../../../media/runMediaJob.js";
 
 async function sendTiktokResult(
-  misa: import("baileys").WASocket,
+  thanay: import("baileys").WASocket,
   from: string,
   message: WAMessage,
   data: TiktokDownloadResult,
@@ -26,7 +26,7 @@ async function sendTiktokResult(
     for (let i = 0; i < data.urls.length; i++) {
       const media = await downloadToTemp({ url: data.urls[i], kind: "image", signal });
       try {
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           image: { url: media.path },
           caption: i === 0 ? caption : undefined,
         }, { quoted: message });
@@ -37,7 +37,7 @@ async function sendTiktokResult(
   } else if (data.urls[0]) {
     const media = await downloadToTemp({ url: data.urls[0], kind: "video", signal });
     try {
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         video: { url: media.path },
         caption,
       }, { quoted: message });
@@ -49,7 +49,7 @@ async function sendTiktokResult(
   if (data.audio) {
     const media = await downloadToTemp({ url: data.audio, kind: "audio", signal });
     try {
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         audio: { url: media.path },
         mimetype: "audio/mpeg",
       }, { quoted: message });
@@ -64,41 +64,41 @@ const tiktokCommand: Command = {
   aliases: ["ttk", "tt"],
   description: "Downloads TikTok videos or searches by term",
   category: "all",
-  async execute({ misa, message, from, sender, args, rawArgs, t }) {
+  async execute({ thanay, message, from, sender, args, rawArgs, t }) {
     if (args.length === 0) {
-      await misa.sendMessage(from, {
+      await thanay.sendMessage(from, {
         text: t("commands.tiktok.usage"),
       });
       return;
     }
 
     const input = rawArgs;
-    await runMediaJob({ misa, from, sender, kind: "tiktok", t }, async (signal) => {
+    await runMediaJob({ thanay, from, sender, kind: "tiktok", t }, async (signal) => {
       if (isValidTiktokURL(input)) {
-        await misa.sendMessage(from, { text: t("commands.tiktok.downloading") }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: t("commands.tiktok.downloading") }, { quoted: message as WAMessage });
         try {
           const data = await downloadTiktok(input, { signal });
           const caption = `🎵 *${data.title}*\n\n${t("commands.tiktok.downloadDone")}`;
-          await sendTiktokResult(misa, from, message as WAMessage, data, caption, signal);
+          await sendTiktokResult(thanay, from, message as WAMessage, data, caption, signal);
         } catch (error) {
-          await misa.sendMessage(from, {
+          await thanay.sendMessage(from, {
             text: t("commands.tiktok.error", { message: localizeError(error, t, "commands.tiktok.unknown") }),
           }, { quoted: message as WAMessage });
         }
         return;
       }
 
-      await misa.sendMessage(from, { text: t("commands.tiktok.searching") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.tiktok.searching") }, { quoted: message as WAMessage });
       try {
         const data = await searchTiktok(input, { signal });
-        await misa.sendMessage(from, { text: t("commands.tiktok.found", { title: data.title }) }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: t("commands.tiktok.found", { title: data.title }) }, { quoted: message as WAMessage });
         const caption = `🎵 *${data.title}*\n\n${t("commands.tiktok.searchCaption", { query: input })}`;
-        await sendTiktokResult(misa, from, message as WAMessage, data, caption, signal);
+        await sendTiktokResult(thanay, from, message as WAMessage, data, caption, signal);
       } catch (error) {
         const messageText = isErrorCode(error, ErrorCode.DOWNLOAD_NOT_FOUND)
           ? t("commands.tiktok.notFound")
           : t("commands.tiktok.error", { message: localizeError(error, t, "commands.tiktok.unknown") });
-        await misa.sendMessage(from, { text: messageText }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: messageText }, { quoted: message as WAMessage });
       }
     });
   },

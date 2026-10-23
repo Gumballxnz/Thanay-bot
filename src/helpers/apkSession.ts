@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import type { ModyoloAppInfo, ModyoloSearchResult, ModyoloVersion } from "./modyoloDownload.js";

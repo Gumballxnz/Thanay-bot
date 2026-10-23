@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -22,12 +22,12 @@ const idiomaCommand: Command = {
   description: "Changes the bot's global language",
   category: "all",
   ownerOnly: true,
-  async execute({ misa, message, from, args, t, locale }) {
+  async execute({ thanay, message, from, args, t, locale }) {
     const config = await getBotConfig();
     const words = getLocalizedCommandWordVars(locale);
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.idioma.current", { ...words, language: getLocaleLabel(config.language), options: getLocaleCommandOptions() }) },
         { quoted: message as WAMessage },
@@ -38,7 +38,7 @@ const idiomaCommand: Command = {
     const newLang = args[0].toLowerCase();
 
     if (!isValidLocale(newLang)) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.idioma.invalid", { ...words, optionsList: getLocaleDisplayList(), options: getLocaleCommandOptions() }) },
         { quoted: message as WAMessage },
@@ -48,7 +48,7 @@ const idiomaCommand: Command = {
 
     await updateBotConfig((current) => ({ ...current, language: newLang }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: createTranslator(newLang)("commands.idioma.updated", { language: getLocaleLabel(newLang) }) },
       { quoted: message as WAMessage },

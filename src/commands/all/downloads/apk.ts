@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -25,11 +25,11 @@ const apkCommand: Command = {
   },
   description: "Downloads a modified APK from Modyolo",
   category: "all",
-  async execute({ misa, message, from, sender, args, rawArgs, prefix, t }) {
+  async execute({ thanay, message, from, sender, args, rawArgs, prefix, t }) {
     const query = rawArgs.trim();
 
     if (!query) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.apk.usage", { prefix }) },
         { quoted: message as WAMessage },
@@ -37,13 +37,13 @@ const apkCommand: Command = {
       return;
     }
 
-    await misa.sendMessage(from, { text: t("commands.apk.searching") }, { quoted: message as WAMessage });
+    await thanay.sendMessage(from, { text: t("commands.apk.searching") }, { quoted: message as WAMessage });
 
     try {
       const results = await searchModyolo(query);
 
       if (results.length === 0) {
-        await misa.sendMessage(
+        await thanay.sendMessage(
           from,
           { text: t("commands.apk.noResults", { query }) },
           { quoted: message as WAMessage },
@@ -59,7 +59,7 @@ const apkCommand: Command = {
       }
       msg += `\n${t("commands.apk.selectApp")}`;
 
-      await misa.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
 
       setApkSession({
         from,
@@ -69,7 +69,7 @@ const apkCommand: Command = {
         createdAt: Date.now(),
       });
     } catch {
-      await misa.sendMessage(from, { text: t("commands.apk.error") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.apk.error") }, { quoted: message as WAMessage });
     }
   },
 };

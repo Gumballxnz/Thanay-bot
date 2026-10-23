@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WAMessage, WASocket } from "baileys";
@@ -17,12 +17,12 @@ import { runMediaJob } from "../media/runMediaJob.js";
 type Translator = (key: string, vars?: Record<string, string>) => string;
 
 async function sendText(
-  misa: WASocket,
+  thanay: WASocket,
   from: string,
   text: string,
   message?: proto.IWebMessageInfo,
 ): Promise<void> {
-  await misa.sendMessage(from, { text }, message ? { quoted: message as WAMessage } : undefined);
+  await thanay.sendMessage(from, { text }, message ? { quoted: message as WAMessage } : undefined);
 }
 
 /**
@@ -30,28 +30,28 @@ async function sendText(
  * Retorna true se a mensagem foi consumida pela sessão.
  */
 export async function tryHandleApkReply(params: {
-  misa: WASocket;
+  thanay: WASocket;
   from: string;
   sender: string;
   body: string;
   message: proto.IWebMessageInfo;
   t: Translator;
 }): Promise<boolean> {
-  const { misa, from, sender, body, message, t } = params;
+  const { thanay, from, sender, body, message, t } = params;
   const session = getApkSession(from, sender);
   if (!session) return false;
 
   const input = body.trim();
   const num = Number(input);
   if (!Number.isInteger(num)) {
-    await sendText(misa, from, t("commands.apk.invalidOption"), message);
+    await sendText(thanay, from, t("commands.apk.invalidOption"), message);
     return true;
   }
 
   if (session.step === "select_app") {
     if (num < 1 || num > session.results.length) {
       await sendText(
-        misa,
+        thanay,
         from,
         t("commands.apk.invalidRange", { max: String(session.results.length) }),
         message,
@@ -67,29 +67,29 @@ export async function tryHandleApkReply(params: {
       const infoMsg = buildModyoloAppInfoText(appInfo, t);
 
       if (imgURL) {
-        await runMediaJob({ misa, from, sender, kind: "apk-banner", t }, async (signal) => {
+        await runMediaJob({ thanay, from, sender, kind: "apk-banner", t }, async (signal) => {
           const media = await downloadToTemp({ url: imgURL, kind: "image", signal });
           try {
-            await misa.sendMessage(from, { image: { url: media.path }, caption: infoMsg }, { quoted: message as WAMessage });
+            await thanay.sendMessage(from, { image: { url: media.path }, caption: infoMsg }, { quoted: message as WAMessage });
           } finally {
             await media.cleanup();
           }
         }, { waitForCompletion: true });
       } else {
-        await sendText(misa, from, infoMsg, message);
+        await sendText(thanay, from, infoMsg, message);
       }
 
       if (!appInfo.downloadPage) {
         if (appInfo.downloadURL) {
           const shortURL = await shortenUrl(appInfo.downloadURL);
           await sendText(
-            misa,
+            thanay,
             from,
             t("commands.apk.downloadReady", { name: appInfo.name, url: shortURL }),
             message,
           );
         } else {
-          await sendText(misa, from, t("commands.apk.fetchError"), message);
+          await sendText(thanay, from, t("commands.apk.fetchError"), message);
         }
         deleteApkSession(from, sender);
         return true;
@@ -101,7 +101,7 @@ export async function tryHandleApkReply(params: {
         const downloadURL = await getModyoloDownloadLink(directDownloadID, appInfo.downloadPage);
         const shortURL = await shortenUrl(downloadURL);
         await sendText(
-          misa,
+          thanay,
           from,
           t("commands.apk.downloadReady", { name: appInfo.name, url: shortURL }),
           message,
@@ -114,13 +114,13 @@ export async function tryHandleApkReply(params: {
         if (appInfo.downloadURL) {
           const shortURL = await shortenUrl(appInfo.downloadURL);
           await sendText(
-            misa,
+            thanay,
             from,
             t("commands.apk.downloadReady", { name: appInfo.name, url: shortURL }),
             message,
           );
         } else {
-          await sendText(misa, from, t("commands.apk.downloadError"), message);
+          await sendText(thanay, from, t("commands.apk.downloadError"), message);
         }
         deleteApkSession(from, sender);
         return true;
@@ -131,7 +131,7 @@ export async function tryHandleApkReply(params: {
         verMsg += `*${i + 1}.* ${versions[i].version} - ${versions[i].size}\n`;
       }
       verMsg += `\n${t("commands.apk.selectVersion")}`;
-      await sendText(misa, from, verMsg, message);
+      await sendText(thanay, from, verMsg, message);
 
       setApkSession({
         ...session,
@@ -141,7 +141,7 @@ export async function tryHandleApkReply(params: {
         createdAt: Date.now(),
       });
     } catch {
-      await sendText(misa, from, t("commands.apk.fetchError"), message);
+      await sendText(thanay, from, t("commands.apk.fetchError"), message);
       deleteApkSession(from, sender);
     }
 
@@ -156,7 +156,7 @@ export async function tryHandleApkReply(params: {
 
     if (num < 1 || num > session.versions.length) {
       await sendText(
-        misa,
+        thanay,
         from,
         t("commands.apk.invalidRange", { max: String(session.versions.length) }),
         message,
@@ -170,7 +170,7 @@ export async function tryHandleApkReply(params: {
       const downloadURL = await getModyoloDownloadLink(selected.downloadID, session.appInfo.downloadPage);
       const shortURL = await shortenUrl(downloadURL);
       await sendText(
-        misa,
+        thanay,
         from,
         t("commands.apk.downloadReadyVersion", {
           name: session.appInfo.name,
@@ -181,7 +181,7 @@ export async function tryHandleApkReply(params: {
         message,
       );
     } catch {
-      await sendText(misa, from, t("commands.apk.downloadError"), message);
+      await sendText(thanay, from, t("commands.apk.downloadError"), message);
     }
 
     deleteApkSession(from, sender);

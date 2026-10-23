@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,11 +12,11 @@ const menuCommand: Command = {
   aliases: ["help", "ajuda", "comandos"],
   description: "Shows the main menu",
   category: "geral",
-  async execute({ misa, message, from, prefix, t }) {
+  async execute({ thanay, message, from, prefix, t }) {
     const config = await getBotConfig();
 
     await sendMenu(
-      misa,
+      thanay,
       from,
       [
         t("commands.menu.mainTitle", { botName: config.botName }),

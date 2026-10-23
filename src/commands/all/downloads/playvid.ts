@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -20,9 +20,9 @@ const playvidCommand: Command = {
   aliases: ["pv", "playvideo", "videoplay"],
   description: "Searches for a video on YouTube and sends it",
   category: "all",
-  async execute({ misa, message, from, sender, args, rawArgs, t, locale }) {
+  async execute({ thanay, message, from, sender, args, rawArgs, t, locale }) {
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.playvid.usage") },
         { quoted: message as WAMessage },
@@ -31,8 +31,8 @@ const playvidCommand: Command = {
     }
 
     const query = rawArgs.trim();
-    await runMediaJob({ misa, from, sender, kind: "youtube-video", t }, async (signal) => {
-      await misa.sendMessage(from, { text: t("commands.playvid.searching") }, { quoted: message as WAMessage });
+    await runMediaJob({ thanay, from, sender, kind: "youtube-video", t }, async (signal) => {
+      await thanay.sendMessage(from, { text: t("commands.playvid.searching") }, { quoted: message as WAMessage });
       let media: Awaited<ReturnType<typeof downloadYouTube>>["media"];
       try {
         const { videoURL, search } = await resolveYouTubeTarget(query, signal);
@@ -41,7 +41,7 @@ const playvidCommand: Command = {
           let thumbnail: Awaited<ReturnType<typeof downloadToTemp>> | undefined;
           try {
             thumbnail = await downloadToTemp({ url: search.thumbnail, kind: "image", signal });
-            await misa.sendMessage(from, {
+            await thanay.sendMessage(from, {
               image: { url: thumbnail.path },
               caption: [
                `🎬 *${search.title}*`,
@@ -54,12 +54,12 @@ const playvidCommand: Command = {
               ].join("\n"),
             }, { quoted: message as WAMessage });
           } catch {
-            await misa.sendMessage(from, { text: t("commands.playvid.downloading") }, { quoted: message as WAMessage });
+            await thanay.sendMessage(from, { text: t("commands.playvid.downloading") }, { quoted: message as WAMessage });
           } finally {
             await thumbnail?.cleanup();
           }
         } else {
-          await misa.sendMessage(from, { text: t("commands.playvid.downloading") }, { quoted: message as WAMessage });
+          await thanay.sendMessage(from, { text: t("commands.playvid.downloading") }, { quoted: message as WAMessage });
         }
 
         const video = await downloadYouTube(videoURL, "mp4", { signal });
@@ -74,14 +74,14 @@ const playvidCommand: Command = {
           caption: `🎬 *${title}*${author ? `\n👤 ${author}` : ""}`,
         };
 
-        await misa.sendMessage(from, media.size > 50 * 1024 * 1024
+        await thanay.sendMessage(from, media.size > 50 * 1024 * 1024
           ? { document: { url: media.path }, ...common }
           : { video: { url: media.path }, ...common }, { quoted: message as WAMessage });
       } catch (error) {
         const msg = isErrorCode(error, ErrorCode.INVALID_URL)
           ? t("commands.ytmp4.invalidUrl")
           : t("commands.playvid.error", { message: localizeError(error, t, "commands.playvid.unknown") });
-        await misa.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
       } finally {
         await media?.cleanup();
       }

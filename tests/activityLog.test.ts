@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { describe, it } from "node:test";
@@ -47,8 +47,8 @@ describe("activityLog", () => {
 
   it("prefers pushName and falls back to jid digits", () => {
     assert.strictEqual(
-      getActivityUserName({ pushName: " Hiudy " } as proto.IWebMessageInfo, "5511999999999@s.whatsapp.net"),
-      "Hiudy",
+      getActivityUserName({ pushName: " Gumball " } as proto.IWebMessageInfo, "5511999999999@s.whatsapp.net"),
+      "Gumball",
     );
     assert.strictEqual(
       getActivityUserName({} as proto.IWebMessageInfo, "5511999999999@s.whatsapp.net"),
@@ -58,12 +58,12 @@ describe("activityLog", () => {
 
   it("formats group and private lines in style D", () => {
     assert.strictEqual(
-      formatActivityLine(true, "120@g.us", "Hiudy", "oi", t),
-      "Hiudy → grupo  ·  oi",
+      formatActivityLine(true, "120@g.us", "Gumball", "oi", t),
+      "Gumball → grupo  ·  oi",
     );
     assert.strictEqual(
-      formatActivityLine(false, "5511@s.whatsapp.net", "Hiudy", "!ping", t),
-      "Hiudy → privado  ·  !ping",
+      formatActivityLine(false, "5511@s.whatsapp.net", "Gumball", "!ping", t),
+      "Gumball → privado  ·  !ping",
     );
   });
 

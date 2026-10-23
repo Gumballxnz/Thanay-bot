@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -16,27 +16,27 @@ const blockuserCommand: Command = {
   description: "Blocks a user globally on the bot",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, rawArgs, sender, t, locale }) {
+  async execute({ thanay, message, from, args, rawArgs, sender, t, locale }) {
     const mentioned = extractMentionedUser(message);
     if (!mentioned) {
-      await misa.sendMessage(from, { text: t("commands.blockuser.noMention") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.blockuser.noMention") }, { quoted: message as WAMessage });
       return;
     }
 
-    const userLID = await toLID(mentioned, misa);
+    const userLID = await toLID(mentioned, thanay);
     if (!userLID) {
-      await misa.sendMessage(from, { text: t("commands.blockuser.lidFailed") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.blockuser.lidFailed") }, { quoted: message as WAMessage });
       return;
     }
 
     if (userLID === sender) {
-      await misa.sendMessage(from, { text: t("commands.blockuser.ownerBypass") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.blockuser.ownerBypass") }, { quoted: message as WAMessage });
       return;
     }
 
     const activeUsers = await cleanupExpiredBlockedUsers();
     if (findBlockedUser(activeUsers, userLID)) {
-      await misa.sendMessage(from, { text: t("commands.blockuser.alreadyBlocked") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.blockuser.alreadyBlocked") }, { quoted: message as WAMessage });
       return;
     }
 
@@ -65,7 +65,7 @@ const blockuserCommand: Command = {
       ],
     }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       {
         text: t("commands.blockuser.success", {

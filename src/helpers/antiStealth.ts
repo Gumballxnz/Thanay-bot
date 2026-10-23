@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { proto, WASocket } from "baileys";
@@ -45,7 +45,7 @@ export function isNoSessionDecryptMessage(message: proto.IWebMessageInfo): boole
 }
 
 export async function applyAntiStealth(
-  misa: WASocket,
+  thanay: WASocket,
   message: proto.IWebMessageInfo,
   groupId: string,
   sender: string,
@@ -66,18 +66,18 @@ export async function applyAntiStealth(
   const { t } = await import("../i18n/index.js");
 
   try {
-    if (message.key) await misa.sendMessage(groupId, { delete: message.key });
+    if (message.key) await thanay.sendMessage(groupId, { delete: message.key });
   } catch (error) {
     log.warn("ANTISTEALTH", t("logs.antistealthDeleteFailed", locale, { groupId, error: String(error) }));
   }
 
   try {
-    await misa.groupParticipantsUpdate(groupId, [sender], "remove");
+    await thanay.groupParticipantsUpdate(groupId, [sender], "remove");
   } catch (error) {
     log.warn("ANTISTEALTH", t("logs.antistealthRemoveFailed", locale, { sender, groupId, error: String(error) }));
   }
 
-  await misa.sendMessage(groupId, {
+  await thanay.sendMessage(groupId, {
     text: t("commands.antistealth.punished", locale, {
       user: sender.split("@")[0],
       count: String(state.stealthTimestamps.length),

@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -15,11 +15,11 @@ const legendabvCommand: Command = {
   groupOnly: true,
   adminOnly: true,
   botAdminRequired: true,
-  async execute({ misa, message, from, args, rawArgs, t, locale }) {
+  async execute({ thanay, message, from, args, rawArgs, t, locale }) {
     const words = getLocalizedCommandWordVars(locale);
     if (args.length === 0) {
       const config = await getGroup(from);
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         {
           text: t("commands.legendabv.header", {
@@ -37,7 +37,7 @@ const legendabvCommand: Command = {
     const current = await getGroup(from);
     await saveGroup(from, { bemvindo: { ...current.bemvindo, legenda } });
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.legendabv.updated", { text: legenda }) },
       { quoted: message as WAMessage },

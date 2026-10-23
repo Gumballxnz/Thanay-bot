@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -17,9 +17,9 @@ const leavegpCommand: Command = {
   category: "geral",
   ownerOnly: true,
   groupOnly: true,
-  async execute({ misa, message, from, t }) {
-    await misa.sendMessage(from, { text: t("commands.leavegp.confirm") }, { quoted: message as WAMessage });
-    await misa.groupLeave(from);
+  async execute({ thanay, message, from, t }) {
+    await thanay.sendMessage(from, { text: t("commands.leavegp.confirm") }, { quoted: message as WAMessage });
+    await thanay.groupLeave(from);
   },
 };
 

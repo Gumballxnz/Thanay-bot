@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -12,11 +12,11 @@ const nomebotCommand: Command = {
   description: "Updates the bot name",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, rawArgs, t }) {
+  async execute({ thanay, message, from, args, rawArgs, t }) {
     const config = await getBotConfig();
 
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.nomebot.current", { value: config.botName }) },
         { quoted: message as WAMessage },
@@ -26,13 +26,13 @@ const nomebotCommand: Command = {
 
     const botName = rawArgs.trim();
     if (!botName) {
-      await misa.sendMessage(from, { text: t("commands.nomebot.invalid") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.nomebot.invalid") }, { quoted: message as WAMessage });
       return;
     }
 
     await updateBotConfig((current) => ({ ...current, botName }));
 
-    await misa.sendMessage(
+    await thanay.sendMessage(
       from,
       { text: t("commands.nomebot.updated", { value: botName }) },
       { quoted: message as WAMessage },

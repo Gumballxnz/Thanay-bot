@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -20,9 +20,9 @@ const playCommand: Command = {
   aliases: ["p"],
   description: "Searches for a song on YouTube and sends the audio",
   category: "all",
-  async execute({ misa, message, from, sender, args, rawArgs, t, locale }) {
+  async execute({ thanay, message, from, sender, args, rawArgs, t, locale }) {
     if (args.length === 0) {
-      await misa.sendMessage(
+      await thanay.sendMessage(
         from,
         { text: t("commands.play.usage") },
         { quoted: message as WAMessage },
@@ -31,8 +31,8 @@ const playCommand: Command = {
     }
 
     const query = rawArgs.trim();
-    await runMediaJob({ misa, from, sender, kind: "youtube-audio", t }, async (signal) => {
-      await misa.sendMessage(from, { text: t("commands.play.searching") }, { quoted: message as WAMessage });
+    await runMediaJob({ thanay, from, sender, kind: "youtube-audio", t }, async (signal) => {
+      await thanay.sendMessage(from, { text: t("commands.play.searching") }, { quoted: message as WAMessage });
       let media: Awaited<ReturnType<typeof downloadYouTube>>["media"];
       try {
         const { videoURL, search } = await resolveYouTubeTarget(query, signal);
@@ -41,7 +41,7 @@ const playCommand: Command = {
           let thumbnail: Awaited<ReturnType<typeof downloadToTemp>> | undefined;
           try {
             thumbnail = await downloadToTemp({ url: search.thumbnail, kind: "image", signal });
-            await misa.sendMessage(from, {
+            await thanay.sendMessage(from, {
               image: { url: thumbnail.path },
               caption: [
                `🎵 *${search.title}*`,
@@ -54,12 +54,12 @@ const playCommand: Command = {
               ].join("\n"),
             }, { quoted: message as WAMessage });
           } catch {
-            await misa.sendMessage(from, { text: t("commands.play.downloading") }, { quoted: message as WAMessage });
+            await thanay.sendMessage(from, { text: t("commands.play.downloading") }, { quoted: message as WAMessage });
           } finally {
             await thumbnail?.cleanup();
           }
         } else {
-          await misa.sendMessage(from, { text: t("commands.play.downloading") }, { quoted: message as WAMessage });
+          await thanay.sendMessage(from, { text: t("commands.play.downloading") }, { quoted: message as WAMessage });
         }
 
         const audio = await downloadYouTube(videoURL, "mp3", { signal });
@@ -68,7 +68,7 @@ const playCommand: Command = {
 
         const title = audio.title || search?.title || t("common.file");
 
-        await misa.sendMessage(from, {
+        await thanay.sendMessage(from, {
           audio: { url: media.path },
           mimetype: "audio/mpeg",
           fileName: `${sanitizeYtFileName(title, "audio")}.mp3`,
@@ -77,7 +77,7 @@ const playCommand: Command = {
         const msg = isErrorCode(error, ErrorCode.INVALID_URL)
           ? t("commands.ytmp3.invalidUrl")
           : t("commands.play.error", { message: localizeError(error, t, "commands.play.unknown") });
-        await misa.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
+        await thanay.sendMessage(from, { text: msg }, { quoted: message as WAMessage });
       } finally {
         await media?.cleanup();
       }

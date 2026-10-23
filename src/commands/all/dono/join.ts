@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { WAMessage } from "baileys";
@@ -18,20 +18,20 @@ const joinCommand: Command = {
   description: "Makes the bot join a group via invite link",
   category: "geral",
   ownerOnly: true,
-  async execute({ misa, message, from, args, rawArgs, t }) {
+  async execute({ thanay, message, from, args, rawArgs, t }) {
     const link = rawArgs.trim();
     const code = INVITE_RE.exec(link)?.[1];
 
     if (!code) {
-      await misa.sendMessage(from, { text: t("commands.join.invalid") }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.join.invalid") }, { quoted: message as WAMessage });
       return;
     }
 
     try {
-      await misa.groupAcceptInvite(code);
-      await misa.sendMessage(from, { text: t("commands.join.success") }, { quoted: message as WAMessage });
+      await thanay.groupAcceptInvite(code);
+      await thanay.sendMessage(from, { text: t("commands.join.success") }, { quoted: message as WAMessage });
     } catch (error) {
-      await misa.sendMessage(from, { text: t("commands.join.error", { error: String(error) }) }, { quoted: message as WAMessage });
+      await thanay.sendMessage(from, { text: t("commands.join.error", { error: String(error) }) }, { quoted: message as WAMessage });
     }
   },
 };

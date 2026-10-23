@@ -1,5 +1,5 @@
 /**
- * @author Hiudy · github.com/hiudyy
+ * @author Gumball · github.com/Gumballxnz
  * @project Thanay Bot
  */
 import { promises as fs } from "node:fs";
@@ -11,7 +11,7 @@ import { log } from "../logger.js";
 import { Event } from "../types/Event.js";
 
 export class EventHandler {
-  async loadEvents(eventsDir: string, misa: WASocket): Promise<() => void> {
+  async loadEvents(eventsDir: string, thanay: WASocket): Promise<() => void> {
     const globalLocale = await getGlobalLocale();
     const globalT = createTranslator(globalLocale);
     const files = await this.walkDir(eventsDir);
@@ -30,18 +30,18 @@ export class EventHandler {
 
       const listener = async (data: unknown) => {
         try {
-          await event.execute({ thanay: misa, misa, data });
+          await event.execute({ thanay: thanay, data });
         } catch (error) {
           log.error("EVENT", globalT("logs.eventError", { name: event.name }), error);
         }
       };
-      misa.ev.on(event.event as never, listener as never);
+      thanay.ev.on(event.event as never, listener as never);
       registered.push({ event: event.event, listener });
     }
 
     return () => {
       for (const registration of registered) {
-        misa.ev.off(registration.event as never, registration.listener as never);
+        thanay.ev.off(registration.event as never, registration.listener as never);
       }
     };
   }
