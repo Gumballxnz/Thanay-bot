@@ -48,7 +48,7 @@ export const defaultConfig: BotConfig = {
   language: "pt",
   timezone: "Africa/Maputo",
   operations: structuredClone(defaultOperationalConfig),
-  geminiApiKey: "AQ.Ab8RN6LgzsPGQryNW16d1_Ql2FmYHzG1g2-CFUVpnx4hOMaaFg",
+  geminiApiKey: process.env.GEMINI_API_KEY?.trim() || "",
   geminiModel: "gemini-3.5-flash-lite",
 };
 
